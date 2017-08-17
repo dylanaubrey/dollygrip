@@ -11,9 +11,9 @@ const handl = new Handl({ cachemapOptions, mode: 'internal', schema });
 
 /**
  *
- * @return {Promise}
+ * @return {Function}
  */
-export default async function dollygrip() {
+export default function dollygrip() {
   return async (req, res) => {
     if (isEmpty(req.body)) {
       const errors = 'The request does not have a body.';
@@ -30,4 +30,4 @@ export default async function dollygrip() {
       res.status(500).end();
     }
   };
-};
+}
