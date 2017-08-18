@@ -1,31 +1,42 @@
 import chai, { expect } from 'chai';
 import dirtyChai from 'dirty-chai';
+import fetchMock from 'fetch-mock';
 import sinonChai from 'sinon-chai';
-import { movieQuery, tvQuery, variableQuery } from '../../data/requests/certification';
-import { certificationMovie, certificationTV } from '../../data/responses';
-import { buildURL, createApp, mockRestRequest, postRequest } from '../../helpers';
+import { movieQuery, tvQuery, variableQuery } from '../../data/graphql/requests/certification';
+import graphql from '../../data/graphql/responses';
+import rest from '../../data/rest/responses';
+import { buildURL, createApps, mockRestRequest, postRequest } from '../../helpers';
 
 chai.use(dirtyChai);
 chai.use(sinonChai);
-const moviePath = 'certification/movie/list';
-const tvPath = 'certification/tv/list';
+
+const paths = { movie: 'certification/movie/list', tv: 'certification/tv/list' };
+
+const headers = {
+  'Cache-Control': 'public, max-age=36000',
+  'Content-Type': 'application/json; charset=utf-8',
+};
 
 describe('the certifications type', () => {
-  let app;
+  let apps, dollygrip, server;
 
   before(() => {
-    app = createApp();
+    apps = createApps();
+    dollygrip = apps.dollygrip;
+    server = apps.server;
+  });
+
+  after(() => {
+    fetchMock.restore();
+    dollygrip.clearCaches();
   });
 
   describe('when specific certifications are requested with movie format', () => {
-    beforeEach(() => {
-      const url = buildURL(moviePath);
-      mockRestRequest(url, certificationMovie);
-    });
-
-    it('should return those specific movie certifications', async () => {
-      const res = await postRequest(app, { query: movieQuery });
-      expect(res).to.eql(certificationMovie);
+    it('should return the specific movie certifications', async () => {
+      const url = buildURL(paths.movie);
+      mockRestRequest(url, rest.certificationMovie, { headers });
+      const res = await postRequest(server, { query: movieQuery });
+      expect(res.body).to.eql(graphql.certificationMovie);
     });
   });
 });

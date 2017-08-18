@@ -2,7 +2,7 @@ import bodyParser from 'body-parser';
 import Express from 'express';
 import fetchMock from 'fetch-mock';
 import request from 'supertest';
-import dollygrip from '../../src/router';
+import Dollygrip from '../../src';
 
 /**
  *
@@ -49,32 +49,35 @@ export const buildURL = function buildURL(path, queryParams) {
  *
  * @return {Express}
  */
-export const createApp = function createApp() {
-  const app = new Express();
-  app.use('/graphql', bodyParser.json(), dollygrip());
-  app.listen(3000);
-  return app;
+export const createApps = function createApps() {
+  const server = new Express();
+  const dollygrip = new Dollygrip();
+  server.use('/graphql', bodyParser.json(), dollygrip.route());
+  server.listen(3000);
+  return { server, dollygrip };
 };
 
 /**
  *
  * @param {string} endpoint
- * @param {Object} response
+ * @param {Object} body
+ * @param {Object} [opts]
  * @return {Object}
  */
-export const mockRestRequest = function mockRestRequest(endpoint, response) {
+export const mockRestRequest = function mockRestRequest(endpoint, body, opts = {}) {
   const matcher = url => url === endpoint;
-  fetchMock.mock(matcher, { body: JSON.stringify(response) });
+  const response = { body: JSON.stringify(body), ...opts };
+  fetchMock.mock(matcher, response);
 };
 
 /**
  *
- * @param {Object} app
+ * @param {Object} server
  * @param {Object} body
  * @return {Promise}
  */
-export const postRequest = function postRequest(app, body) {
-  return request(app)
+export const postRequest = function postRequest(server, body) {
+  return request(server)
     .post('/graphql')
     .set('Content-Type', 'application/json')
     .send(JSON.stringify(body));

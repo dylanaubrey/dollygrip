@@ -1,4 +1,5 @@
 import { GraphQLObjectType, GraphQLString } from 'graphql';
+import { get } from 'lodash';
 import Certifications from '../objects/certifications';
 import getta from '../../rest-client';
 
@@ -9,9 +10,15 @@ export default new GraphQLObjectType({
       type: Certifications,
       args: { format: { type: GraphQLString } },
       resolve: async (obj, args) => {
-        if (args.format === 'movie') return getta.getMovieCertifications();
-        if (args.format === 'tv') return getta.getTVCertifications();
-        return null;
+        let res;
+
+        if (args.format === 'movie') {
+          res = await getta.getMovieCertifications();
+        } else if (args.format === 'tv') {
+          res = await getta.getTVCertifications();
+        }
+
+        return get(res, ['data', '0', 'certifications'], null);
       },
     },
   }),
