@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "es6-promise": "^4.1.1",
-    "getta": "0.0.9",
+    "getta": "0.0.10",
     "graphql": "^0.10.5",
     "handl": "0.0.1",
     "iso-logger": "0.0.8",

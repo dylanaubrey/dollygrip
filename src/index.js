@@ -7,7 +7,16 @@ import schema from './schema';
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
+/**
+ *
+ * @type {Object}
+ */
 const cachemapOptions = { obj: { redisOptions: { db: 1 } }, res: { redisOptions: { db: 2 } } };
+
+/**
+ *
+ * @type {Handl}
+ */
 const handl = new Handl({ cachemapOptions, mode: 'internal', schema });
 
 /**

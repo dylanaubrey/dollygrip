@@ -11,13 +11,8 @@ export default new GraphQLObjectType({
       args: { format: { type: GraphQLString } },
       resolve: async (obj, args) => {
         let res;
-
-        if (args.format === 'movie') {
-          res = await getta.getMovieCertifications();
-        } else if (args.format === 'tv') {
-          res = await getta.getTVCertifications();
-        }
-
+        if (args.format === 'movie') res = await getta.getMovieCertifications();
+        if (args.format === 'tv') res = await getta.getTVCertifications();
         return get(res, ['data', '0', 'certifications'], null);
       },
     },

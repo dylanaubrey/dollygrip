@@ -2,7 +2,7 @@ import chai, { expect } from 'chai';
 import dirtyChai from 'dirty-chai';
 import fetchMock from 'fetch-mock';
 import sinonChai from 'sinon-chai';
-import { movieQuery, tvQuery, variableQuery } from '../../data/graphql/requests/certification';
+import { movieQuery, tvQuery } from '../../data/graphql/requests/certification';
 import graphql from '../../data/graphql/responses';
 import rest from '../../data/rest/responses';
 import { buildURL, createApps, mockRestRequest, postRequest } from '../../helpers';
@@ -31,12 +31,21 @@ describe('the certifications type', () => {
     dollygrip.clearCaches();
   });
 
-  describe('when specific certifications are requested with movie format', () => {
+  describe('when specific certifications are requested for movie format', () => {
     it('should return the specific movie certifications', async () => {
       const url = buildURL(paths.movie);
       mockRestRequest(url, rest.certificationMovie, { headers });
       const res = await postRequest(server, { query: movieQuery });
       expect(res.body).to.eql(graphql.certificationMovie);
+    });
+
+    describe('when the same specifications are requested for TV format', () => {
+      it('should return the specific TV certifications', async () => {
+        const url = buildURL(paths.tv);
+        mockRestRequest(url, rest.certificationTV, { headers });
+        const res = await postRequest(server, { query: tvQuery });
+        expect(res.body).to.eql(graphql.certificationTV);
+      });
     });
   });
 });
