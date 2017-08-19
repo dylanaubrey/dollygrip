@@ -2,7 +2,7 @@
  *
  * @type {string}
  */
-export const movieQuery = `
+export const movieQueryOne = `
 {
   certifications(format: "movie") {
     CA {
@@ -16,6 +16,43 @@ export const movieQuery = `
       order
     }
     US {
+      certification
+      meaning
+      order
+    }
+  }
+}
+`;
+
+/**
+ *
+ * @type {string}
+ */
+export const movieQueryTwo = `
+{
+  certifications(format: "movie") {
+    US {
+      certification
+      meaning
+      order
+    }
+  }
+}
+`;
+
+/**
+ *
+ * @type {string}
+ */
+export const movieQueryThree = `
+{
+  certifications(format: "movie") {
+    US {
+      certification
+      meaning
+      order
+    }
+    FR {
       certification
       meaning
       order

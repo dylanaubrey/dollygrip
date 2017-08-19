@@ -1,4 +1,6 @@
 import { GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql';
+import Metadata from '../metadata';
+import RootField from '../../interfaces/root-field';
 
 const Certification = new GraphQLObjectType({
   name: 'Certification',
@@ -11,6 +13,7 @@ const Certification = new GraphQLObjectType({
 
 export default new GraphQLObjectType({
   name: 'Certifications',
+  interfaces: [RootField],
   fields: () => ({
     AU: { type: new GraphQLList(Certification) },
     BR: { type: new GraphQLList(Certification) },
@@ -28,5 +31,7 @@ export default new GraphQLObjectType({
     SK: { type: new GraphQLList(Certification) },
     TH: { type: new GraphQLList(Certification) },
     US: { type: new GraphQLList(Certification) },
+    _Metadata: { type: Metadata },
   }),
+  // TODO: isTypeOf
 });
