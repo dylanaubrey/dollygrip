@@ -15,21 +15,24 @@ const cachemapOptions = { obj: { redisOptions: { db: 1 } }, res: { redisOptions:
 
 /**
  *
- * @type {Handl}
- */
-const handl = new Handl({ cachemapOptions, mode: 'internal', schema });
-
-/**
- *
  * The dollygrip
  */
 export default class Dollygrip {
   /**
    *
+   * @constructor
+   * @return {void}
+   */
+  constructor() {
+    this._handl = new Handl({ cachemapOptions, mode: 'internal', newInstance: true, schema });
+  }
+
+  /**
+   *
    * @return {void}
    */
   clearCaches() {
-    handl.clearCache();
+    this._handl.clearCache();
     getta.clearCache();
   }
 
@@ -48,7 +51,9 @@ export default class Dollygrip {
 
       try {
         const { query, variables } = req.body;
-        res.status(200).send(await handl.request(query, { variables }));
+        const body = await this._handl.request(query, { variables });
+        // TODO: Need to get cache header back as well...
+        res.status(200).send(body);
       } catch (err) {
         logger.error(err); // TODO: Log some request data as well...
         res.status(500).end();

@@ -1,6 +1,7 @@
 import chai, { expect } from 'chai';
 import dirtyChai from 'dirty-chai';
 import fetchMock from 'fetch-mock';
+import { spy } from 'sinon';
 import sinonChai from 'sinon-chai';
 import { movieQuery, tvQuery } from '../../data/graphql/requests/certification';
 import graphql from '../../data/graphql/responses';
@@ -24,9 +25,11 @@ describe('the certifications type', () => {
     apps = createApps();
     dollygrip = apps.dollygrip;
     server = apps.server;
+    spy(dollygrip._handl, '_execute');
   });
 
   after(() => {
+    dollygrip._handl._execute.restore();
     fetchMock.restore();
     dollygrip.clearCaches();
   });
@@ -37,14 +40,22 @@ describe('the certifications type', () => {
       mockRestRequest(url, rest.certificationMovie, { headers });
       const res = await postRequest(server, { query: movieQuery });
       expect(res.body).to.eql(graphql.certificationMovie);
+      expect(fetchMock.calls().matched).to.have.lengthOf(1);
+      fetchMock.reset();
     });
 
-    describe('when the same specifications are requested for TV format', () => {
+    describe('when the same movie certifications are requested again', () => {
+      // TODO
+    });
+
+    describe('when the same certifications are requested for TV format', () => {
       it('should return the specific TV certifications', async () => {
         const url = buildURL(paths.tv);
         mockRestRequest(url, rest.certificationTV, { headers });
         const res = await postRequest(server, { query: tvQuery });
         expect(res.body).to.eql(graphql.certificationTV);
+        expect(fetchMock.calls().matched).to.have.lengthOf(1);
+        fetchMock.reset();
       });
     });
   });
