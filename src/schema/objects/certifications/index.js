@@ -1,8 +1,9 @@
 import { GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql';
 import Metadata from '../metadata';
-import RootField from '../../interfaces/root-field';
+import Certifications from '../../classes/certifications';
+import APINode from '../../interfaces/api-node';
 
-const Certification = new GraphQLObjectType({
+const CertificationType = new GraphQLObjectType({
   name: 'Certification',
   fields: () => ({
     certification: { type: GraphQLString },
@@ -13,25 +14,25 @@ const Certification = new GraphQLObjectType({
 
 export default new GraphQLObjectType({
   name: 'Certifications',
-  interfaces: [RootField],
+  interfaces: [APINode],
   fields: () => ({
-    AU: { type: new GraphQLList(Certification) },
-    BR: { type: new GraphQLList(Certification) },
-    CA: { type: new GraphQLList(Certification) },
-    CAQC: { type: new GraphQLList(Certification) },
-    DE: { type: new GraphQLList(Certification) },
-    FR: { type: new GraphQLList(Certification) },
-    GB: { type: new GraphQLList(Certification) },
-    IN: { type: new GraphQLList(Certification) },
-    KR: { type: new GraphQLList(Certification) },
-    NL: { type: new GraphQLList(Certification) },
-    NZ: { type: new GraphQLList(Certification) },
-    PT: { type: new GraphQLList(Certification) },
-    RU: { type: new GraphQLList(Certification) },
-    SK: { type: new GraphQLList(Certification) },
-    TH: { type: new GraphQLList(Certification) },
-    US: { type: new GraphQLList(Certification) },
-    _Metadata: { type: Metadata },
+    AU: { type: new GraphQLList(CertificationType) },
+    BR: { type: new GraphQLList(CertificationType) },
+    CA: { type: new GraphQLList(CertificationType) },
+    CAQC: { type: new GraphQLList(CertificationType) },
+    DE: { type: new GraphQLList(CertificationType) },
+    FR: { type: new GraphQLList(CertificationType) },
+    GB: { type: new GraphQLList(CertificationType) },
+    IN: { type: new GraphQLList(CertificationType) },
+    KR: { type: new GraphQLList(CertificationType) },
+    NL: { type: new GraphQLList(CertificationType) },
+    NZ: { type: new GraphQLList(CertificationType) },
+    PT: { type: new GraphQLList(CertificationType) },
+    RU: { type: new GraphQLList(CertificationType) },
+    SK: { type: new GraphQLList(CertificationType) },
+    TH: { type: new GraphQLList(CertificationType) },
+    US: { type: new GraphQLList(CertificationType) },
+    _metadata: { type: Metadata },
   }),
-  // TODO: isTypeOf
+  isTypeOf: value => value instanceof Certifications,
 });

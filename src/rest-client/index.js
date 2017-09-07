@@ -16,7 +16,7 @@ const getta = new Getta({ baseURL });
  *
  * @type {Object}
  */
-const queryParams = { api_key: 'a72b9817273c73f7f29e4b5fed389155' };
+const queryParams = { api_key: 'fds89afd098fdasjojl3jo9doijeojfd' };
 
 // Certifications
 getta.shortcut('get', 'getMovieCertifications', { path: 'certification/movie/list', queryParams });

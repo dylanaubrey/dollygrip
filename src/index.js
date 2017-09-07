@@ -24,7 +24,23 @@ export default class Dollygrip {
    * @return {void}
    */
   constructor() {
+    this._getta = getta;
     this._handl = new Handl({ cachemapOptions, mode: 'internal', newInstance: true, schema });
+  }
+
+  /**
+   *
+   * @param {Map} map
+   * @return {Object}
+   */
+  _mapToObject(map) {
+    const obj = {};
+
+    map.forEach((cacheability, key) => {
+      obj[key] = cacheability.metadata;
+    });
+
+    return obj;
   }
 
   /**
@@ -32,8 +48,8 @@ export default class Dollygrip {
    * @return {void}
    */
   clearCaches() {
+    this._getta.clearCache();
     this._handl.clearCache();
-    getta.clearCache();
   }
 
   /**
@@ -51,9 +67,10 @@ export default class Dollygrip {
 
       try {
         const { query, variables } = req.body;
-        const body = await this._handl.request(query, { variables });
-        // TODO: Need to get cache header back as well...
-        res.status(200).send(body);
+        const { cacheMetadata, data } = await this._handl.request(query, { variables });
+        const cacheControl = cacheMetadata.get('query').printCacheControl();
+        res.set({ 'Cache-Control': cacheControl, 'Content-Type': 'application/json' });
+        res.status(200).send({ cacheMetadata: this._mapToObject(cacheMetadata), data });
       } catch (err) {
         logger.error(err); // TODO: Log some request data as well...
         res.status(500).end();

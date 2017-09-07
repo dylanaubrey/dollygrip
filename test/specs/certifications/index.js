@@ -48,8 +48,8 @@ describe('the certifications type', () => {
 
   describe('when certifications are requested for movie format', () => {
     it('should return the movie certifications', async () => {
-      const res = await postRequest(server, { query: movieQueryOne });
-      expect(res.body).to.eql(graphql.certificationMovie);
+      const { body } = await postRequest(server, { query: movieQueryOne });
+      expect(body.data).to.eql(graphql.certificationMovie);
       expect(dollygrip._handl._execute.calledOnce).to.be.true();
       expect(fetchMock.calls().matched).to.have.lengthOf(1);
       dollygrip._handl._execute.reset();
@@ -58,9 +58,9 @@ describe('the certifications type', () => {
 
     describe('when the same movie certifications is requested again', () => {
       it('should return the movie certifications from the handl cache', async () => {
-        const res = await postRequest(server, { query: movieQueryTwo });
-        const certifications = res.body.certifications;
-        expect(Object.keys(certifications).length).to.eql(2);
+        const { body } = await postRequest(server, { query: movieQueryTwo });
+        const certifications = body.data.certifications;
+        expect(Object.keys(certifications).length).to.eql(1);
         expect(!!certifications.US).to.be.true();
         expect(dollygrip._handl._execute.notCalled).to.be.true();
         expect(fetchMock.calls().matched).to.have.lengthOf(0);
@@ -69,9 +69,9 @@ describe('the certifications type', () => {
 
     describe('when one of the same movie certifications is requested again', () => {
       it('should return the movie certifications from the handl and getta caches', async () => {
-        const res = await postRequest(server, { query: movieQueryThree });
-        const certifications = res.body.certifications;
-        expect(Object.keys(certifications).length).to.eql(3);
+        const { body } = await postRequest(server, { query: movieQueryThree });
+        const certifications = body.data.certifications;
+        expect(Object.keys(certifications).length).to.eql(2);
         expect(!!certifications.US && !!certifications.FR).to.be.true();
         expect(dollygrip._handl._execute.calledOnce).to.be.true();
         expect(fetchMock.calls().matched).to.have.lengthOf(0);
@@ -81,8 +81,8 @@ describe('the certifications type', () => {
 
     describe('when the same certifications are requested for TV format', () => {
       it('should return the TV certifications', async () => {
-        const res = await postRequest(server, { query: tvQuery });
-        expect(res.body).to.eql(graphql.certificationTV);
+        const { body } = await postRequest(server, { query: tvQuery });
+        expect(body.data).to.eql(graphql.certificationTV);
         expect(dollygrip._handl._execute.calledOnce).to.be.true();
         expect(fetchMock.calls().matched).to.have.lengthOf(1);
         dollygrip._handl._execute.reset();

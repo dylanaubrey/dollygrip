@@ -1,6 +1,6 @@
 {
   "name": "dollygrip",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A graphql interface for The Movie Database (TMDb) rest API.",
   "author": "Dylan Aubrey <dylanaubrey@gmail.com>",
   "license": "MIT",
@@ -35,10 +35,11 @@
     "transpile:module": " cross-env BABEL_ENV=module babel src --out-dir lib/module --copy-files"
   },
   "dependencies": {
+    "cacheability": "0.0.1",
     "es6-promise": "^4.1.1",
-    "getta": "0.0.10",
+    "getta": "0.0.11",
     "graphql": "^0.10.5",
-    "handl": "0.0.1",
+    "handl": "0.0.3",
     "iso-logger": "0.0.8",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4"
