@@ -22,14 +22,13 @@ const defaultQueryParams = { api_key: 'fds89afd098fdasjojl3jo9doijeojfd' };
  * @return {string}
  */
 export const buildQueryString = function buildQueryString(queryParams = {}) {
-  const mergedParams = { ...queryParams, ...defaultQueryParams };
   let queryString = '';
   let paramCount = 0;
 
-  Object.keys(mergedParams).forEach((key) => {
+  Object.keys(queryParams).forEach((key) => {
     paramCount += 1;
     const prefix = paramCount === 1 ? '?' : '&';
-    queryString += `${prefix}${key}=${mergedParams[key]}`;
+    queryString += `${prefix}${key}=${queryParams[key]}`;
   });
 
   return queryString;
@@ -42,7 +41,8 @@ export const buildQueryString = function buildQueryString(queryParams = {}) {
  * @return {string}
  */
 export const buildURL = function buildURL(path, queryParams) {
-  return `${baseURL}${path}${buildQueryString(queryParams)}`;
+  const _queryParams = queryParams ? { ...defaultQueryParams, queryParams } : defaultQueryParams;
+  return `${baseURL}${path}${buildQueryString(_queryParams)}`;
 };
 
 /**
