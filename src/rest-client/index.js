@@ -22,6 +22,10 @@ const getta = new Getta({ baseURL, queryParams });
 getta.shortcut('get', 'getMovieCertifications', { path: 'certification/movie/list' });
 getta.shortcut('get', 'getTVCertifications', { path: 'certification/tv/list' });
 
+// Collection
+getta.shortcut('get', 'getCollection', { path: 'collection' });
+getta.shortcut('get', 'getCollectionImages', { path: 'collection/{id}/images' });
+
 // TODO
 
 export default getta;

@@ -1,6 +1,7 @@
 import { get } from 'lodash';
 import Certifications from '../../classes/certifications';
 import getta from '../../../rest-client';
+import logger from '../../../logger';
 
 /**
  *
@@ -11,10 +12,14 @@ import getta from '../../../rest-client';
 export default async function resolveCertifications(obj, args) {
   let res;
 
-  if (args.format === 'movie') {
-    res = await getta.getMovieCertifications();
-  } else if (args.format === 'tv') {
-    res = await getta.getTVCertifications();
+  try {
+    if (args.format === 'movie') {
+      res = await getta.getMovieCertifications();
+    } else if (args.format === 'tv') {
+      res = await getta.getTVCertifications();
+    }
+  } catch (err) {
+    logger.error(err);
   }
 
   const data = get(res, ['data', '0', 'certifications'], null);
