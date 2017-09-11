@@ -36,13 +36,17 @@ export const buildQueryString = function buildQueryString(queryParams = {}) {
 
 /**
  *
- * @param {string} path
- * @param {Object} queryParams
+ * @param {Object} opts
+ * @param {string} opts.path
+ * @param {string} [opts.resource]
+ * @param {Object} [opts.queryParams]
  * @return {string}
  */
-export const buildURL = function buildURL(path, queryParams) {
+export const buildURL = function buildURL({ path, resource, queryParams }) {
   const _queryParams = queryParams ? { ...defaultQueryParams, queryParams } : defaultQueryParams;
-  return `${baseURL}${path}${buildQueryString(_queryParams)}`;
+  let url = `${baseURL}${path}`;
+  if (resource) url = `${url}/${resource}`;
+  return `${url}${buildQueryString(_queryParams)}`;
 };
 
 /**
@@ -53,7 +57,6 @@ export const createApps = function createApps() {
   const server = new Express();
   const dollygrip = new Dollygrip();
   server.use('/graphql', bodyParser.json(), dollygrip.route());
-  server.listen(3000);
   return { server, dollygrip };
 };
 

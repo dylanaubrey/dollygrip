@@ -1,4 +1,5 @@
 import { get } from 'lodash';
+import Movie from '../../classes/movie';
 import getta from '../../../rest-client';
 
 /**
@@ -6,7 +7,7 @@ import getta from '../../../rest-client';
  * @param {Object} obj
  * @return {Array<Movie>}
  */
-export default async function resolveMovieList() {
+export default async function resolveMovie() {
   // TODO: Need to parse query and data returned to see if
   // all the data is already available in the summary
   // of a movieType that each movie list returns. If all

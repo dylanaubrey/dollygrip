@@ -19,8 +19,8 @@ chai.use(dirtyChai);
 chai.use(sinonChai);
 
 const urls = {
-  movie: buildURL('certification/movie/list'),
-  tv: buildURL('certification/tv/list'),
+  movie: buildURL({ path: 'certification/movie/list' }),
+  tv: buildURL({ path: 'certification/tv/list' }),
 };
 
 const headers = {

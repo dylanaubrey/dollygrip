@@ -1,7 +1,7 @@
 import { GraphQLInt, GraphQLInterfaceType } from 'graphql';
 
 export default new GraphQLInterfaceType({
-  name: 'APINode',
+  name: 'EntityNode',
   fields: () => ({
     id: { type: GraphQLInt },
   }),

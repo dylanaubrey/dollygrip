@@ -7,9 +7,12 @@ import logger from '../../../logger';
  *
  * @param {Object} obj
  * @param {Object} args
+ * @param {Object} context
+ * @param {Object} info
  * @return {Colleciton}
  */
-export default async function resolveCollection(obj, args) {
+export default async function resolveCollection(obj, args, context, info) {
+  if (fieldHasData(obj, info)) return new Collection(obj);
   let res;
 
   try {
