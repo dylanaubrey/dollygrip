@@ -26,6 +26,9 @@ getta.shortcut('get', 'getTVCertifications', { path: 'certification/tv/list' });
 getta.shortcut('get', 'getCollection', { path: 'collection' });
 getta.shortcut('get', 'getCollectionImages', { path: 'collection/{id}/images' });
 
+// Movie
+getta.shortcut('get', 'getMovie', { path: 'movie' });
+
 // TODO
 
 export default getta;

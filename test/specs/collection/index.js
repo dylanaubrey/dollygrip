@@ -22,7 +22,7 @@ describe('the collection type', () => {
   let apps, dollygrip, server;
 
   before(() => {
-    mockRestRequest(url, rest.collection, { headers });
+    mockRestRequest(url, rest.collection10, { headers });
     apps = createApps();
     dollygrip = apps.dollygrip;
     server = apps.server;

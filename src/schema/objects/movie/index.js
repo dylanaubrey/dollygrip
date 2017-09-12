@@ -1,5 +1,6 @@
 import {
   GraphQLBoolean,
+  GraphQLFloat,
   GraphQLInt,
   GraphQLList,
   GraphQLObjectType,
@@ -19,7 +20,7 @@ export default new GraphQLObjectType({
   fields: () => ({
     adult: { type: GraphQLBoolean },
     backdropPath: { type: GraphQLString, resolve: obj => obj.backdrop_path },
-    collection: { type: CollectionType, resolve: resolveCollection },
+    belongsToCollection: { type: CollectionType, resolve: resolveCollection },
     budget: { type: GraphQLInt },
     // genres: { type: new GraphQLList(GenreType), resolve: resolveGenreList },
     homepage: { type: GraphQLString },
@@ -28,7 +29,7 @@ export default new GraphQLObjectType({
     originalLanguage: { type: GraphQLString, resolve: obj => obj.original_language },
     originalTitle: { type: GraphQLString, resolve: obj => obj.original_title },
     overview: { type: GraphQLString },
-    popularity: { type: GraphQLInt },
+    popularity: { type: GraphQLFloat },
     posterPath: { type: GraphQLString, resolve: obj => obj.poster_path },
     // productionCompanies: { type: new GraphQLList(CompanyType), resolve: resolveCompanyList },
     releaseDate: { type: GraphQLString, resolve: obj => obj.release_date },
@@ -38,7 +39,7 @@ export default new GraphQLObjectType({
     tagline: { type: GraphQLString },
     title: { type: GraphQLString },
     video: { type: GraphQLBoolean },
-    voteAverage: { type: GraphQLInt, resolve: obj => obj.vote_average },
+    voteAverage: { type: GraphQLFloat, resolve: obj => obj.vote_average },
     voteCount: { type: GraphQLInt, resolve: obj => obj.vote_count },
     _metadata: { type: Metadata },
   }),

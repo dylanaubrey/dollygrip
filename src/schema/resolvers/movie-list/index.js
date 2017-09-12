@@ -1,15 +1,23 @@
-import { get } from 'lodash';
-import getta from '../../../rest-client';
+import { snakeCase } from 'lodash';
+import resolveMovie from '../movie';
+import { getCurrentFieldNode, getName } from '../../helpers';
 
 /**
  *
  * @param {Object} obj
+ * @param {Object} args
+ * @param {Object} context
+ * @param {Object} info
  * @return {Array<Movie>}
  */
-export default async function resolveMovieList() {
-  // TODO: Need to parse query and data returned to see if
-  // all the data is already available in the summary
-  // of a movieType that each movie list returns. If all
-  // the data is present, then return the data, otherwise
-  // query the movie endpoint to get all the movie info.
-}
+export default async function resolveMovieList(obj, args, context, info) {
+  const currentFieldNode = getCurrentFieldNode(info);
+  const fieldData = obj[snakeCase(getName(currentFieldNode))];
+  const promises = [];
+
+  fieldData.forEach((value) => {
+    promises.push(resolveMovie(value, args, context, info));
+  });
+
+  return Promise.all(promises);
+};
