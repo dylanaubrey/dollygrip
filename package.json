@@ -1,6 +1,6 @@
 {
   "name": "dollygrip",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A graphql interface for The Movie Database (TMDb) rest API.",
   "author": "Dylan Aubrey <dylanaubrey@gmail.com>",
   "license": "MIT",
@@ -39,7 +39,7 @@
     "es6-promise": "^4.1.1",
     "getta": "0.0.12",
     "graphql": "^0.10.5",
-    "handl": "0.0.6",
+    "handl": "0.0.8",
     "iso-logger": "0.0.8",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4"
