@@ -1,0 +1,60 @@
+{
+  "adult": false,
+  "backdrop_path": "/wdp4unWJWY9hGKN1tM56HeSt6PZ.jpg",
+  "belongs_to_collection": {
+    "id": 10,
+    "name": "Star Wars Collection",
+    "poster_path": "/ghd5zOQnDaDW1mxO7R5fXXpZMu.jpg",
+    "backdrop_path": "/d8duYyyC9J5T825Hg7grmaabfxQ.jpg"
+  },
+  "budget": 115000000,
+  "genres": [
+    {
+      "id": 12,
+      "name": "Adventure"
+    },
+    {
+      "id": 28,
+      "name": "Action"
+    },
+    {
+      "id": 878,
+      "name": "Science Fiction"
+    }
+  ],
+  "homepage": "http://www.starwars.com/films/star-wars-episode-i-the-phantom-menace",
+  "id": 1893,
+  "imdb_id": "tt0120915",
+  "original_language": "en",
+  "original_title": "Star Wars: Episode I - The Phantom Menace",
+  "overview": "Anakin Skywalker, a young slave strong with the Force, is discovered on Tatooine. Meanwhile, the evil Sith have returned, enacting their plot for revenge against the Jedi.",
+  "popularity": 16.36632,
+  "poster_path": "/n8V09dDc02KsSN6Q4hC2BX6hN8X.jpg",
+  "production_companies": [
+    {
+      "name": "Lucasfilm",
+      "id": 1
+    }
+  ],
+  "production_countries": [
+    {
+      "iso_3166_1": "US",
+      "name": "United States of America"
+    }
+  ],
+  "release_date": "1999-05-19",
+  "revenue": 924317558,
+  "runtime": 136,
+  "spoken_languages": [
+    {
+      "iso_639_1": "en",
+      "name": "English"
+    }
+  ],
+  "status": "Released",
+  "tagline": "Every generation has a legend. Every journey has a first step. Every saga has a beginning.",
+  "title": "Star Wars: Episode I - The Phantom Menace",
+  "video": false,
+  "vote_average": 6.3,
+  "vote_count": 4365
+}

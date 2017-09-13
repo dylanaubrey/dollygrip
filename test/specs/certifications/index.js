@@ -32,8 +32,8 @@ describe('the certifications type', () => {
   let apps, dollygrip, server;
 
   before(() => {
-    mockRestRequest(urls.movie, rest.certificationMovie, { headers });
-    mockRestRequest(urls.tv, rest.certificationTV, { headers });
+    mockRestRequest(urls.movie, rest.certification.movie, { headers });
+    mockRestRequest(urls.tv, rest.certification.tv, { headers });
     apps = createApps();
     dollygrip = apps.dollygrip;
     server = apps.server;
@@ -49,7 +49,7 @@ describe('the certifications type', () => {
   describe('when certifications are requested for movie format', () => {
     it('should return the movie certifications', async () => {
       const { body } = await postRequest(server, { query: movieQueryOne });
-      expect(body.data).to.eql(graphql.certificationMovie);
+      expect(body.data).to.eql(graphql.certification.movie);
       expect(dollygrip._handl._execute.calledOnce).to.be.true();
       expect(fetchMock.calls().matched).to.have.lengthOf(1);
       dollygrip._handl._execute.reset();
@@ -82,7 +82,7 @@ describe('the certifications type', () => {
     describe('when the same certifications are requested for TV format', () => {
       it('should return the TV certifications', async () => {
         const { body } = await postRequest(server, { query: tvQuery });
-        expect(body.data).to.eql(graphql.certificationTV);
+        expect(body.data).to.eql(graphql.certification.tv);
         expect(dollygrip._handl._execute.calledOnce).to.be.true();
         expect(fetchMock.calls().matched).to.have.lengthOf(1);
         dollygrip._handl._execute.reset();

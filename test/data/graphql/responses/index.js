@@ -5,7 +5,14 @@
  * @type {Object}
  */
 export default {
-  certificationMovie: require('./certification/movie/index.json'),
-  certificationTV: require('./certification/tv/index.json'),
-  collection: require('./collection/index.json'),
+  certification: {
+    movie: require('./certification/movie/index.json'),
+    tv: require('./certification/tv/index.json'),
+  },
+  collection: {
+    10: {
+      base: require('./collection/10/base/index.json'),
+      withMovies: require('./collection/10/with-movies/index.json'),
+    },
+  },
 };

@@ -1,0 +1,63 @@
+{
+  "adult": false,
+  "backdrop_path": "/i0NGCiMxL4NIVk2hhjtVgnNYZ3a.jpg",
+  "belongs_to_collection": {
+    "id": 10,
+    "name": "Star Wars Collection",
+    "poster_path": "/ghd5zOQnDaDW1mxO7R5fXXpZMu.jpg",
+    "backdrop_path": "/d8duYyyC9J5T825Hg7grmaabfxQ.jpg"
+  },
+  "budget": 0,
+  "genres": [
+    {
+      "id": 28,
+      "name": "Action"
+    },
+    {
+      "id": 12,
+      "name": "Adventure"
+    },
+    {
+      "id": 878,
+      "name": "Science Fiction"
+    }
+  ],
+  "homepage": "",
+  "id": 181812,
+  "imdb_id": "tt2527338",
+  "original_language": "en",
+  "original_title": "Star Wars: Episode IX",
+  "overview": "",
+  "popularity": 3.505157,
+  "poster_path": "/yVYTFvIiKyr6vsrPw3o5C6t2eoL.jpg",
+  "production_companies": [
+    {
+      "name": "Lucasfilm",
+      "id": 1
+    },
+    {
+      "name": "Walt Disney Pictures",
+      "id": 2
+    },
+    {
+      "name": "Bad Robot",
+      "id": 11461
+    }
+  ],
+  "production_countries": [],
+  "release_date": "2019-12-20",
+  "revenue": 0,
+  "runtime": 0,
+  "spoken_languages": [
+    {
+      "iso_639_1": "en",
+      "name": "English"
+    }
+  ],
+  "status": "Planned",
+  "tagline": "",
+  "title": "Star Wars: Episode IX",
+  "video": false,
+  "vote_average": 0,
+  "vote_count": 26
+}

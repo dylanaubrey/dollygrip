@@ -1,0 +1,60 @@
+{
+  "adult": false,
+  "backdrop_path": "/560F7BPaxRy8BsOfVU6cW4ivM46.jpg",
+  "belongs_to_collection": {
+    "id": 10,
+    "name": "Star Wars Collection",
+    "poster_path": "/ghd5zOQnDaDW1mxO7R5fXXpZMu.jpg",
+    "backdrop_path": "/d8duYyyC9J5T825Hg7grmaabfxQ.jpg"
+  },
+  "budget": 120000000,
+  "genres": [
+    {
+      "id": 12,
+      "name": "Adventure"
+    },
+    {
+      "id": 28,
+      "name": "Action"
+    },
+    {
+      "id": 878,
+      "name": "Science Fiction"
+    }
+  ],
+  "homepage": "http://www.starwars.com/films/star-wars-episode-ii-attack-of-the-clones",
+  "id": 1894,
+  "imdb_id": "tt0121765",
+  "original_language": "en",
+  "original_title": "Star Wars: Episode II - Attack of the Clones",
+  "overview": "Ten years after the invasion of Naboo, the galaxy is on the brink of civil war. Under the leadership of a renegade Jedi named Count Dooku, thousands of solar systems threaten to break away from the Galactic Republic. When an assassination attempt is made on Senator Padmé Amidala, the former Queen of Naboo, twenty-year-old Jedi apprentice Anakin Skywalker is assigned to protect her. In the course of his mission, Anakin discovers his love for Padmé as well as his own darker side. Soon, Anakin, Padmé, and Obi-Wan Kenobi are drawn into the heart of the Separatist movement and the beginning of the Clone Wars.",
+  "popularity": 12.485564,
+  "poster_path": "/2vcNFtrZXNwIcBgH5e2xXCmVR8t.jpg",
+  "production_companies": [
+    {
+      "name": "Lucasfilm",
+      "id": 1
+    }
+  ],
+  "production_countries": [
+    {
+      "iso_3166_1": "US",
+      "name": "United States of America"
+    }
+  ],
+  "release_date": "2002-05-15",
+  "revenue": 649398328,
+  "runtime": 142,
+  "spoken_languages": [
+    {
+      "iso_639_1": "en",
+      "name": "English"
+    }
+  ],
+  "status": "Released",
+  "tagline": "A Jedi Shall Not Know Anger. Nor Hatred. Nor Love.",
+  "title": "Star Wars: Episode II - Attack of the Clones",
+  "video": false,
+  "vote_average": 6.4,
+  "vote_count": 3935
+}
