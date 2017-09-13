@@ -7,7 +7,9 @@ import {
   GraphQLString,
 } from 'graphql';
 
-import Metadata from '../metadata';
+import CountryType from '../country';
+import LanguageType from '../language';
+import MetadataType from '../metadata';
 import Movie from '../../classes/movie';
 import APINode from '../../interfaces/api-node';
 import EntityNode from '../../interfaces/entity-node';
@@ -23,6 +25,7 @@ export default new GraphQLObjectType({
     belongsToCollection: { type: CollectionType, resolve: resolveCollection },
     budget: { type: GraphQLInt },
     // genres: { type: new GraphQLList(GenreType), resolve: resolveGenreList },
+    genreIds: { type: new GraphQLList(GraphQLInt), resolve: obj => obj.genre_ids },
     homepage: { type: GraphQLString },
     id: { type: GraphQLInt },
     imdbId: { type: GraphQLString, resolve: obj => obj.imdb_id },
@@ -32,16 +35,24 @@ export default new GraphQLObjectType({
     popularity: { type: GraphQLFloat },
     posterPath: { type: GraphQLString, resolve: obj => obj.poster_path },
     // productionCompanies: { type: new GraphQLList(CompanyType), resolve: resolveCompanyList },
+    productionCountries: {
+      type: new GraphQLList(CountryType),
+      resolve: obj => obj.production_countries,
+    },
     releaseDate: { type: GraphQLString, resolve: obj => obj.release_date },
     revenue: { type: GraphQLInt },
     runtime: { type: GraphQLInt },
+    spokenLanguages: {
+      type: new GraphQLList(LanguageType),
+      resolve: obj => obj.spoken_languages,
+    },
     status: { type: GraphQLString },
     tagline: { type: GraphQLString },
     title: { type: GraphQLString },
     video: { type: GraphQLBoolean },
     voteAverage: { type: GraphQLFloat, resolve: obj => obj.vote_average },
     voteCount: { type: GraphQLInt, resolve: obj => obj.vote_count },
-    _metadata: { type: Metadata },
+    _metadata: { type: MetadataType },
   }),
   isTypeOf: value => value instanceof Movie,
 });

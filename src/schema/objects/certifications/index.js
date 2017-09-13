@@ -1,5 +1,5 @@
 import { GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql';
-import Metadata from '../metadata';
+import MetadataType from '../metadata';
 import Certifications from '../../classes/certifications';
 import APINode from '../../interfaces/api-node';
 
@@ -32,7 +32,7 @@ export default new GraphQLObjectType({
     SK: { type: new GraphQLList(CertificationType) },
     TH: { type: new GraphQLList(CertificationType) },
     US: { type: new GraphQLList(CertificationType) },
-    _metadata: { type: Metadata },
+    _metadata: { type: MetadataType },
   }),
   isTypeOf: value => value instanceof Certifications,
 });
