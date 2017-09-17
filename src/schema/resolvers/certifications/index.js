@@ -1,5 +1,6 @@
 import { get } from 'lodash';
 import Certifications from '../../classes/certifications';
+import { resolveRestResponse } from '../../helpers';
 import getta from '../../../rest-client';
 import logger from '../../../logger';
 
@@ -22,9 +23,5 @@ export default async function resolveCertifications(obj, args) {
     logger.error(err);
   }
 
-  const data = get(res, ['data', '0', 'certifications'], null);
-  if (!data) return null;
-  const cacheControl = get(res, ['metadata', '0', 'cacheControl'], null);
-  if (cacheControl) data._metadata = { cacheControl };
-  return new Certifications(data);
+  return resolveRestResponse(res, get(res, ['data', '0', 'certifications'], null), Certifications);
 }

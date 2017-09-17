@@ -1,5 +1,6 @@
 import { get } from 'lodash';
 import MediaImages from '../../../classes/media-images';
+import { resolveRestResponse } from '../../../helpers';
 import getta from '../../../../rest-client';
 import logger from '../../../../logger';
 
@@ -17,9 +18,5 @@ export default async function resolveCollectionImages(obj) {
     logger.error(err);
   }
 
-  const data = get(res, ['data', '0'], null);
-  if (!data) return null;
-  const cacheControl = get(res, ['metadata', '0', 'cacheControl'], null);
-  if (cacheControl) data._metadata = { cacheControl };
-  return new MediaImages(data);
+  return resolveRestResponse(res, get(res, ['data', '0'], null), MediaImages);
 };

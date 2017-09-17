@@ -1,4 +1,4 @@
-import { snakeCase } from 'lodash';
+import { get, snakeCase } from 'lodash';
 
 /**
  *
@@ -63,4 +63,18 @@ export const checkFieldData = function fieldHasData(obj, info) {
   }
 
   return true;
+};
+
+/**
+ *
+ * @param {Object} res
+ * @param {Object} data
+ * @param {Class} SchemaClass
+ * @return {Object}
+ */
+export const resolveRestResponse = function resolveRestResponse(res, data, SchemaClass) {
+  if (!data) return null;
+  const cacheControl = get(res, ['metadata', '0', 'cacheControl'], null);
+  if (cacheControl) data._metadata = { cacheControl };
+  return new SchemaClass(data);
 };

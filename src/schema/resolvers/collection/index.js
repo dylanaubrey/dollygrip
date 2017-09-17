@@ -1,6 +1,6 @@
 import { get } from 'lodash';
 import Collection from '../../classes/collection';
-import { checkFieldData } from '../../helpers';
+import { checkFieldData, resolveRestResponse } from '../../helpers';
 import getta from '../../../rest-client';
 import logger from '../../../logger';
 
@@ -23,9 +23,5 @@ export default async function resolveCollection(obj, args, context, info) {
     logger.error(err);
   }
 
-  const data = get(res, ['data', '0'], null);
-  if (!data) return null;
-  const cacheControl = get(res, ['metadata', '0', 'cacheControl'], null);
-  if (cacheControl) data._metadata = { cacheControl };
-  return new Collection(data);
+  return resolveRestResponse(res, get(res, ['data', '0'], null), Collection);
 };
