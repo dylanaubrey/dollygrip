@@ -26,6 +26,10 @@ getta.shortcut('get', 'getTVCertifications', { path: 'certification/tv/list' });
 getta.shortcut('get', 'getCollection', { path: 'collection' });
 getta.shortcut('get', 'getCollectionImages', { path: 'collection/{id}/images' });
 
+// Company
+getta.shortcut('get', 'getCompany', { path: 'company' });
+getta.shortcut('get', 'getCompanyMovies', { path: 'company/{id}/movies' });
+
 // Movie
 getta.shortcut('get', 'getMovie', { path: 'movie' });
 

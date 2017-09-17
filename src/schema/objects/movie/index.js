@@ -11,14 +11,14 @@ import CountryType from '../country';
 import LanguageType from '../language';
 import MetadataType from '../metadata';
 import Movie from '../../classes/movie';
-import APINode from '../../interfaces/api-node';
-import EntityNode from '../../interfaces/entity-node';
+import APINodeInterface from '../../interfaces/api-node';
+import EntityNodeInterface from '../../interfaces/entity-node';
 import CollectionType from '../../objects/collection';
 import resolveCollection from '../../resolvers/collection';
 
 export default new GraphQLObjectType({
   name: 'Movie',
-  interfaces: [APINode, EntityNode],
+  interfaces: [APINodeInterface, EntityNodeInterface],
   fields: () => ({
     adult: { type: GraphQLBoolean },
     backdropPath: { type: GraphQLString, resolve: obj => obj.backdrop_path },

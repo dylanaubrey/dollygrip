@@ -1,8 +1,8 @@
 import { GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql';
 import MetadataType from '../metadata';
 import Collection from '../../classes/collection';
-import APINode from '../../interfaces/api-node';
-import EntityNode from '../../interfaces/entity-node';
+import APINodeInterface from '../../interfaces/api-node';
+import EntityNodeInterface from '../../interfaces/entity-node';
 import MediaImagesType from '../../objects/media-images';
 import MovieType from '../../objects/movie';
 import resolveCollectionImages from '../../resolvers/collection/images';
@@ -10,7 +10,7 @@ import resolveMovieList from '../../resolvers/movie-list';
 
 export default new GraphQLObjectType({
   name: 'Collection',
-  interfaces: [APINode, EntityNode],
+  interfaces: [APINodeInterface, EntityNodeInterface],
   fields: () => ({
     backdropPath: { type: GraphQLString, resolve: obj => obj.backdrop_path },
     id: { type: GraphQLInt },

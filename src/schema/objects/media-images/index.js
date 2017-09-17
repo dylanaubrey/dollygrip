@@ -1,13 +1,13 @@
 import { GraphQLInt, GraphQLList, GraphQLObjectType } from 'graphql';
 import MetadataType from '../metadata';
 import MediaImages from '../../classes/media-images';
-import APINode from '../../interfaces/api-node';
-import EntityNode from '../../interfaces/entity-node';
+import APINodeInterface from '../../interfaces/api-node';
+import EntityNodeInterface from '../../interfaces/entity-node';
 import ImageType from '../image';
 
 export default new GraphQLObjectType({
   name: 'MediaImages',
-  interfaces: [APINode, EntityNode],
+  interfaces: [APINodeInterface, EntityNodeInterface],
   fields: () => ({
     backdrops: { type: new GraphQLList(ImageType) },
     id: { type: GraphQLInt },
