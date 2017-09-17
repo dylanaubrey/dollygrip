@@ -3,7 +3,13 @@ import dirtyChai from 'dirty-chai';
 import fetchMock from 'fetch-mock';
 import { spy } from 'sinon';
 import sinonChai from 'sinon-chai';
-import { collection10Base, collection10WithMovies } from '../../data/graphql/requests/collection';
+
+import {
+  collection10Base,
+  collection10WithImages,
+  collection10WithMovies,
+} from '../../data/graphql/requests/collection';
+
 import graphql from '../../data/graphql/responses';
 import rest from '../../data/rest/responses';
 import { buildURL, createApps, mockRestRequest, postRequest } from '../../helpers';
@@ -26,12 +32,14 @@ Object.keys(rest.movie).forEach((resource) => {
 });
 
 const url = buildURL({ path: 'collection', resource: 10 });
+const imageURL = buildURL({ path: 'collection/{id}/images', resource: 10 });
 
 describe('the collection type', () => {
   let apps, dollygrip, server;
 
   before(() => {
     mockRestRequest(url, rest.collection[10], { headers });
+    mockRestRequest(imageURL, rest.collection.images[10], { headers });
 
     Object.keys(movieMockArgs).forEach((key) => {
       mockRestRequest(movieMockArgs[key].url, movieMockArgs[key].res, { headers });
@@ -74,6 +82,17 @@ describe('the collection type', () => {
         expect(body.data).to.eql(graphql.collection[10].withMovies);
         expect(dollygrip._handl._execute.calledOnce).to.be.true();
         expect(fetchMock.calls().matched).to.have.lengthOf(9);
+        dollygrip._handl._execute.reset();
+        fetchMock.reset();
+      });
+    });
+
+    describe('when the same collection is requested with images', () => {
+      it('should return the collection with the iamges', async () => {
+        const { body } = await postRequest(server, { query: collection10WithImages });
+        expect(body.data).to.eql(graphql.collection[10].withImages);
+        expect(dollygrip._handl._execute.calledOnce).to.be.true();
+        expect(fetchMock.calls().matched).to.have.lengthOf(1);
         dollygrip._handl._execute.reset();
         fetchMock.reset();
       });

@@ -43,9 +43,19 @@ export const buildQueryString = function buildQueryString(queryParams = {}) {
  * @return {string}
  */
 export const buildURL = function buildURL({ path, resource, queryParams }) {
-  const _queryParams = queryParams ? { ...defaultQueryParams, queryParams } : defaultQueryParams;
   let url = `${baseURL}${path}`;
-  if (resource) url = `${url}/${resource}`;
+
+  if (resource) {
+    const regex = /{id}/;
+
+    if (regex.test(path)) {
+      url = url.replace(regex, resource);
+    } else {
+      url = `${url}/${resource}`;
+    }
+  }
+
+  const _queryParams = queryParams ? { ...defaultQueryParams, queryParams } : defaultQueryParams;
   return `${url}${buildQueryString(_queryParams)}`;
 };
 

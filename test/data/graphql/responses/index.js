@@ -12,6 +12,7 @@ export default {
   collection: {
     10: {
       base: require('./collection/10/base/index.json'),
+      withImages: require('./collection/10/with-images/index.json'),
       withMovies: require('./collection/10/with-movies/index.json'),
     },
   },

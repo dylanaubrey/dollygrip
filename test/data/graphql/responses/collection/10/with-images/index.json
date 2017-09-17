@@ -1,0 +1,122 @@
+{
+  "collection": {
+    "id": 10,
+    "images": {
+      "id": 10,
+      "backdrops": [],
+      "posters": []
+    },
+    "name": "Star Wars Collection",
+    "overview": "An epic space opera theatrical film series created by George Lucas.  The first film in the franchise was originally released on May 25, 1977, by 20th Century Fox, and became a worldwide pop culture  phenomenon, followed by two sequels, released at three-year intervals. Sixteen years after the release of the trilogy's final film, the first in a new prequel trilogy of films was released, again released at three-year intervals, with the final film released on May 19, 2005.  In 2012, the franchise was sold to The Walt Disney Company in its $4B purchase of Lucasfilm. Disney then announced plans for a new film trilogy, along with new 'Star Wars Anthology' sidequel films, meant to be released in between the main films of the new series, which Disney plans to release every two years. Disney released the first film of the new trilogy on December 17, 2015.",
+    "parts": [
+      {
+        "id": 11,
+        "originalLanguage": "en",
+        "originalTitle": "Star Wars",
+        "posterPath": "/tvSlBzAdRE29bZe5yYWrJ2ds137.jpg",
+        "popularity": 30.543217,
+        "releaseDate": "1977-05-25",
+        "title": "Star Wars",
+        "video": false,
+        "voteAverage": 8,
+        "voteCount": 6467
+      },
+      {
+        "id": 1891,
+        "originalLanguage": "en",
+        "originalTitle": "The Empire Strikes Back",
+        "posterPath": "/6u1fYtxG5eqjhtCPDx04pJphQRW.jpg",
+        "popularity": 21.243966,
+        "releaseDate": "1980-05-17",
+        "title": "The Empire Strikes Back",
+        "video": false,
+        "voteAverage": 8.2,
+        "voteCount": 5745
+      },
+      {
+        "id": 1892,
+        "originalLanguage": "en",
+        "originalTitle": "Return of the Jedi",
+        "posterPath": "/jx5p0aHlbPXqe3AH9G15NvmWaqQ.jpg",
+        "popularity": 14.381036,
+        "releaseDate": "1983-05-23",
+        "title": "Return of the Jedi",
+        "video": false,
+        "voteAverage": 7.9,
+        "voteCount": 4581
+      },
+      {
+        "id": 1893,
+        "originalLanguage": "en",
+        "originalTitle": "Star Wars: Episode I - The Phantom Menace",
+        "posterPath": "/n8V09dDc02KsSN6Q4hC2BX6hN8X.jpg",
+        "popularity": 17.394789,
+        "releaseDate": "1999-05-19",
+        "title": "Star Wars: Episode I - The Phantom Menace",
+        "video": false,
+        "voteAverage": 6.3,
+        "voteCount": 4326
+      },
+      {
+        "id": 1894,
+        "originalLanguage": "en",
+        "originalTitle": "Star Wars: Episode II - Attack of the Clones",
+        "posterPath": "/2vcNFtrZXNwIcBgH5e2xXCmVR8t.jpg",
+        "popularity": 12.167601,
+        "releaseDate": "2002-05-15",
+        "title": "Star Wars: Episode II - Attack of the Clones",
+        "video": false,
+        "voteAverage": 6.4,
+        "voteCount": 3891
+      },
+      {
+        "id": 1895,
+        "originalLanguage": "en",
+        "originalTitle": "Star Wars: Episode III - Revenge of the Sith",
+        "posterPath": "/tgr5Pdy7ehZYBqBkN2K7Q02xgOb.jpg",
+        "popularity": 16.858957,
+        "releaseDate": "2005-05-17",
+        "title": "Star Wars: Episode III - Revenge of the Sith",
+        "video": false,
+        "voteAverage": 7,
+        "voteCount": 4008
+      },
+      {
+        "id": 140607,
+        "originalLanguage": "en",
+        "originalTitle": "Star Wars: The Force Awakens",
+        "posterPath": "/weUSwMdQIa3NaXVzwUoIIcAi85d.jpg",
+        "popularity": 35.440929,
+        "releaseDate": "2015-12-15",
+        "title": "Star Wars: The Force Awakens",
+        "video": false,
+        "voteAverage": 7.5,
+        "voteCount": 7697
+      },
+      {
+        "id": 181808,
+        "originalLanguage": "en",
+        "originalTitle": "Star Wars: The Last Jedi",
+        "posterPath": "/1539H2E75rOC9HUA2kSOhDE4d2A.jpg",
+        "popularity": 19.866002,
+        "releaseDate": "2017-12-13",
+        "title": "Star Wars: The Last Jedi",
+        "video": false,
+        "voteAverage": 0,
+        "voteCount": 0
+      },
+      {
+        "id": 181812,
+        "originalLanguage": "en",
+        "originalTitle": "Star Wars: Episode IX",
+        "posterPath": "/yVYTFvIiKyr6vsrPw3o5C6t2eoL.jpg",
+        "popularity": 3.336771,
+        "releaseDate": "2019-05-22",
+        "title": "Star Wars: Episode IX",
+        "video": false,
+        "voteAverage": 0,
+        "voteCount": 26
+      }
+    ]
+  }
+}

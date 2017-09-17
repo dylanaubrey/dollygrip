@@ -6,7 +6,7 @@ import logger from '../../../../logger';
 /**
  *
  * @param {Object} obj
- * @return {Colleciton}
+ * @return {MediaImages}
  */
 export default async function resolveCollectionImages(obj) {
   let res;
