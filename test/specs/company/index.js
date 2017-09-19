@@ -49,8 +49,8 @@ describe('the company type', () => {
     dollygrip.clearCaches();
   });
 
-  describe('when a collection is requested with an ID', () => {
-    it('should return the collection', async () => {
+  describe('when a company is requested with an ID', () => {
+    it('should return the company', async () => {
       const { body } = await postRequest(server, { query: company1Base });
       expect(body.data).to.eql(graphql.company[1].base);
       expect(dollygrip._handl._execute.calledOnce).to.be.true();
