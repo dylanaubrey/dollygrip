@@ -1,4 +1,4 @@
-import { GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql';
+import { GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
 import MetadataType from '../metadata';
 import Certifications from '../../classes/certifications';
 import APINodeInterface from '../../interfaces/api-node';
@@ -6,9 +6,9 @@ import APINodeInterface from '../../interfaces/api-node';
 const CertificationType = new GraphQLObjectType({
   name: 'Certification',
   fields: () => ({
-    certification: { type: GraphQLString },
-    meaning: { type: GraphQLString },
-    order: { type: GraphQLInt },
+    certification: { type: new GraphQLNonNull(GraphQLString) },
+    meaning: { type: new GraphQLNonNull(GraphQLString) },
+    order: { type: new GraphQLNonNull(GraphQLInt) },
   }),
 });
 

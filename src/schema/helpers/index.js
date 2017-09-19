@@ -78,3 +78,24 @@ export const resolveRestResponse = function resolveRestResponse(res, data, Schem
   if (cacheControl) data._metadata = { cacheControl };
   return new SchemaClass(data);
 };
+
+/**
+ *
+ * @param {Object} obj
+ * @param {Object} args
+ * @param {Object} context
+ * @param {Object} info
+ * @param {Function} resolver
+ * @return {Array<Company>}
+ */
+export const resolveList = async function resolveList(obj, args, context, info, resolver) {
+  const currentFieldNode = getCurrentFieldNode(info);
+  const fieldData = obj[snakeCase(getName(currentFieldNode))];
+  const promises = [];
+
+  fieldData.forEach((value) => {
+    promises.push(resolver(value, args, context, info));
+  });
+
+  return Promise.all(promises);
+};

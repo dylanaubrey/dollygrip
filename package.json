@@ -39,6 +39,7 @@
     "es6-promise": "^4.1.1",
     "getta": "0.0.13",
     "graphql": "^0.10.5",
+    "graphql-relay": "^0.5.2",
     "handl": "0.0.8",
     "iso-logger": "0.0.8",
     "isomorphic-fetch": "^2.2.1",
