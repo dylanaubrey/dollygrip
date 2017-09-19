@@ -15,6 +15,9 @@ export default {
       10: require('./collection/10/images/index.json'),
     },
   },
+  company: {
+    1: require('./company/1/index.json'),
+  },
   movie: {
     11: require('./movie/11/index.json'),
     1891: require('./movie/1891/index.json'),

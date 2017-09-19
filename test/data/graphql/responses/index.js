@@ -16,4 +16,9 @@ export default {
       withMovies: require('./collection/10/with-movies/index.json'),
     },
   },
+  company: {
+    1: {
+      base: require('./company/1/base/index.json'),
+    },
+  },
 };
