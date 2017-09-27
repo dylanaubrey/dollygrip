@@ -19,7 +19,7 @@ export default new GraphQLObjectType({
     AU: { type: new GraphQLList(CertificationType) },
     BR: { type: new GraphQLList(CertificationType) },
     CA: { type: new GraphQLList(CertificationType) },
-    CAQC: { type: new GraphQLList(CertificationType) },
+    CAQC: { type: new GraphQLList(CertificationType), resolve: obj => obj['CA-QC'] },
     DE: { type: new GraphQLList(CertificationType) },
     FR: { type: new GraphQLList(CertificationType) },
     GB: { type: new GraphQLList(CertificationType) },

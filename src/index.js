@@ -3,6 +3,7 @@ import { isEmpty } from 'lodash';
 import logger from './logger';
 import getta from './rest-client';
 import schema from './schema';
+import fieldResolver from './schema/default-resolver';
 
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
@@ -25,7 +26,9 @@ export default class Dollygrip {
    */
   constructor() {
     this._getta = getta;
-    this._handl = new Handl({ cachemapOptions, mode: 'internal', newInstance: true, schema });
+    this._handl = new Handl({
+      cachemapOptions, fieldResolver, mode: 'internal', newInstance: true, schema,
+    });
   }
 
   /**
@@ -66,8 +69,9 @@ export default class Dollygrip {
       }
 
       try {
-        const { query, variables } = req.body;
-        const { cacheMetadata, data } = await this._handl.request(query, { variables });
+        const { fragments, query, variables } = req.body;
+        const opts = { fragments, variables };
+        const { cacheMetadata, data } = await this._handl.request(query, opts);
         const cacheControl = cacheMetadata.get('query').printCacheControl();
         res.set({ 'Cache-Control': cacheControl, 'Content-Type': 'application/json' });
         res.status(200).send({ cacheMetadata: this._mapToObject(cacheMetadata), data });
