@@ -1,8 +1,8 @@
 import { get } from 'lodash';
 import Movie from '../../classes/movie';
 import { checkFieldData, resolveRestResponse } from '../../helpers';
-import getta from '../../../rest-client';
 import logger from '../../../logger';
+import getta from '../../../rest-client';
 
 /**
  *

@@ -1,11 +1,11 @@
 import { GraphQLInt, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
-// import { connectionArgs } from 'graphql-relay';
+import { connectionArgs } from 'graphql-relay';
 import MetadataType from '../metadata';
 import Company from '../../classes/company';
-// import MovieConnection from '../../connections/movie';
+import MovieConnection from '../../connections/movie';
 import APINodeInterface from '../../interfaces/api-node';
 import EntityNodeInterface from '../../interfaces/entity-node';
-// import resolveCompanyMovies from '../../resolvers/company/movies';
+import resolveCompanyMovies from '../../resolvers/company/movies';
 
 export default new GraphQLObjectType({
   name: 'Company',
@@ -16,7 +16,7 @@ export default new GraphQLObjectType({
     homepage: { type: new GraphQLNonNull(GraphQLString) },
     id: { type: new GraphQLNonNull(GraphQLInt) },
     logoPath: { type: GraphQLString },
-    // movies: { type: MovieConnection, args: connectionArgs, resolve: resolveCompanyMovies },
+    movies: { type: MovieConnection, args: connectionArgs, resolve: resolveCompanyMovies },
     name: { type: new GraphQLNonNull(GraphQLString) },
     parentCompany: { type: GraphQLString },
     _metadata: { type: MetadataType },

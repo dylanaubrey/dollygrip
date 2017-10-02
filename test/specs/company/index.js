@@ -26,12 +26,14 @@ Object.keys(rest.movie).forEach((resource) => {
 });
 
 const url = buildURL({ path: 'company', resource: 1 });
+const moviesURL = buildURL({ path: 'company/{id}/movies', resource: 1 });
 
 describe('the company type', () => {
   let apps, dollygrip, server;
 
   before(() => {
     mockRestRequest(url, rest.company[1], { headers });
+    mockRestRequest(moviesURL, rest.company.movies[10], { headers });
 
     Object.keys(movieMockArgs).forEach((key) => {
       mockRestRequest(movieMockArgs[key].url, movieMockArgs[key].res, { headers });
@@ -57,6 +59,10 @@ describe('the company type', () => {
       expect(fetchMock.calls().matched).to.have.lengthOf(1);
       dollygrip._handl._execute.reset();
       fetchMock.reset();
+    });
+
+    describe('when the same company is requested with its movies', () => {
+      // TODO
     });
   });
 });

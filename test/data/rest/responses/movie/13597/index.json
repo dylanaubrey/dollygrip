@@ -1,0 +1,71 @@
+{
+  "adult": false,
+  "backdrop_path": "/xPCO1mq0m8bS90lEK3QaYTHiIJW.jpg",
+  "belongs_to_collection": null,
+  "budget": 25000000,
+  "genres": [
+    {
+      "id": 12,
+      "name": "Adventure"
+    },
+    {
+      "id": 10751,
+      "name": "Family"
+    },
+    {
+      "id": 14,
+      "name": "Fantasy"
+    }
+  ],
+  "homepage": "",
+  "id": 13597,
+  "imdb_id": "tt0091369",
+  "original_language": "en",
+  "original_title": "Labyrinth",
+  "overview": "Frustrated with babysitting on yet another weekend night, Sarah - a teenager with an active imagination - summons the Goblins from her favourite book, \"Labyrinth\", to take the baby stepbrother away. When little Toby actually disappears, Sarah must follow him into the world of the fairytale to rescue him from the Goblin King!",
+  "popularity": 29.218824,
+  "poster_path": "/40D6CVNGYbIgg7Sdt1jAYkFA08d.jpg",
+  "production_companies": [
+    {
+      "name": "Lucasfilm",
+      "id": 1
+    },
+    {
+      "name": "TriStar Pictures",
+      "id": 559
+    },
+    {
+      "name": "Jim Henson Company, The",
+      "id": 6254
+    },
+    {
+      "name": "Henson Associates (HA)",
+      "id": 24931
+    }
+  ],
+  "production_countries": [
+    {
+      "iso_3166_1": "GB",
+      "name": "United Kingdom"
+    },
+    {
+      "iso_3166_1": "US",
+      "name": "United States of America"
+    }
+  ],
+  "release_date": "1986-06-27",
+  "revenue": 12729917,
+  "runtime": 101,
+  "spoken_languages": [
+    {
+      "iso_639_1": "en",
+      "name": "English"
+    }
+  ],
+  "status": "Released",
+  "tagline": "Where everything seems possible and nothing is what it seems.",
+  "title": "Labyrinth",
+  "video": false,
+  "vote_average": 7.1,
+  "vote_count": 612
+}

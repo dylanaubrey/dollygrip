@@ -1,0 +1,64 @@
+{
+  "adult": false,
+  "backdrop_path": "/u2fwkirPOiYzmYgtGbInPQtpQo0.jpg",
+  "belongs_to_collection": {
+    "id": 124950,
+    "name": "American Graffiti Collection",
+    "poster_path": "/nXbscwjttQTQ5OWskK7TSi5CSpH.jpg",
+    "backdrop_path": "/fkQH8aHqLpdDYXyCXdqRgYOhsoN.jpg"
+  },
+  "budget": 777000,
+  "genres": [
+    {
+      "id": 35,
+      "name": "Comedy"
+    },
+    {
+      "id": 18,
+      "name": "Drama"
+    }
+  ],
+  "homepage": "",
+  "id": 838,
+  "imdb_id": "tt0069704",
+  "original_language": "en",
+  "original_title": "American Graffiti",
+  "overview": "A couple of high school graduates spend one final night cruising the strip with their buddies before they go off to college.",
+  "popularity": 16.287025,
+  "poster_path": "/xq8MFYQ6MLZ65mFpweqV6mCs39k.jpg",
+  "production_companies": [
+    {
+      "name": "Lucasfilm",
+      "id": 1
+    },
+    {
+      "name": "Universal Pictures",
+      "id": 33
+    },
+    {
+      "name": "The Coppola Company",
+      "id": 536
+    }
+  ],
+  "production_countries": [
+    {
+      "iso_3166_1": "US",
+      "name": "United States of America"
+    }
+  ],
+  "release_date": "1973-08-01",
+  "revenue": 140000000,
+  "runtime": 110,
+  "spoken_languages": [
+    {
+      "iso_639_1": "en",
+      "name": "English"
+    }
+  ],
+  "status": "Released",
+  "tagline": "Where were you in '62?",
+  "title": "American Graffiti",
+  "video": false,
+  "vote_average": 6.9,
+  "vote_count": 327
+}

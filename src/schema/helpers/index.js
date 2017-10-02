@@ -67,20 +67,6 @@ export const checkFieldData = function fieldHasData(obj, info) {
 
 /**
  *
- * @param {Object} res
- * @param {Object} data
- * @param {Class} SchemaClass
- * @return {Object}
- */
-export const resolveRestResponse = function resolveRestResponse(res, data, SchemaClass) {
-  if (!data) return null;
-  const cacheControl = get(res, ['metadata', '0', 'cacheControl'], null);
-  if (cacheControl) data._metadata = { cacheControl };
-  return new SchemaClass(data);
-};
-
-/**
- *
  * @param {Object} obj
  * @param {Object} args
  * @param {Object} context
@@ -91,11 +77,22 @@ export const resolveRestResponse = function resolveRestResponse(res, data, Schem
 export const resolveList = async function resolveList(obj, args, context, info, resolver) {
   const currentFieldNode = getCurrentFieldNode(info);
   const fieldData = obj[snakeCase(getName(currentFieldNode))];
-  const promises = [];
 
-  fieldData.forEach((value) => {
-    promises.push(resolver(value, args, context, info));
-  });
+  return Promise.all(
+    fieldData.map(value => resolver(value, args, context, info)),
+  );
+};
 
-  return Promise.all(promises);
+/**
+ *
+ * @param {Object} res
+ * @param {Object} data
+ * @param {Class} SchemaClass
+ * @return {Object}
+ */
+export const resolveRestResponse = function resolveRestResponse(res, data, SchemaClass) {
+  if (!data) return null;
+  const cacheControl = get(res, ['metadata', '0', 'cacheControl'], null);
+  if (cacheControl) data._metadata = { cacheControl };
+  return new SchemaClass(data);
 };
