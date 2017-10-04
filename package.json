@@ -35,7 +35,7 @@
     "transpile:module": " cross-env BABEL_ENV=module babel src --out-dir lib/module --copy-files"
   },
   "dependencies": {
-    "cacheability": "0.0.1",
+    "cachemap": "0.0.11",
     "es6-promise": "^4.1.1",
     "getta": "0.0.13",
     "graphql": "^0.11.4",

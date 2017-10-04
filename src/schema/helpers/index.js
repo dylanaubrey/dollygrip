@@ -96,3 +96,41 @@ export const resolveRestResponse = function resolveRestResponse(res, data, Schem
   if (cacheControl) data._metadata = { cacheControl };
   return new SchemaClass(data);
 };
+
+/**
+ *
+ * @param {string} value
+ * @return {string}
+ */
+export const base64 = function base64(value) {
+  return new Buffer(value, 'utf8').toString('base64');
+};
+
+/**
+ *
+ * @param {string} value
+ * @return {string}
+ */
+export const unbase64 = function unbase64(value) {
+  return new Buffer(value, 'base64').toString('utf8');
+};
+
+/**
+ *
+ * @param {string} type
+ * @param {string} subType
+ * @return {string}
+ */
+export function toID(type, subType) {
+  return base64(`${type}:${subType}`);
+}
+
+/**
+ *
+ * @param {string} id
+ * @return {Object}
+ */
+export function fromID(id) {
+  const types = unbase64(id).split(':');
+  return { type: types[0], subType: types[1] };
+}

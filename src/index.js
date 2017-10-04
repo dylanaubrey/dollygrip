@@ -22,7 +22,7 @@ export default class Dollygrip {
   /**
    *
    * @constructor
-   * @return {void}
+   * @return {Dollygrip}
    */
   constructor() {
     this._getta = getta;

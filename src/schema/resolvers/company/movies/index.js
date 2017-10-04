@@ -1,49 +1,61 @@
+/* eslint-disable camelcase */
+
 import { get } from 'lodash';
-import resolveConnection from '../../connection';
-import Pagination from '../../../helpers/pagination';
+import { toID } from '../../../helpers';
+import ConnectionLoader from '../../../loaders/connection';
 import logger from '../../../../logger';
 import getta from '../../../../rest-client';
+
+let loader;
+
+/**
+ *
+ * @param {number} id
+ * @param {number} page
+ * @param {Array<Object>} results
+ * @param {number} total_pages
+ * @param {number} total_results
+ * @return {Object}
+ */
+const convertPropNames = function convertPropNames(id, page, results, total_pages, total_results) {
+  return { id, page, results, totalPages: total_pages, totalResults: total_results };
+};
+
+/**
+ *
+ * @param {Object} obj
+ * @return {number}
+ */
+const resolveCursor = function resolveCursor(obj) {
+  return toID(obj.popularity, obj.id);
+};
 
 /**
  *
  * @param {Object} obj
  * @param {Object} args
- * @param {string} args.after
- * @param {string} args.before
- * @param {number} args.first
- * @param {number} args.last
  * @return {Object}
  */
-export default async function resolveCompanyMovies(obj, { after, before, first, last }) {
+export default async function resolveCompanyMovies(obj, args) {
   const resource = obj.id;
-  let res;
+  if (!loader) loader = new ConnectionLoader();
+  loader.setResource(resource, args, resolveCursor);
 
-  try {
-    res = await getta.getCompanyMovies({ resource });
-  } catch (err) {
-    logger.error(err);
+  if (await loader.cachesValid()) {
+    if (loader.noResults()) return loader.getData();
+    if (await loader.hasAllResults()) return loader.getData();
   }
 
-  const { page, results = [], total_pages, total_results } = get(res, ['data', '0'], {});
-  const pagination = new Pagination(page, total_pages, total_results);
+  // let res;
 
-  if (first && first <= pagination.firstPage().length) {
-    return resolveConnection(results, pagination);
-  }
+  // try {
+  //   res = await getta.getCompanyMovies({ resource });
+  // } catch (err) {
+  //   logger.error(err);
+  // }
 
-  if (last && last <= pagination.lastPage().length) {
-    const queryParams = { page: pagination.totalPages };
-
-    try {
-      res = await getta.getCompanyMovies({ queryParams, resource });
-    } catch (err) {
-      logger.error(err);
-    }
-
-    const { page, results = [], total_pages, total_results } = get(res, ['data', '0'], {});
-    // TODO
-    return resolveConnection(results, page, total_pages, total_results);
-  }
-
+  // const data = convertPropNames(get(res, ['data', '0'], {}));
+  // const metadata = get(res, ['data', '0'], {});
+  // loader.setPageResults(data, metadata);
   // TODO
 }
