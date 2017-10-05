@@ -117,8 +117,8 @@ export const unbase64 = function unbase64(value) {
 
 /**
  *
- * @param {string} type
- * @param {string} subType
+ * @param {string|number} type
+ * @param {string|number} subType
  * @return {string}
  */
 export function toID(type, subType) {

@@ -8,11 +8,15 @@ export default class ConnectionLoader {
   /**
    *
    * @constructor
-   * @param {Object} opts
-   * @param {number} opts.resultsChunk
+   * @param {Object} [opts]
+   * @param {Function} opts.calcFuzzyMatch
+   * @param {string} [opts.cursorKey]
+   * @param {number} [opts.resultsChunk]
    * @return {ConnectionLoader}
    */
-  constructor({ resultsChunk = 20 }) {
+  constructor({ calcFuzzyMatch, cursorKey = 'id', resultsChunk = 20 }) {
+    this._calcFuzzyMatch = calcFuzzyMatch;
+    this._cursorKey = cursorKey;
     this._resultsChunk = resultsChunk;
   }
 
@@ -22,6 +26,20 @@ export default class ConnectionLoader {
    * @type {Object}
    */
   _activeResource;
+
+  /**
+   *
+   * @private
+   * @type {Function}
+   */
+  _calcFuzzyMatch;
+
+  /**
+   *
+   * @private
+   * @type {string}
+   */
+  _cursorKey;
 
   /**
    *
@@ -49,7 +67,7 @@ export default class ConnectionLoader {
    *
    * @return {boolean}
    */
-  async hasAllResults() {
+  async hasAllPages() {
     return this._activeResource.hasAllPages();
   }
 
@@ -57,8 +75,8 @@ export default class ConnectionLoader {
    *
    * @return {boolean}
    */
-  noResults() {
-    return this._activeResource.noResults();
+  noPages() {
+    return this._activeResource.noPages();
   }
 
   /**
@@ -75,12 +93,15 @@ export default class ConnectionLoader {
    *
    * @param {number} resource
    * @param {Object} args
-   * @param {Function} resolveCursor
    * @return {void}
    */
-  setResource(resource, args, resolveCursor) {
+  setResource(resource, args) {
     if (!this._resources[resource]) {
-      this._resources[resource] = new Resource({ resolveCursor, resultsChunk: this._resultsChunk });
+      this._resources[resource] = new Resource({
+        calcFuzzyMatch: this._calcFuzzyMatch,
+        cursorKey: this._cursorKey,
+        resultsChunk: this._resultsChunk,
+      });
     }
 
     this._activeResource = this._resources[resource];

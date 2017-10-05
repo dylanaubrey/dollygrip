@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 
 import { get } from 'lodash';
-import { toID } from '../../../helpers';
 import ConnectionLoader from '../../../loaders/connection';
 import logger from '../../../../logger';
 import getta from '../../../../rest-client';
@@ -24,26 +23,17 @@ const convertPropNames = function convertPropNames(id, page, results, total_page
 /**
  *
  * @param {Object} obj
- * @return {number}
- */
-const resolveCursor = function resolveCursor(obj) {
-  return toID(obj.popularity, obj.id);
-};
-
-/**
- *
- * @param {Object} obj
  * @param {Object} args
  * @return {Object}
  */
 export default async function resolveCompanyMovies(obj, args) {
   const resource = obj.id;
-  if (!loader) loader = new ConnectionLoader();
-  loader.setResource(resource, args, resolveCursor);
+  if (!loader) loader = new ConnectionLoader({ cursorKey: 'popularity' });
+  loader.setResource(resource, args);
 
   if (await loader.cachesValid()) {
-    if (loader.noResults()) return loader.getData();
-    if (await loader.hasAllResults()) return loader.getData();
+    if (loader.noPages()) return loader.getData();
+    if (await loader.hasAllPages()) return loader.getData();
   }
 
   // let res;
