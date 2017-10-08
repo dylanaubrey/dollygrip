@@ -19,6 +19,7 @@ export default {
   company: {
     1: {
       base: require('./company/1/base/index.json'),
+      withMovies: require('./company/1/with-movies'),
     },
   },
 };

@@ -9,13 +9,13 @@ export default class ConnectionLoader {
    *
    * @constructor
    * @param {Object} [opts]
-   * @param {Function} opts.calcFuzzyMatch
+   * @param {Function} opts.calcClosestMatch
    * @param {string} [opts.cursorKey]
    * @param {number} [opts.resultsChunk]
    * @return {ConnectionLoader}
    */
-  constructor({ calcFuzzyMatch, cursorKey = 'id', resultsChunk = 20 }) {
-    this._calcFuzzyMatch = calcFuzzyMatch;
+  constructor({ calcClosestMatch, cursorKey = 'id', resultsChunk = 20 }) {
+    this._calcClosestMatch = calcClosestMatch;
     this._cursorKey = cursorKey;
     this._resultsChunk = resultsChunk;
   }
@@ -32,7 +32,7 @@ export default class ConnectionLoader {
    * @private
    * @type {Function}
    */
-  _calcFuzzyMatch;
+  _calcClosestMatch;
 
   /**
    *
@@ -67,16 +67,16 @@ export default class ConnectionLoader {
    *
    * @return {boolean}
    */
-  async hasAllPages() {
-    return this._activeResource.hasAllPages();
+  async requiredPages() {
+    return this._activeResource.requiredPages();
   }
 
   /**
    *
-   * @return {boolean}
+   * @return {number}
    */
-  noPages() {
-    return this._activeResource.noPages();
+  async pagesRequested() {
+    return this._activeResource.pagesRequested();
   }
 
   /**
@@ -91,20 +91,24 @@ export default class ConnectionLoader {
 
   /**
    *
-   * @param {number} resource
+   * @param {number} key
    * @param {Object} args
    * @return {void}
    */
-  setResource(resource, args) {
-    if (!this._resources[resource]) {
-      this._resources[resource] = new Resource({
-        calcFuzzyMatch: this._calcFuzzyMatch,
+  setResource(key, args) {
+    let resource = this._resources[key];
+
+    if (!resource) {
+      resource = new Resource({
+        calcClosestMatch: this._calcClosestMatch,
         cursorKey: this._cursorKey,
         resultsChunk: this._resultsChunk,
       });
+
+      this._resources[key] = resource;
     }
 
-    this._activeResource = this._resources[resource];
+    this._activeResource = resource;
     this._activeResource.setArguments(args);
   }
 }

@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 
+import Cacheability from 'cacheability';
 import Cachemap from 'cachemap';
 import { fromID, toID } from '../../../helpers';
 
@@ -12,13 +13,13 @@ export default class ConnectionResource {
    *
    * @constructor
    * @param {Object} opts
-   * @param {Function} opts.calcFuzzyMatch
+   * @param {Function} opts.calcClosestMatch
    * @param {string} opts.cursorKey
    * @param {number} opts.resultsChunk
    * @return {ConnectionResource}
    */
-  constructor({ calcFuzzyMatch, cursorKey, resultsChunk }) {
-    this._calcFuzzyMatch = calcFuzzyMatch;
+  constructor({ calcClosestMatch, cursorKey, resultsChunk }) {
+    this._calcClosestMatch = calcClosestMatch;
     this._cursorKey = cursorKey;
     this._resultsChunk = resultsChunk;
   }
@@ -33,9 +34,16 @@ export default class ConnectionResource {
   /**
    *
    * @private
+   * @type {Cacheability}
+   */
+  _cacheability;
+
+  /**
+   *
+   * @private
    * @type {Function}
    */
-  _calcFuzzyMatch;
+  _calcClosestMatch;
 
   /**
    *
@@ -57,13 +65,6 @@ export default class ConnectionResource {
    * @type {Cachemap}
    */
   _pages = new Cachemap({ storageType: 'map' });
-
-  /**
-   *
-   * @private
-   * @type {Array<number>}
-   */
-  _pagination = [];
 
   /**
    *
@@ -96,25 +97,26 @@ export default class ConnectionResource {
    */
   async _calcCursorPosition(cursor, results, direction) {
     const { type, subType } = fromID(cursor);
-    const matches = { exact: [], fuzzy: [] };
+    const exact = [];
+    const closest = [];
 
-    results.forEach((value, index) => {
-      if (value[this._cursorKey] === type) {
-        matches.exact.push({ value, index });
-      } else if (this._calcFuzzyMatch(value, this._cursorKey, type, direction, matches.fuzzy)) {
-        matches.fuzzy.push({ value, index });
+    results.forEach((result, index) => {
+      if (result[this._cursorKey] === type) {
+        exact.push({ result, index });
+      } else if (this._calcClosestMatch(result, this._cursorKey, type, direction, closest)) {
+        closest.push({ result, index });
       }
     });
 
     let position;
 
-    if (matches.exact.length === 1) {
-      position = matches.exact.index;
-    } else if (matches.exact.length > 1) {
-      const match = matches.exact.find(value => value.id === subType);
-      position = match.length ? match.index : matches[0].index;
+    if (exact.length === 1) {
+      position = exact[0].index;
+    } else if (exact.length > 1) {
+      const match = exact.find(value => value.result.id === subType);
+      position = match ? match.index : exact[0].index;
     } else {
-      position = matches.fuzzy[0].index;
+      position = closest[0].index;
     }
 
     return position;
@@ -160,33 +162,29 @@ export default class ConnectionResource {
    * @return {void}
    */
   async _collateData() {
-    let results = [];
-    const cacheabilities = [];
-
-    await this._pages.forEach((value, key, cacheability) => {
-      if (!value) return;
-      results[key] = value;
-      cacheabilities.push(cacheability);
-    });
-
-    const cacheability = this._reduceCacheabilities(cacheabilities);
-
-    if (this.hasNoPages) {
+    if (this._noPages()) {
       return {
         edges: [],
         pageInfo: { hasNextPage: false, hasPreviousPage: false },
-        _metadata: { cacheControl: cacheability.printCacheControl() },
+        _metadata: { cacheControl: this._cacheability.printCacheControl() },
       };
     }
 
-    results = [].concat(...results);
+    let results = [];
+
+    await this._pages.forEach((value, key) => {
+      if (!value) return;
+      results[key] = value;
+    });
+
+    results = [].concat(...results.filter(value => !!value));
     const { count, start } = await this._calcPagination(results);
     const range = results.slice(start, start + count);
 
     return {
       edges: await this._getEdgesData(range),
       pageInfo: await this._getPageInfoData(results, range, start, count),
-      _metadata: { cacheControl: cacheability.printCacheControl() },
+      _metadata: { cacheControl: this._cacheability.printCacheControl() },
     };
   }
 
@@ -228,32 +226,33 @@ export default class ConnectionResource {
 
   /**
    *
-   * @private
-   * @param {Array<Cacheability>} cacheabilities
-   * @return {Cacheability}
+   * @return {boolean}
    */
-  _reduceCacheabilities(cacheabilities) {
-    let cacheability;
-
-    cacheabilities.forEach((value) => {
-      if (!cacheability || cacheability.metadata.ttl > value.metadata.ttl) cacheability = value;
-    });
-
-    return cacheability;
+  async _hasAllPages() {
+    return await this._pages.size() === this._totalPages;
   }
 
   /**
    *
    * @return {boolean}
    */
-  async cachesValid() {
-    let valid = true;
+  _noPages() {
+    return this._totalPages === 0;
+  }
 
-    await this._pages.forEach((value, key, cacheability) => {
-      if (!cacheability.checkTTL()) valid = false;
-    });
+  /**
+   *
+   * @private
+   * @param {string} cacheControl
+   * @return {void}
+   */
+  _setCacheability(cacheControl) {
+    const cacheability = new Cacheability();
+    cacheability.parseCacheControl(cacheControl);
 
-    return valid;
+    if (!this._cacheability || this._cacheability.metadata.ttl > cacheability.metadata.ttl) {
+      this._cacheability = cacheability;
+    }
   }
 
   /**
@@ -266,18 +265,36 @@ export default class ConnectionResource {
 
   /**
    *
-   * @return {boolean}
+   * @return {Array<number>}
    */
-  async hasAllPages() {
-    return await this._pages.size() === this._totalPages;
+  async requiredPages() {
+    if (this._cacheability.checkTTL() && (this._noPages() || await this._hasAllPages())) {
+      return [];
+    }
+
+    if (this._activeArgs.first) {
+      const page = 1;
+      const cacheability = await this._pages.has(page);
+      if (cacheability && cacheability.checkTTL()) return [];
+      return [page];
+    }
+
+    if (this._activeArgs.last) {
+      const page = this._totalPages;
+      const cacheability = await this._pages.has(page);
+      if (cacheability && cacheability.checkTTL()) return [];
+      return [page];
+    }
+
+    // TODO
   }
 
   /**
    *
-   * @return {boolean}
+   * @return {number}
    */
-  noPages() {
-    return this._totalPages === 0;
+  async pagesRequested() {
+    return this._pages.size();
   }
 
   /**
@@ -295,7 +312,6 @@ export default class ConnectionResource {
 
   /**
    *
-   * @private
    * @param {Object} data
    * @param {number} data.page
    * @param {Array<any>} data.results
@@ -309,5 +325,6 @@ export default class ConnectionResource {
     this._pages.set(page, results, { cacheControl });
     this._totalPages = totalPages;
     this._totalResults = totalResults;
+    this._setCacheability(cacheControl);
   }
 }

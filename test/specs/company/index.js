@@ -3,7 +3,7 @@ import dirtyChai from 'dirty-chai';
 import fetchMock from 'fetch-mock';
 import { spy } from 'sinon';
 import sinonChai from 'sinon-chai';
-import { company1Base } from '../../data/graphql/requests/company';
+import { company1Base, company1BaseWithMovies } from '../../data/graphql/requests/company';
 import graphql from '../../data/graphql/responses';
 import rest from '../../data/rest/responses';
 import { buildURL, createApps, mockRestRequest, postRequest } from '../../helpers';
@@ -33,7 +33,7 @@ describe('the company type', () => {
 
   before(() => {
     mockRestRequest(url, rest.company[1], { headers });
-    mockRestRequest(moviesURL, rest.company.movies[10], { headers });
+    mockRestRequest(moviesURL, rest.company.movies[1].page1, { headers });
 
     Object.keys(movieMockArgs).forEach((key) => {
       mockRestRequest(movieMockArgs[key].url, movieMockArgs[key].res, { headers });
@@ -62,7 +62,14 @@ describe('the company type', () => {
     });
 
     describe('when the same company is requested with its movies', () => {
-      // TODO
+      it('should return the company with its movies', async () => {
+        const { body } = await postRequest(server, { query: company1BaseWithMovies });
+        expect(body.data).to.eql(graphql.company[1].withMovies);
+        expect(dollygrip._handl._execute.calledOnce).to.be.true();
+        expect(fetchMock.calls().matched).to.have.lengthOf(1);
+        dollygrip._handl._execute.reset();
+        fetchMock.reset();
+      });
     });
   });
 });

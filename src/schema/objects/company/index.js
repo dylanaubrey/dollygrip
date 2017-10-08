@@ -2,7 +2,7 @@ import { GraphQLInt, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'gr
 import { connectionArgs } from 'graphql-relay';
 import MetadataType from '../metadata';
 import Company from '../../classes/company';
-import MovieConnection from '../../connections/movie';
+import { MovieConnection } from '../../connections/movie';
 import APINodeInterface from '../../interfaces/api-node';
 import EntityNodeInterface from '../../interfaces/entity-node';
 import resolveCompanyMovies from '../../resolvers/company/movies';
