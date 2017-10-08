@@ -3,7 +3,13 @@ import dirtyChai from 'dirty-chai';
 import fetchMock from 'fetch-mock';
 import { spy } from 'sinon';
 import sinonChai from 'sinon-chai';
-import { company1Base, company1BaseWithMovies } from '../../data/graphql/requests/company';
+
+import {
+  company1Base,
+  company1WithMovies,
+  company1WithMoviesExtra,
+} from '../../data/graphql/requests/company';
+
 import graphql from '../../data/graphql/responses';
 import rest from '../../data/rest/responses';
 import { buildURL, createApps, mockRestRequest, postRequest } from '../../helpers';
@@ -62,14 +68,44 @@ describe('the company type', () => {
     });
 
     describe('when the same company is requested with its movies', () => {
-      it('should return the company with its movies', async () => {
-        const { body } = await postRequest(server, { query: company1BaseWithMovies });
-        expect(body.data).to.eql(graphql.company[1].withMovies);
-        expect(dollygrip._handl._execute.calledOnce).to.be.true();
-        expect(fetchMock.calls().matched).to.have.lengthOf(1);
-        dollygrip._handl._execute.reset();
-        fetchMock.reset();
+      describe('when the first six movies are requested', () => {
+        it('should return the company with its first six movies', async () => {
+          const { body } = await postRequest(server, { query: company1WithMovies });
+          expect(body.data).to.eql(graphql.company[1].withMovies);
+          expect(dollygrip._handl._execute.calledOnce).to.be.true();
+          expect(fetchMock.calls().matched).to.have.lengthOf(1);
+          dollygrip._handl._execute.reset();
+          fetchMock.reset();
+        });
       });
+
+      // let cursor;
+
+      describe('when the first six movies are requested with extra details', () => {
+        it('should return the company with its first six movies with extra details', async () => {
+          const { body } = await postRequest(server, { query: company1WithMoviesExtra });
+          expect(body.data).to.eql(graphql.company[1].withMoviesExtra);
+          expect(dollygrip._handl._execute.calledOnce).to.be.true();
+          expect(fetchMock.calls().matched).to.have.lengthOf(6);
+          dollygrip._handl._execute.reset();
+          fetchMock.reset();
+          // cursor = body.data.company.movies.edges[5].cursor;
+        });
+      });
+
+      // describe('when the next 12 movies are requested with extra details', () => {
+      //   it('should return the next 12 movies with extra details', async () => {
+      //     const { body } = await postRequest(server, {
+      //       query: company1WithMoviesExtra, variables: { after: cursor },
+      //     });
+
+      //     expect(body.data).to.eql(graphql.company[1].withMoviesExtra);
+      //     expect(dollygrip._handl._execute.calledOnce).to.be.true();
+      //     expect(fetchMock.calls().matched).to.have.lengthOf(12);
+      //     dollygrip._handl._execute.reset();
+      //     fetchMock.reset();
+      //   });
+      // });
     });
   });
 });

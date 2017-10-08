@@ -1,4 +1,4 @@
-import Resource from './resource';
+import ConnectionResourceLoader from './resource';
 
 /**
  *
@@ -23,13 +23,6 @@ export default class ConnectionLoader {
   /**
    *
    * @private
-   * @type {Object}
-   */
-  _activeResource;
-
-  /**
-   *
-   * @private
    * @type {Function}
    */
   _calcClosestMatch;
@@ -46,7 +39,7 @@ export default class ConnectionLoader {
    * @private
    * @type {Object}
    */
-  _resources = {};
+  _resourceLoaders = {};
 
   /**
    *
@@ -57,58 +50,24 @@ export default class ConnectionLoader {
 
   /**
    *
-   * @return {Object}
-   */
-  async getData() {
-    return this._activeResource.getData();
-  }
-
-  /**
-   *
-   * @return {boolean}
-   */
-  async requiredPages() {
-    return this._activeResource.requiredPages();
-  }
-
-  /**
-   *
-   * @return {number}
-   */
-  async pagesRequested() {
-    return this._activeResource.pagesRequested();
-  }
-
-  /**
-   *
-   * @param {Object} data
-   * @param {Object} metadata
-   * @return {void}
-   */
-  setPageResults(data, metadata) {
-    this._activeResource.setPageResults(data, metadata);
-  }
-
-  /**
-   *
    * @param {number} key
    * @param {Object} args
-   * @return {void}
+   * @return {ConnectionResourceLoader}
    */
-  setResource(key, args) {
-    let resource = this._resources[key];
+  getResourceLoader(key, args) {
+    let resourceLoader = this._resourceLoaders[key];
 
-    if (!resource) {
-      resource = new Resource({
+    if (!resourceLoader) {
+      resourceLoader = new ConnectionResourceLoader({
         calcClosestMatch: this._calcClosestMatch,
         cursorKey: this._cursorKey,
         resultsChunk: this._resultsChunk,
       });
 
-      this._resources[key] = resource;
+      this._resourceLoaders[key] = resourceLoader;
     }
 
-    this._activeResource = resource;
-    this._activeResource.setArguments(args);
+    resourceLoader.setArguments(args);
+    return resourceLoader;
   }
 }

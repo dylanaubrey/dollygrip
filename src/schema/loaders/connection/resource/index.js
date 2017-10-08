@@ -8,7 +8,7 @@ import { fromID, toID } from '../../../helpers';
  *
  * Connection resource utility
  */
-export default class ConnectionResource {
+export default class ConnectionResourceLoader {
   /**
    *
    * @constructor
@@ -16,7 +16,7 @@ export default class ConnectionResource {
    * @param {Function} opts.calcClosestMatch
    * @param {string} opts.cursorKey
    * @param {number} opts.resultsChunk
-   * @return {ConnectionResource}
+   * @return {ConnectionResourceLoader}
    */
   constructor({ calcClosestMatch, cursorKey, resultsChunk }) {
     this._calcClosestMatch = calcClosestMatch;
@@ -115,7 +115,7 @@ export default class ConnectionResource {
     } else if (exact.length > 1) {
       const match = exact.find(value => value.result.id === subType);
       position = match ? match.index : exact[0].index;
-    } else {
+    } else if (closest.length) {
       position = closest[0].index;
     }
 
@@ -173,7 +173,6 @@ export default class ConnectionResource {
     let results = [];
 
     await this._pages.forEach((value, key) => {
-      if (!value) return;
       results[key] = value;
     });
 
@@ -184,6 +183,7 @@ export default class ConnectionResource {
     return {
       edges: await this._getEdgesData(range),
       pageInfo: await this._getPageInfoData(results, range, start, count),
+      totalResults: this._totalResults,
       _metadata: { cacheControl: this._cacheability.printCacheControl() },
     };
   }

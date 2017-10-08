@@ -5,7 +5,7 @@ import ConnectionLoader from '../../../loaders/connection';
 import logger from '../../../../logger';
 import getta from '../../../../rest-client';
 
-let loader;
+let connectionLoader;
 
 /**
  *
@@ -44,10 +44,14 @@ const convertPropNames = function convertPropNames({
  */
 export default async function resolveCompanyMovies(obj, args) {
   const resource = obj.id;
-  if (!loader) loader = new ConnectionLoader({ calcClosestMatch, cursorKey: 'popularity' });
-  loader.setResource(resource, args);
 
-  if (await loader.pagesRequested() === 0) {
+  if (!connectionLoader) {
+    connectionLoader = new ConnectionLoader({ calcClosestMatch, cursorKey: 'popularity' });
+  }
+
+  const resourceLoader = connectionLoader.getResourceLoader(resource, args);
+
+  if (await resourceLoader.pagesRequested() === 0) {
     let res;
 
     try {
@@ -56,14 +60,14 @@ export default async function resolveCompanyMovies(obj, args) {
       logger.error(err);
     }
 
-    loader.setPageResults(
+    resourceLoader.setPageResults(
       convertPropNames(get(res, ['data', '0'], {})),
       get(res, ['metadata', '0'], {}),
     );
   }
 
-  const required = await loader.requiredPages();
-  if (!required.length) return loader.getData();
+  const required = await resourceLoader.requiredPages();
+  if (!required.length) return resourceLoader.getData();
   let res;
 
   try {
@@ -75,11 +79,11 @@ export default async function resolveCompanyMovies(obj, args) {
   }
 
   res.forEach((value) => {
-    loader.setPageResults(
+    resourceLoader.setPageResults(
       convertPropNames(get(value, ['data', '0'], {})),
       get(value, ['metadata', '0'], {}),
     );
   });
 
-  return loader.getData();
+  return resolveCompanyMovies(obj, args);
 }
