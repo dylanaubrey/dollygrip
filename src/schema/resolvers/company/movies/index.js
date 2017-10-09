@@ -85,5 +85,5 @@ export default async function resolveCompanyMovies(obj, args) {
     );
   });
 
-  return resolveCompanyMovies(obj, args);
+  return resourceLoader.getData();
 }
