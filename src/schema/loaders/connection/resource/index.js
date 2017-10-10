@@ -169,32 +169,29 @@ export default class ConnectionResourceLoader {
   /**
    *
    * @private
-   * @param {Array<Object>} [results]
+   * @param {Array<Object>} results
    * @return {Object}
    */
   async _calcPagination(results) {
-    let count, pagination;
+    let count, pagination, start;
 
     if (this._activeArgs.first) {
       count = this._activeArgs.first < this._maxResultsChunk
         ? this._activeArgs.first : this._maxResultsChunk;
 
-      pagination = { count, start: 0 };
+      start = this._activeArgs.after
+        ? this._calcCursorPosition(this._activeArgs.after, results, 'after') : 0;
+
+      pagination = { count, start };
     } else if (this._activeArgs.last) {
       count = this._activeArgs.last < this._maxResultsChunk
         ? this._activeArgs.last : this._maxResultsChunk;
 
-      pagination = { count, start: this._totalResults - (count + 1) };
-    } else if (this._activeArgs.after) {
-      pagination = {
-        count: this._maxResultsChunk,
-        start: await this._calcCursorPosition(this._activeArgs.after, results, 'after'),
-      };
-    } else if (this._activeArgs.before) {
-      pagination = {
-        count: this._maxResultsChunk,
-        start: await this._calcCursorPosition(this._activeArgs.before, results, 'before'),
-      };
+      start = this._activeArgs.before
+        ? this._calcCursorPosition(this._activeArgs.before, results, 'before')
+        : this._totalResults - (count + 1);
+
+      pagination = { count, start };
     }
 
     return pagination;
@@ -271,13 +268,12 @@ export default class ConnectionResourceLoader {
   /**
    *
    * @private
-   * @param {number} start
-   * @param {number} count
    * @return {Array<number>}
    */
-  async _getRequiredPageNumbers(start, count) {
-    const pageRange = [];
+  async _getRequiredPageNumbers() {
+    const { count, start } = await this._calcPagination();
     const end = start + count;
+    const pageRange = [];
 
     this._pageRanges.forEach((value, key) => {
       const { end: rangeEnd, start: rangeStart } = value;
@@ -362,9 +358,7 @@ export default class ConnectionResourceLoader {
       return [];
     }
 
-    // TODO: If after or before, get cursor position first.
-    const { count, start } = await this._calcPagination();
-    return this._getRequiredPageNumbers(start, count);
+    return this._getRequiredPageNumbers();
   }
 
   /**
@@ -395,7 +389,7 @@ export default class ConnectionResourceLoader {
     this._pages.set(page, results, { cacheControl });
     this._totalPages = totalPages;
     this._totalResults = totalResults;
-    this._shadowPagination();
+    this._buildPageRanges();
     this._setCacheability(cacheControl);
   }
 }
