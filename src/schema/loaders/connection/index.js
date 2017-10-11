@@ -17,9 +17,9 @@ export default class ConnectionLoader {
    * @return {ConnectionLoader}
    */
   constructor({ calcClosestMatch, cursorKey = 'id', maxResultsChunk = 50, resultsPerPage = 20 }) {
-    // if (isFunction(calcClosestMatch)) {
-    //   throw new Error('calcClosestMatch is a mandatory argument.');
-    // }
+    if (!isFunction(calcClosestMatch)) {
+      throw new Error('calcClosestMatch is a mandatory argument.');
+    }
 
     this._calcClosestMatch = calcClosestMatch;
     this._cursorKey = cursorKey;

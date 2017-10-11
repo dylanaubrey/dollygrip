@@ -9,15 +9,27 @@ let connectionLoader;
 
 /**
  *
- * @param {Object} result
- * @param {string} cursorKey
- * @param {number} type
- * @param {string} direction
- * @param {Array<Object>} closest
+ * @param {Object} result The result to check whether it is a closest match
+ * @param {string} cursorKey The property name of the primary position identifier
+ * @param {number} cursorValue The primary position identifier, i.e. rating value
+ * @param {string} direction Is pagination going forward (after) or backward (before)
+ * @param {Object} closest closest matching result
  * @return {boolean}
  */
-const calcClosestMatch = function calcClosestMatch(result, cursorKey, type, direction, closest) {
-  // TODO
+const calcClosestMatch = function calcClosestMatch(
+  result, cursorKey, cursorValue, direction, closest,
+) {
+  if (!closest) return true;
+
+  if (direction === 'after') {
+    return result[cursorKey] < cursorValue && result[cursorKey] > closest[cursorKey];
+  }
+
+  if (direction === 'before') {
+    return result[cursorKey] > cursorValue && result[cursorKey] < closest[cursorKey];
+  }
+
+  return false;
 };
 
 /**

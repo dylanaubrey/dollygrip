@@ -85,6 +85,20 @@ export default class ConnectionResourceLoader {
   /**
    *
    * @private
+   * @type {Object}
+   */
+  _pagination;
+
+  /**
+   *
+   * @private
+   * @type {Array<Object>}
+   */
+  _getResults;
+
+  /**
+   *
+   * @private
    * @type {number}
    */
   _resultsPerPage;
@@ -142,13 +156,13 @@ export default class ConnectionResourceLoader {
   async _calcCursorPosition(cursor, results, direction) {
     const { type, subType } = fromID(cursor);
     const exact = [];
-    const closest = [];
+    let closest;
 
     results.forEach((result, index) => {
       if (result[this._cursorKey] === type) {
         exact.push({ result, index });
       } else if (this._calcClosestMatch(result, this._cursorKey, type, direction, closest)) {
-        closest.push({ result, index });
+        closest = { result, index };
       }
     });
 
@@ -159,8 +173,8 @@ export default class ConnectionResourceLoader {
     } else if (exact.length > 1) {
       const match = exact.find(value => value.result.id === subType);
       position = match ? match.index : exact[0].index;
-    } else if (closest.length) {
-      position = closest[0].index;
+    } else if (closest) {
+      position = closest.index;
     }
 
     return position;
@@ -173,6 +187,7 @@ export default class ConnectionResourceLoader {
    * @return {Object}
    */
   async _calcPagination(results) {
+    if (this._pagination) return this._pagination;
     let count, pagination, start;
 
     if (this._activeArgs.first) {
@@ -194,7 +209,8 @@ export default class ConnectionResourceLoader {
       pagination = { count, start };
     }
 
-    return pagination;
+    this._pagination = pagination;
+    return this._pagination;
   }
 
   /**
@@ -211,13 +227,7 @@ export default class ConnectionResourceLoader {
       };
     }
 
-    let results = [];
-
-    await this._pages.forEach((value, key) => {
-      results[key] = value;
-    });
-
-    results = [].concat(...results.filter(value => !!value));
+    const results = await this._getResults();
     const { count, start } = await this._calcPagination(results);
     const range = results.slice(start, start + count);
 
@@ -227,6 +237,23 @@ export default class ConnectionResourceLoader {
       totalResults: this._totalResults,
       _metadata: { cacheControl: this._cacheability.printCacheControl() },
     };
+  }
+
+  /**
+   *
+   * @private
+   * @return {Array<Object>}
+   */
+  async _getResults() {
+    if (this._results) return this._results;
+    const results = [];
+
+    await this._pages.forEach((value, key) => {
+      results[key] = value;
+    });
+
+    this._results = [].concat(...results.filter(value => !!value));
+    return this._results;
   }
 
   /**
@@ -271,7 +298,8 @@ export default class ConnectionResourceLoader {
    * @return {Array<number>}
    */
   async _getRequiredPageNumbers() {
-    const { count, start } = await this._calcPagination();
+    const results = await this._getResults();
+    const { count, start } = await this._calcPagination(results);
     const end = start + count;
     const pageRange = [];
 
@@ -387,6 +415,8 @@ export default class ConnectionResourceLoader {
    */
   setPageResults({ page, results = [], totalPages = 0, totalResults = 0 }, { cacheControl }) {
     this._pages.set(page, results, { cacheControl });
+    this._pagination = null;
+    this._results = null;
     this._totalPages = totalPages;
     this._totalResults = totalResults;
     this._buildPageRanges();

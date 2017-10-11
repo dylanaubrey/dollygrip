@@ -105,14 +105,14 @@ export const company1WithMoviesExtra = `
  */
 export const company1WithNextMovies = `
   {
-    query ($id: Int!, $after: String!) {
+    query getNextMovies($id: Int!, $after: String, $before: string, $first: Int, $last: Int) {
       company(id: $id) {
         description
         headquarters
         homepage
         id
         logoPath
-        movies(first: $after) {
+        movies(after: $after, before: $before, first: $first, last: $last) {
           edges {
             cursor
             node {

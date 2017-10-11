@@ -8,6 +8,7 @@ import {
   company1Base,
   company1WithMovies,
   company1WithMoviesExtra,
+  company1WithNextMovies,
 } from '../../data/graphql/requests/company';
 
 import graphql from '../../data/graphql/responses';
@@ -79,7 +80,7 @@ describe('the company type', () => {
         });
       });
 
-      // let cursor;
+      let cursor;
 
       describe('when the first six movies are requested with extra details', () => {
         it('should return the company with its first six movies with extra details', async () => {
@@ -89,23 +90,23 @@ describe('the company type', () => {
           expect(fetchMock.calls().matched).to.have.lengthOf(6);
           dollygrip._handl._execute.reset();
           fetchMock.reset();
-          // cursor = body.data.company.movies.edges[5].cursor;
+          cursor = body.data.company.movies.edges[5].cursor;
         });
       });
 
-      // describe('when the next 12 movies are requested with extra details', () => {
-      //   it('should return the next 12 movies with extra details', async () => {
-      //     const { body } = await postRequest(server, {
-      //       query: company1WithMoviesExtra, variables: { after: cursor },
-      //     });
+      describe('when the next 12 movies are requested with extra details', () => {
+        it('should return the next 12 movies with extra details', async () => {
+          const { body } = await postRequest(server, {
+            query: company1WithNextMovies, variables: { after: cursor, first: 6, id: 1 },
+          });
 
-      //     expect(body.data).to.eql(graphql.company[1].withMoviesExtra);
-      //     expect(dollygrip._handl._execute.calledOnce).to.be.true();
-      //     expect(fetchMock.calls().matched).to.have.lengthOf(12);
-      //     dollygrip._handl._execute.reset();
-      //     fetchMock.reset();
-      //   });
-      // });
+          expect(body.data).to.eql(graphql.company[1].withMoviesExtra);
+          expect(dollygrip._handl._execute.calledOnce).to.be.true();
+          expect(fetchMock.calls().matched).to.have.lengthOf(6);
+          dollygrip._handl._execute.reset();
+          fetchMock.reset();
+        });
+      });
     });
   });
 });
