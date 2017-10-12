@@ -117,20 +117,25 @@ export const unbase64 = function unbase64(value) {
 
 /**
  *
- * @param {string|number} type
- * @param {string|number} subType
+ * @param {string|number} primary
+ * @param {string|number} secondary
  * @return {string}
  */
-export function toID(type, subType) {
-  return base64(`${type}:${subType}`);
+export function toID(primary, secondary) {
+  return base64(`${primary}:${secondary}`);
 }
 
 /**
  *
  * @param {string} id
+ * @param {Object} cursorKeys
+ * @param {Object} cursorKeys.primary
+ * @param {Object} cursorKeys.secondary
  * @return {Object}
  */
-export function fromID(id) {
-  const types = unbase64(id).split(':');
-  return { type: types[0], subType: types[1] };
+export function fromID(id, { primary, secondary }) {
+  const cursors = unbase64(id).split(':');
+  const primaryCursorValue = primary.type === 'number' ? Number(cursors[0]) : cursors[0];
+  const secondaryCursorValue = secondary.type === 'number' ? Number(cursors[1]) : cursors[1];
+  return { primaryCursorValue, secondaryCursorValue };
 }

@@ -21,6 +21,7 @@ export default {
       base: require('./company/1/base/index.json'),
       withMovies: require('./company/1/with-movies'),
       withMoviesExtra: require('./company/1/with-movies-extra'),
+      withNextSixMovies: require('./company/1/with-next-six-movies'),
     },
   },
 };

@@ -1,4 +1,4 @@
-import { isFunction } from 'lodash';
+import { isFunction, isPlainObject } from 'lodash';
 import ConnectionResourceLoader from './resource';
 
 /**
@@ -11,18 +11,22 @@ export default class ConnectionLoader {
    * @constructor
    * @param {Object} [opts]
    * @param {Function} opts.calcClosestMatch
-   * @param {string} [opts.cursorKey]
+   * @param {Object} [opts.cursorKeys]
    * @param {number} [opts.maxResultsChunk]
    * @param {number} [opts.resultsPerPage]
    * @return {ConnectionLoader}
    */
-  constructor({ calcClosestMatch, cursorKey = 'id', maxResultsChunk = 50, resultsPerPage = 20 }) {
+  constructor({ calcClosestMatch, cursorKeys, maxResultsChunk = 50, resultsPerPage = 20 }) {
     if (!isFunction(calcClosestMatch)) {
       throw new Error('calcClosestMatch is a mandatory argument.');
     }
 
+    if (!isPlainObject(cursorKeys)) {
+      throw new Error('cursorKeys is a mandatory argument.');
+    }
+
     this._calcClosestMatch = calcClosestMatch;
-    this._cursorKey = cursorKey;
+    this._cursorKeys = cursorKeys;
     this._maxResultsChunk = maxResultsChunk;
     this._resultsPerPage = resultsPerPage;
   }
@@ -37,9 +41,9 @@ export default class ConnectionLoader {
   /**
    *
    * @private
-   * @type {string}
+   * @type {Object}
    */
-  _cursorKey;
+  _cursorKeys;
 
   /**
    *
@@ -74,7 +78,7 @@ export default class ConnectionLoader {
     if (!resourceLoader) {
       resourceLoader = new ConnectionResourceLoader({
         calcClosestMatch: this._calcClosestMatch,
-        cursorKey: this._cursorKey,
+        cursorKeys: this._cursorKeys,
         maxResultsChunk: this._maxResultsChunk,
         resultsPerPage: this._resultsPerPage,
       });

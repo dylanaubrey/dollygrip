@@ -77,7 +77,7 @@ export default class Dollygrip {
         res.status(200).send({ cacheMetadata: this._mapToObject(cacheMetadata), data });
       } catch (err) {
         logger.error(err); // TODO: Log some request data as well...
-        res.status(500).end();
+        res.status(500).end({ error: err });
       }
     };
   }

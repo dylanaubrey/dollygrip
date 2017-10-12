@@ -22,11 +22,11 @@ const calcClosestMatch = function calcClosestMatch(
   if (!closest) return true;
 
   if (direction === 'after') {
-    return result[cursorKey] < cursorValue && result[cursorKey] > closest[cursorKey];
+    return result[cursorKey] > cursorValue && result[cursorKey] < closest[cursorKey];
   }
 
   if (direction === 'before') {
-    return result[cursorKey] > cursorValue && result[cursorKey] < closest[cursorKey];
+    return result[cursorKey] < cursorValue && result[cursorKey] > closest[cursorKey];
   }
 
   return false;
@@ -58,7 +58,13 @@ export default async function resolveCompanyMovies(obj, args) {
   const resource = obj.id;
 
   if (!connectionLoader) {
-    connectionLoader = new ConnectionLoader({ calcClosestMatch, cursorKey: 'popularity' });
+    connectionLoader = new ConnectionLoader({
+      calcClosestMatch,
+      cursorKeys: {
+        primary: { value: 'popularity', type: 'number' },
+        secondary: { value: 'id', type: 'number' },
+      },
+    });
   }
 
   const resourceLoader = connectionLoader.getResourceLoader(resource, args);

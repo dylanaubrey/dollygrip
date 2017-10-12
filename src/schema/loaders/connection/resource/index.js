@@ -14,14 +14,14 @@ export default class ConnectionResourceLoader {
    * @constructor
    * @param {Object} opts
    * @param {Function} opts.calcClosestMatch
-   * @param {string} opts.cursorKey
+   * @param {Object} opts.cursorKeys
    * @param {number} opts.maxResultsChunk
    * @param {number} opts.resultsPerPage
    * @return {ConnectionResourceLoader}
    */
-  constructor({ calcClosestMatch, cursorKey, maxResultsChunk, resultsPerPage }) {
+  constructor({ calcClosestMatch, cursorKeys, maxResultsChunk, resultsPerPage }) {
     this._calcClosestMatch = calcClosestMatch;
-    this._cursorKey = cursorKey;
+    this._cursorKeys = cursorKeys;
     this._maxResultsChunk = maxResultsChunk;
     this._resultsPerPage = resultsPerPage;
   }
@@ -50,9 +50,9 @@ export default class ConnectionResourceLoader {
   /**
    *
    * @private
-   * @type {string}
+   * @type {Object}
    */
-  _cursorKey;
+  _cursorKeys;
 
   /**
    *
@@ -154,25 +154,33 @@ export default class ConnectionResourceLoader {
    * @return {number}
    */
   async _calcCursorPosition(cursor, results, direction) {
-    const { type, subType } = fromID(cursor);
+    const { primaryCursorValue, secondaryCursorValue } = fromID(cursor, this._cursorKeys);
+    const primaryCursorKey = this._cursorKeys.primary.value;
+    const secondaryCursorKey = this._cursorKeys.secondary.value;
     const exact = [];
     let closest;
 
     results.forEach((result, index) => {
-      if (result[this._cursorKey] === type) {
+      if (result[primaryCursorKey] === primaryCursorValue) {
         exact.push({ result, index });
-      } else if (this._calcClosestMatch(result, this._cursorKey, type, direction, closest)) {
-        closest = { result, index };
+        return;
       }
+
+      const match = this._calcClosestMatch(
+        result, primaryCursorKey, primaryCursorValue, direction, closest,
+      );
+
+      if (match) closest = { result, index };
     });
 
     let position;
 
     if (exact.length === 1) {
-      position = exact[0].index;
+      position = exact[0].result[secondaryCursorKey] === secondaryCursorValue
+        ? exact[0].index + 1 : exact[0].index;
     } else if (exact.length > 1) {
-      const match = exact.find(value => value.result.id === subType);
-      position = match ? match.index : exact[0].index;
+      const match = exact.find(value => value.result[secondaryCursorKey] === secondaryCursorValue);
+      position = match ? match.index + 1 : exact[0].index;
     } else if (closest) {
       position = closest.index;
     }
@@ -195,7 +203,7 @@ export default class ConnectionResourceLoader {
         ? this._activeArgs.first : this._maxResultsChunk;
 
       start = this._activeArgs.after
-        ? this._calcCursorPosition(this._activeArgs.after, results, 'after') : 0;
+        ? await this._calcCursorPosition(this._activeArgs.after, results, 'after') : 0;
 
       pagination = { count, start };
     } else if (this._activeArgs.last) {
@@ -203,7 +211,7 @@ export default class ConnectionResourceLoader {
         ? this._activeArgs.last : this._maxResultsChunk;
 
       start = this._activeArgs.before
-        ? this._calcCursorPosition(this._activeArgs.before, results, 'before')
+        ? await this._calcCursorPosition(this._activeArgs.before, results, 'before')
         : this._totalResults - (count + 1);
 
       pagination = { count, start };
@@ -266,7 +274,7 @@ export default class ConnectionResourceLoader {
     const edges = [];
 
     range.forEach((value) => {
-      edges.push({ cursorKey: this._cursorKey, node: value });
+      edges.push({ cursorKeys: this._cursorKeys, node: value });
     });
 
     return edges;
@@ -282,13 +290,18 @@ export default class ConnectionResourceLoader {
    * @return {Array<Object>}
    */
   async _getPageInfoData(results, range, start, count) {
+    const primaryCursorKey = this._cursorKeys.primary.value;
+    const secondaryCursorKey = this._cursorKeys.secondary.value;
     const endIndex = range.length - 1;
 
     return {
       hasNextPage: (results.length - 1) > (start + count),
       hasPreviousPage: start > 0,
-      startCursor: toID(range[0][this._cursorKey], range[0].id),
-      endCursor: toID(range[endIndex][this._cursorKey], range[endIndex].id),
+      startCursor: toID(range[0][primaryCursorKey], range[0][secondaryCursorKey]),
+      endCursor: toID(
+        range[endIndex][primaryCursorKey],
+        range[endIndex][secondaryCursorKey],
+      ),
     };
   }
 
@@ -400,6 +413,7 @@ export default class ConnectionResourceLoader {
    */
   setArguments(opts) {
     this._activeArgs = opts;
+    this._pagination = null;
   }
 
   /**
@@ -415,7 +429,6 @@ export default class ConnectionResourceLoader {
    */
   setPageResults({ page, results = [], totalPages = 0, totalResults = 0 }, { cacheControl }) {
     this._pages.set(page, results, { cacheControl });
-    this._pagination = null;
     this._results = null;
     this._totalPages = totalPages;
     this._totalResults = totalResults;

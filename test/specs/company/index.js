@@ -100,7 +100,7 @@ describe('the company type', () => {
             query: company1WithNextMovies, variables: { after: cursor, first: 6, id: 1 },
           });
 
-          expect(body.data).to.eql(graphql.company[1].withMoviesExtra);
+          expect(body.data).to.eql(graphql.company[1].withNextSixMovies);
           expect(dollygrip._handl._execute.calledOnce).to.be.true();
           expect(fetchMock.calls().matched).to.have.lengthOf(6);
           dollygrip._handl._execute.reset();
