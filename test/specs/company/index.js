@@ -94,19 +94,21 @@ describe('the company type', () => {
         });
       });
 
-      describe('when the next 12 movies are requested with extra details', () => {
-        it('should return the next 12 movies with extra details', async () => {
+      describe('when the next 14 movies are requested with extra details', () => {
+        it('should return the next 14 movies with extra details', async () => {
           const { body } = await postRequest(server, {
-            query: company1WithNextMovies, variables: { after: cursor, first: 6, id: 1 },
+            query: company1WithNextMovies, variables: { after: cursor, first: 14, id: 1 },
           });
 
-          expect(body.data).to.eql(graphql.company[1].withNextSixMovies);
+          expect(body.data).to.eql(graphql.company[1].withNext14Movies);
           expect(dollygrip._handl._execute.calledOnce).to.be.true();
-          expect(fetchMock.calls().matched).to.have.lengthOf(6);
+          expect(fetchMock.calls().matched).to.have.lengthOf(14);
           dollygrip._handl._execute.reset();
           fetchMock.reset();
         });
       });
+
+      // TODO: Request the next 12 movies
     });
   });
 });
