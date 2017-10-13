@@ -1,0 +1,51 @@
+{
+  "adult": false,
+  "backdrop_path": "/bl80nEa6MeO956Rt7DW0pJsLW5R.jpg",
+  "belongs_to_collection": null,
+  "budget": 0,
+  "genres": [
+    {
+      "id": 18,
+      "name": "Drama"
+    }
+  ],
+  "homepage": "",
+  "id": 28176,
+  "imdb_id": "tt0096316",
+  "original_language": "en",
+  "original_title": "Tucker: The Man and His Dream",
+  "overview": "Based on a true story. Shortly after World War II, Preston Tucker is a dynamic engineer and an enthusiastic showman who envisions the car of the future. Against mighty odds he manages to build a fleet of them - only to have his factory shut down by Detroit's Big Three automobile manufacturers. They took away his car - but nobody could take away his dream.",
+  "popularity": 3.327186,
+  "poster_path": "/o0vbmZoJX2YbKRQoWIs3iHC18hD.jpg",
+  "production_companies": [
+    {
+      "name": "Lucasfilm",
+      "id": 1
+    },
+    {
+      "name": "Paramount Pictures",
+      "id": 4
+    }
+  ],
+  "production_countries": [
+    {
+      "iso_3166_1": "US",
+      "name": "United States of America"
+    }
+  ],
+  "release_date": "1988-08-12",
+  "revenue": 0,
+  "runtime": 110,
+  "spoken_languages": [
+    {
+      "iso_639_1": "en",
+      "name": "English"
+    }
+  ],
+  "status": "Released",
+  "tagline": "When they tried to buy him, he refused. When they tried to bully him, he resisted. When they tried to break him, he became an American legend. The true story of Preston Tucker.",
+  "title": "Tucker: The Man and His Dream",
+  "video": false,
+  "vote_average": 6.5,
+  "vote_count": 71
+}

@@ -78,7 +78,7 @@ export default async function resolveCompanyMovies(obj, args) {
       logger.error(err);
     }
 
-    resourceLoader.setPageResults(
+    await resourceLoader.setPageResults(
       convertPropNames(get(res, ['data', '0'], {})),
       get(res, ['metadata', '0'], {}),
     );
@@ -96,12 +96,12 @@ export default async function resolveCompanyMovies(obj, args) {
     logger.error(err);
   }
 
-  res.forEach((value) => {
-    resourceLoader.setPageResults(
+  await Promise.all(
+    res.map(value => resourceLoader.setPageResults(
       convertPropNames(get(value, ['data', '0'], {})),
       get(value, ['metadata', '0'], {}),
-    );
-  });
+    )),
+  );
 
   return resourceLoader.getData();
 }

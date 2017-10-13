@@ -1,0 +1,187 @@
+{
+  "company": {
+    "description": null,
+    "headquarters": "San Francisco, California",
+    "homepage": "http://www.lucasfilm.com",
+    "id": 1,
+    "logoPath": "/8rUnVMVZjlmQsJ45UGotD0Uznxj.png",
+    "name": "Lucasfilm",
+    "parentCompany": null,
+    "movies": {
+      "edges": [
+        {
+          "cursor": "MTEuNDI2NjcxOjcyNDMx",
+          "node": {
+            "id": 72431,
+            "originalLanguage": "en",
+            "originalTitle": "Red Tails",
+            "releaseDate": "2012-01-19",
+            "posterPath": "/Atq5js5fbsu5EXubZRizWaSXoBJ.jpg",
+            "popularity": 7.099933,
+            "productionCountries": [
+              {
+                "iso31661": "US",
+                "name": "United States of America"
+              }
+            ],
+            "spokenLanguages": [
+              {
+                "iso6391": "en",
+                "name": "English"
+              },
+              {
+                "iso6391": "fr",
+                "name": "Français"
+              },
+              {
+                "iso6391": "de",
+                "name": "Deutsch"
+              }
+            ],
+            "title": "Red Tails",
+            "video": false,
+            "voteAverage": 5.9,
+            "voteCount": 180
+          }
+        },
+        {
+          "cursor": "OS45ODQwOTozMDI0Mjk=",
+          "node": {
+            "id": 302429,
+            "originalLanguage": "en",
+            "originalTitle": "Strange Magic",
+            "releaseDate": "2015-01-23",
+            "posterPath": "/ixB8bO1sFo5eLPqjsyd3u9UVzDD.jpg",
+            "popularity": 11.105145,
+            "productionCountries": [
+              {
+                "iso31661": "US",
+                "name": "United States of America"
+              }
+            ],
+            "spokenLanguages": [
+              {
+                "iso6391": "en",
+                "name": "English"
+              }
+            ],
+            "title": "Strange Magic",
+            "video": false,
+            "voteAverage": 6.2,
+            "voteCount": 105
+          }
+        },
+        {
+          "cursor": "OC43NTEwMjQwMDAwMDAwMDE6MTAzNzI=",
+          "node": {
+            "id": 10372,
+            "originalLanguage": "en",
+            "originalTitle": "Ewoks: The Battle for Endor",
+            "releaseDate": "1985-11-24",
+            "posterPath": "/qmK6nRnyF2uMX0JzoNByfchyl2L.jpg",
+            "popularity": 8.290303,
+            "productionCountries": [
+              {
+                "iso31661": "US",
+                "name": "United States of America"
+              }
+            ],
+            "spokenLanguages": [
+              {
+                "iso6391": "en",
+                "name": "English"
+              }
+            ],
+            "title": "Ewoks: The Battle for Endor",
+            "video": false,
+            "voteAverage": 5.4,
+            "voteCount": 43
+          }
+        },
+        {
+          "cursor": "Ni41Njg5ODQ6MjgxNzY=",
+          "node": {
+            "id": 28176,
+            "originalLanguage": "en",
+            "originalTitle": "Tucker: The Man and His Dream",
+            "releaseDate": "1988-08-12",
+            "posterPath": "/o0vbmZoJX2YbKRQoWIs3iHC18hD.jpg",
+            "popularity": 3.327186,
+            "productionCountries": [
+              {
+                "iso31661": "US",
+                "name": "United States of America"
+              }
+            ],
+            "spokenLanguages": [
+              {
+                "iso6391": "en",
+                "name": "English"
+              }
+            ],
+            "title": "Tucker: The Man and His Dream",
+            "video": false,
+            "voteAverage": 6.5,
+            "voteCount": 71
+          }
+        },
+        {
+          "cursor": "NS45NzQ1OTg6MTM5MjQ=",
+          "node": {
+            "id": 13924,
+            "originalLanguage": "xx",
+            "originalTitle": "The Adventures of André and Wally B.",
+            "releaseDate": "1984-12-17",
+            "posterPath": "/fJyrCqZRzL4HN1FJ46OGITV4Yda.jpg",
+            "popularity": 2.528756,
+            "productionCountries": [
+              {
+                "iso31661": "US",
+                "name": "United States of America"
+              }
+            ],
+            "spokenLanguages": [
+              {
+                "iso6391": "xx",
+                "name": "No Language"
+              }
+            ],
+            "title": "The Adventures of André and Wally B.",
+            "video": false,
+            "voteAverage": 5.4,
+            "voteCount": 60
+          }
+        },
+        {
+          "cursor": "NS44MzIzMTE6MTgxODEy",
+          "node": {
+            "id": 181812,
+            "originalLanguage": "en",
+            "originalTitle": "Star Wars: Episode IX",
+            "releaseDate": "2019-12-20",
+            "posterPath": "/yVYTFvIiKyr6vsrPw3o5C6t2eoL.jpg",
+            "popularity": 3.505157,
+            "productionCountries": [],
+            "spokenLanguages": [
+              {
+                "iso6391": "en",
+                "name": "English"
+              }
+            ],
+            "title": "Star Wars: Episode IX",
+            "video": false,
+            "voteAverage": 0,
+            "voteCount": 26
+          }
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": true,
+        "hasPreviousPage": true,
+        "startCursor": "MTEuNDI2NjcxOjcyNDMx",
+        "endCursor": "NS44MzIzMTE6MTgxODEy"
+      },
+      "totalResults": 71
+    }
+  }
+}

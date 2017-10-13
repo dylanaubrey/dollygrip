@@ -1,0 +1,79 @@
+{
+  "adult": false,
+  "backdrop_path": "/3qAM6vvbf6RXR9pLL9yUwHvhEA3.jpg",
+  "belongs_to_collection": null,
+  "budget": 58000000,
+  "genres": [
+    {
+      "id": 18,
+      "name": "Drama"
+    },
+    {
+      "id": 28,
+      "name": "Action"
+    },
+    {
+      "id": 12,
+      "name": "Adventure"
+    },
+    {
+      "id": 36,
+      "name": "History"
+    },
+    {
+      "id": 10752,
+      "name": "War"
+    }
+  ],
+  "homepage": "http://www.redtails2012.com/",
+  "id": 72431,
+  "imdb_id": "tt0485985",
+  "original_language": "en",
+  "original_title": "Red Tails",
+  "overview": "The story of the Tuskegee Airmen, the first African-American pilots to fly in a combat squadron during World War II.",
+  "popularity": 7.099933,
+  "poster_path": "/Atq5js5fbsu5EXubZRizWaSXoBJ.jpg",
+  "production_companies": [
+    {
+      "name": "Lucasfilm",
+      "id": 1
+    },
+    {
+      "name": "Twentieth Century Fox Film Corporation",
+      "id": 306
+    },
+    {
+      "name": "Partnership Pictures",
+      "id": 22883
+    }
+  ],
+  "production_countries": [
+    {
+      "iso_3166_1": "US",
+      "name": "United States of America"
+    }
+  ],
+  "release_date": "2012-01-19",
+  "revenue": 50365377,
+  "runtime": 125,
+  "spoken_languages": [
+    {
+      "iso_639_1": "en",
+      "name": "English"
+    },
+    {
+      "iso_639_1": "fr",
+      "name": "Français"
+    },
+    {
+      "iso_639_1": "de",
+      "name": "Deutsch"
+    }
+  ],
+  "status": "Released",
+  "tagline": "High-Octane Action and Daring Dogfights!",
+  "title": "Red Tails",
+  "video": false,
+  "vote_average": 5.9,
+  "vote_count": 180
+}

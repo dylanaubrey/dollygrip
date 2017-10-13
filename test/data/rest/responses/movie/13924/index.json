@@ -1,0 +1,51 @@
+{
+  "adult": false,
+  "backdrop_path": "/7liRpp7OGo2P3Yn0Qnn4zkMPeVk.jpg",
+  "belongs_to_collection": null,
+  "budget": 0,
+  "genres": [
+    {
+      "id": 16,
+      "name": "Animation"
+    }
+  ],
+  "homepage": "",
+  "id": 13924,
+  "imdb_id": "tt0086855",
+  "original_language": "xx",
+  "original_title": "The Adventures of André and Wally B.",
+  "overview": "There's nothing like a restful nap in a pleasant wooded valley. But when André awakens and is greeted by a pesky yellow-and-black striped insect with a nasty stinger, he ends up taking a quick (and painful) hike.",
+  "popularity": 2.528756,
+  "poster_path": "/fJyrCqZRzL4HN1FJ46OGITV4Yda.jpg",
+  "production_companies": [
+    {
+      "name": "Lucasfilm",
+      "id": 1
+    },
+    {
+      "name": "Pixar Animation Studios",
+      "id": 3
+    }
+  ],
+  "production_countries": [
+    {
+      "iso_3166_1": "US",
+      "name": "United States of America"
+    }
+  ],
+  "release_date": "1984-12-17",
+  "revenue": 0,
+  "runtime": 2,
+  "spoken_languages": [
+    {
+      "iso_639_1": "xx",
+      "name": "No Language"
+    }
+  ],
+  "status": "Released",
+  "tagline": "",
+  "title": "The Adventures of André and Wally B.",
+  "video": false,
+  "vote_average": 5.4,
+  "vote_count": 60
+}

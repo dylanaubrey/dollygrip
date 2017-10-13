@@ -41,6 +41,8 @@ describe('the company type', () => {
   before(() => {
     mockRestRequest(url, rest.company[1], { headers });
     mockRestRequest(moviesURL, rest.company.movies[1].page1, { headers });
+    mockRestRequest(`${moviesURL}&page=1`, rest.company.movies[1].page1, { headers });
+    mockRestRequest(`${moviesURL}&page=2`, rest.company.movies[1].page2, { headers });
 
     Object.keys(movieMockArgs).forEach((key) => {
       mockRestRequest(movieMockArgs[key].url, movieMockArgs[key].res, { headers });
@@ -100,15 +102,28 @@ describe('the company type', () => {
             query: company1WithNextMovies, variables: { after: cursor, first: 14, id: 1 },
           });
 
-          expect(body.data).to.eql(graphql.company[1].withNext14Movies);
+          expect(body.data).to.eql(graphql.company[1].with7To20Movies);
           expect(dollygrip._handl._execute.calledOnce).to.be.true();
           expect(fetchMock.calls().matched).to.have.lengthOf(14);
           dollygrip._handl._execute.reset();
           fetchMock.reset();
+          cursor = body.data.company.movies.edges[13].cursor;
         });
       });
 
-      // TODO: Request the next 12 movies
+      describe('when the next 6 movies are requested with extra details', () => {
+        it('should return the next 6 movies with extra details', async () => {
+          const { body } = await postRequest(server, {
+            query: company1WithNextMovies, variables: { after: cursor, first: 6, id: 1 },
+          });
+
+          expect(body.data).to.eql(graphql.company[1].with21To26Movies);
+          expect(dollygrip._handl._execute.calledOnce).to.be.true();
+          expect(fetchMock.calls().matched).to.have.lengthOf(7);
+          dollygrip._handl._execute.reset();
+          fetchMock.reset();
+        });
+      });
     });
   });
 });

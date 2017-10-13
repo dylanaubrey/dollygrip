@@ -94,7 +94,7 @@ export default class ConnectionResourceLoader {
    * @private
    * @type {Array<Object>}
    */
-  _getResults;
+  _results;
 
   /**
    *
@@ -131,10 +131,10 @@ export default class ConnectionResourceLoader {
       const range = { start: resultsPaginated };
 
       if ((range.start + this._resultsPerPage) < this._totalResults) {
-        range.end = range.start + this._resultsPerPage;
+        range.end = range.start + (this._resultsPerPage - 1);
         resultsPaginated += this._resultsPerPage;
       } else {
-        range.end = this._totalResults;
+        range.end = this._totalResults - 1;
         resultsPaginated = this._totalResults;
       }
 
@@ -313,15 +313,15 @@ export default class ConnectionResourceLoader {
   async _getRequiredPageNumbers() {
     const results = await this._getResults();
     const { count, start } = await this._calcPagination(results);
-    const end = start + count;
+    const end = start + (count - 1);
     const pageRange = [];
 
     this._pageRanges.forEach((value, key) => {
       const { end: rangeEnd, start: rangeStart } = value;
 
-      if (start > rangeStart && start < rangeEnd) {
+      if (start >= rangeStart && start <= rangeEnd) {
         pageRange.push(key);
-      } else if (end > rangeStart) {
+      } else if (end >= rangeStart && end <= rangeEnd) {
         pageRange.push(key);
       }
     });
@@ -427,8 +427,8 @@ export default class ConnectionResourceLoader {
    * @param {string} metadata.cacheControl
    * @return {void}
    */
-  setPageResults({ page, results = [], totalPages = 0, totalResults = 0 }, { cacheControl }) {
-    this._pages.set(page, results, { cacheControl });
+  async setPageResults({ page, results = [], totalPages = 0, totalResults = 0 }, { cacheControl }) {
+    await this._pages.set(page, results, { cacheControl });
     this._results = null;
     this._totalPages = totalPages;
     this._totalResults = totalResults;
