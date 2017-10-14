@@ -1,12 +1,12 @@
-import { GraphQLInt, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
+import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
 import { connectionArgs } from 'graphql-relay';
 import MetadataType from '../metadata';
 import Company from '../../classes/company';
 import { MovieConnection } from '../../connections/movie';
 import APINodeInterface from '../../interfaces/api-node';
 import EntityNodeInterface from '../../interfaces/entity-node';
-import IdType from '../../objects/id';
 import resolveCompanyMovies from '../../resolvers/company/movies';
+import IdType from '../../scalars/id';
 
 export default new GraphQLObjectType({
   name: 'Company',

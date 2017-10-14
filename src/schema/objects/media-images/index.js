@@ -4,7 +4,7 @@ import MetadataType from '../metadata';
 import MediaImages from '../../classes/media-images';
 import APINodeInterface from '../../interfaces/api-node';
 import EntityNodeInterface from '../../interfaces/entity-node';
-import IdType from '../../objects/id';
+import IdType from '../../scalars/id';
 
 export default new GraphQLObjectType({
   name: 'MediaImages',

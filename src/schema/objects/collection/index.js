@@ -3,11 +3,11 @@ import MetadataType from '../metadata';
 import Collection from '../../classes/collection';
 import APINodeInterface from '../../interfaces/api-node';
 import EntityNodeInterface from '../../interfaces/entity-node';
-import IdType from '../../objects/id';
 import MediaImagesType from '../../objects/media-images';
 import MovieType from '../../objects/movie';
 import resolveCollectionImages from '../../resolvers/collection/images';
 import resolveMovieList from '../../resolvers/movie-list';
+import IdType from '../../scalars/id';
 
 export default new GraphQLObjectType({
   name: 'Collection',

@@ -10,7 +10,6 @@ import {
 
 import CompanyType from '../company';
 import CountryType from '../country';
-import IdType from '../../objects/id';
 import LanguageType from '../language';
 import MetadataType from '../metadata';
 import Movie from '../../classes/movie';
@@ -19,6 +18,7 @@ import EntityNodeInterface from '../../interfaces/entity-node';
 import CollectionType from '../../objects/collection';
 import resolveCollection from '../../resolvers/collection';
 import resolveCompanyList from '../../resolvers/company-list';
+import IdType from '../../scalars/id';
 
 export default new GraphQLObjectType({
   name: 'Movie',
