@@ -25,4 +25,5 @@ export default {
       with21To26Movies: require('./company/1/with-21-to-26-movies'),
     },
   },
+  configuration: require('./configuration'),
 };

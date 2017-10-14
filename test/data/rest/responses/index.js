@@ -27,6 +27,7 @@ export default {
       },
     },
   },
+  configuration: require('./configuration'),
   movie: {
     11: require('./movie/11/index.json'),
     85: require('./movie/85/index.json'),

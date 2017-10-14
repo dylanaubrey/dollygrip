@@ -2,10 +2,12 @@ import { GraphQLInt, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'gr
 import CertificationsType from '../objects/certifications';
 import CollectionType from '../objects/collection';
 import CompanyType from '../objects/company';
+import ConfigurationType from '../objects/configuration';
 import MovieType from '../objects/movie';
 import resolveCertifications from '../resolvers/certifications';
 import resolveCollection from '../resolvers/collection';
 import resolveCompany from '../resolvers/company';
+import resolveConfiguration from '../resolvers/configuration';
 import resolveMovie from '../resolvers/movie';
 
 export default new GraphQLObjectType({
@@ -25,6 +27,10 @@ export default new GraphQLObjectType({
       type: CompanyType,
       args: { id: { type: new GraphQLNonNull(GraphQLInt) } },
       resolve: resolveCompany,
+    },
+    configuration: {
+      type: ConfigurationType,
+      resolve: resolveConfiguration,
     },
     movie: {
       type: MovieType,

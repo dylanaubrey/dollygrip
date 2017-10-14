@@ -30,6 +30,9 @@ getta.shortcut('get', 'getCollectionImages', { path: 'collection/{id}/images' })
 getta.shortcut('get', 'getCompany', { path: 'company' });
 getta.shortcut('get', 'getCompanyMovies', { path: 'company/{id}/movies' });
 
+// Configuration
+getta.shortcut('get', 'getConfiguration', { path: 'configuration' });
+
 // Movie
 getta.shortcut('get', 'getMovie', { path: 'movie' });
 

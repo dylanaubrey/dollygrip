@@ -5,6 +5,7 @@ import EntityNodeInterface from './interfaces/entity-node';
 import CertificationsType from './objects/certifications';
 import CollectionType from './objects/collection';
 import CompanyType from './objects/company';
+import ConfigurationType from './objects/configuration';
 import MovieType from './objects/movie';
 import Query from './query';
 
@@ -15,6 +16,7 @@ export default new GraphQLSchema({
     CertificationsType,
     CollectionType,
     CompanyType,
+    ConfigurationType,
     EntityNodeInterface,
     MovieConnection,
     MovieEdge,
