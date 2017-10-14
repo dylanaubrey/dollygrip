@@ -46,7 +46,7 @@ describe('the certifications type', () => {
     dollygrip.clearCaches();
   });
 
-  describe('when certifications are requested for movie format', () => {
+  describe('when certifications are requested for movie media', () => {
     it('should return the movie certifications', async () => {
       const { body } = await postRequest(server, { query: movieQueryOne });
       expect(body.data).to.eql(graphql.certification.movie);
@@ -79,7 +79,7 @@ describe('the certifications type', () => {
       });
     });
 
-    describe('when the same certifications are requested for TV format', () => {
+    describe('when the same certifications are requested for TV media', () => {
       it('should return the TV certifications', async () => {
         const { body } = await postRequest(server, { query: tvQuery });
         expect(body.data).to.eql(graphql.certification.tv);

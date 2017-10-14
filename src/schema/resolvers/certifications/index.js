@@ -14,9 +14,9 @@ export default async function resolveCertifications(obj, args) {
   let res;
 
   try {
-    if (args.format === 'movie') {
+    if (args.media === 'movie') {
       res = await getta.getMovieCertifications();
-    } else if (args.format === 'tv') {
+    } else if (args.media === 'tv') {
       res = await getta.getTVCertifications();
     }
   } catch (err) {

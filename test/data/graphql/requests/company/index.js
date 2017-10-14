@@ -104,7 +104,7 @@ export const company1WithMoviesExtra = `
  * @type {string}
  */
 export const company1WithNextMovies = `
-  query ($id: Int!, $after: String, $first: Int) {
+  query ($id: Id!, $after: String, $first: Int) {
     company(id: $id) {
       description
       headquarters

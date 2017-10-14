@@ -10,6 +10,7 @@ import {
 
 import CompanyType from '../company';
 import CountryType from '../country';
+import IdType from '../../objects/id';
 import LanguageType from '../language';
 import MetadataType from '../metadata';
 import Movie from '../../classes/movie';
@@ -30,7 +31,7 @@ export default new GraphQLObjectType({
     // genres: { type: new GraphQLList(GenreType), resolve: resolveGenreList },
     genreIds: { type: new GraphQLList(GraphQLInt) },
     homepage: { type: GraphQLString },
-    id: { type: new GraphQLNonNull(GraphQLInt) },
+    id: { type: new GraphQLNonNull(IdType) },
     imdbId: { type: GraphQLString },
     originalLanguage: { type: new GraphQLNonNull(GraphQLString) },
     originalTitle: { type: new GraphQLNonNull(GraphQLString) },

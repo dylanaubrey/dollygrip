@@ -6,6 +6,8 @@ import CertificationsType from './objects/certifications';
 import CollectionType from './objects/collection';
 import CompanyType from './objects/company';
 import ConfigurationType from './objects/configuration';
+import CreditType from './objects/credit';
+import IdType from './objects/id';
 import MovieType from './objects/movie';
 import Query from './query';
 
@@ -17,7 +19,9 @@ export default new GraphQLSchema({
     CollectionType,
     CompanyType,
     ConfigurationType,
+    CreditType,
     EntityNodeInterface,
+    IdType,
     MovieConnection,
     MovieEdge,
     MovieType,

@@ -4,7 +4,7 @@
  */
 export const movieQueryOne = `
   {
-    certifications(format: "movie") {
+    certifications(media: "movie") {
       CA {
         certification
         meaning
@@ -30,7 +30,7 @@ export const movieQueryOne = `
  */
 export const movieQueryTwo = `
   {
-    certifications(format: "movie") {
+    certifications(media: "movie") {
       US {
         certification
         meaning
@@ -46,7 +46,7 @@ export const movieQueryTwo = `
  */
 export const movieQueryThree = `
   {
-    certifications(format: "movie") {
+    certifications(media: "movie") {
       US {
         certification
         meaning
@@ -67,7 +67,7 @@ export const movieQueryThree = `
  */
 export const tvQuery = `
   {
-    certifications(format: "tv") {
+    certifications(media: "tv") {
       CA {
         certification
         meaning
@@ -92,8 +92,8 @@ export const tvQuery = `
  * @type {string}
  */
 export const variableQuery = `
-  query ($format: String) {
-    certifications(format: $format) {
+  query ($media: String) {
+    certifications(media: $media) {
       CA {
         certification
         meaning

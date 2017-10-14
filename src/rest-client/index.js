@@ -33,8 +33,14 @@ getta.shortcut('get', 'getCompanyMovies', { path: 'company/{id}/movies' });
 // Configuration
 getta.shortcut('get', 'getConfiguration', { path: 'configuration' });
 
+// Credit
+getta.shortcut('get', 'getCredit', { path: 'credit' });
+
 // Movie
 getta.shortcut('get', 'getMovie', { path: 'movie' });
+
+// People
+getta.shortcut('get', 'getPerson', { path: 'person' });
 
 // TODO
 
