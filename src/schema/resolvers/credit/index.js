@@ -14,7 +14,7 @@ export default async function resolveCredit(obj, args) {
   let res;
 
   try {
-    res = await getta.getCompany({ resource: args.id });
+    res = await getta.getCredit({ resource: args.id });
   } catch (err) {
     logger.error(err);
   }

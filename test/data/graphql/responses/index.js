@@ -19,11 +19,16 @@ export default {
   company: {
     1: {
       base: require('./company/1/base/index.json'),
-      withMovies: require('./company/1/with-movies'),
-      withMoviesExtra: require('./company/1/with-movies-extra'),
-      with7To20Movies: require('./company/1/with-7-to-20-movies'),
-      with21To26Movies: require('./company/1/with-21-to-26-movies'),
+      withMovies: require('./company/1/with-movies/index.json'),
+      withMoviesExtra: require('./company/1/with-movies-extra/index.json'),
+      with7To20Movies: require('./company/1/with-7-to-20-movies/index.json'),
+      with21To26Movies: require('./company/1/with-21-to-26-movies/index.json'),
     },
   },
-  configuration: require('./configuration'),
+  configuration: require('./configuration/index.json'),
+  credit: {
+    '52542282760ee313280017f9': {
+      base: require('./credit/52542282760ee313280017f9/base/index.json'),
+    },
+  },
 };

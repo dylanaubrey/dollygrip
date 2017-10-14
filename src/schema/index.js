@@ -8,8 +8,10 @@ import CompanyType from './objects/company';
 import ConfigurationType from './objects/configuration';
 import CreditType from './objects/credit';
 import MovieType from './objects/movie';
+import TvType from './objects/tv';
 import Query from './query';
 import IdType from './scalars/id';
+import MediaType from './unions/media';
 
 export default new GraphQLSchema({
   query: Query,
@@ -22,8 +24,10 @@ export default new GraphQLSchema({
     CreditType,
     EntityNodeInterface,
     IdType,
+    MediaType,
     MovieConnection,
     MovieEdge,
     MovieType,
+    TvType,
   ],
 });

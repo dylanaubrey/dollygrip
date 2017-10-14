@@ -28,6 +28,9 @@ export default {
     },
   },
   configuration: require('./configuration'),
+  credit: {
+    '52542282760ee313280017f9': require('./credit/52542282760ee313280017f9/index.json'),
+  },
   movie: {
     11: require('./movie/11/index.json'),
     85: require('./movie/85/index.json'),
@@ -55,5 +58,8 @@ export default {
     181812: require('./movie/181812/index.json'),
     302429: require('./movie/302429/index.json'),
     330459: require('./movie/330459/index.json'),
+  },
+  tv: {
+    1396: require('./tv/1396/index.json'),
   },
 };

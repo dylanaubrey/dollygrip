@@ -42,6 +42,9 @@ getta.shortcut('get', 'getMovie', { path: 'movie' });
 // People
 getta.shortcut('get', 'getPerson', { path: 'person' });
 
+// Tv
+getta.shortcut('get', 'getTv', { path: 'tv' });
+
 // TODO
 
 export default getta;

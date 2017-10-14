@@ -1,0 +1,13 @@
+{
+  "credit": {
+    "character": "Walter White",
+    "creditType": "cast",
+    "department": "Actors",
+    "id": "52542282760ee313280017f9",
+    "job": "Actor",
+    "media": {
+      "name": "Breaking Bad"
+    },
+    "mediaType": "tv"
+  }
+}
