@@ -113,6 +113,21 @@ export const checkFieldData = function checkFieldData(
  * @param {Function} resolver
  * @return {Array<Company>}
  */
+export const resolveObject = async function resolveObject(obj, args, context, info, resolver) {
+  const currentFieldNode = getCurrentFieldNode(info);
+  const fieldData = obj[snakeCase(getName(currentFieldNode))];
+  return resolver(fieldData, args, context, info);
+};
+
+/**
+ *
+ * @param {Object} obj
+ * @param {Object} args
+ * @param {Object} context
+ * @param {Object} info
+ * @param {Function} resolver
+ * @return {Array<Company>}
+ */
 export const resolveList = async function resolveList(obj, args, context, info, resolver) {
   const currentFieldNode = getCurrentFieldNode(info);
   const fieldData = obj[snakeCase(getName(currentFieldNode))];

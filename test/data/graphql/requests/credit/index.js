@@ -19,6 +19,9 @@ export const creditBase = `
         }
       }
       mediaType
+      person {
+        name
+      }
     }
   }
 `;
@@ -47,6 +50,9 @@ export const creditWithExtraMedia = `
         }
       }
       mediaType
+      person {
+        name
+      }
     }
   }
 `;

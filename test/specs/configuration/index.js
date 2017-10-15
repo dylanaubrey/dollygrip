@@ -18,7 +18,7 @@ const headers = {
 
 const url = buildURL({ path: 'configuration' });
 
-describe('the company type', () => {
+describe('the configuration type', () => {
   let apps, dollygrip, server;
 
   before(() => {

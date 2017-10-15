@@ -8,6 +8,10 @@
     "media": {
       "name": "Breaking Bad"
     },
-    "mediaType": "tv"
+    "mediaType": "tv",
+    "person": {
+      "name": "Bryan Cranston",
+      "id": 17419
+    }
   }
 }

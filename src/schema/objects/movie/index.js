@@ -13,11 +13,12 @@ import CountryType from '../country';
 import LanguageType from '../language';
 import MetadataType from '../metadata';
 import Movie from '../../classes/movie';
+import { resolveList } from '../../helpers';
 import APINodeInterface from '../../interfaces/api-node';
 import EntityNodeInterface from '../../interfaces/entity-node';
 import CollectionType from '../../objects/collection';
 import resolveCollection from '../../resolvers/collection';
-import resolveCompanyList from '../../resolvers/company-list';
+import resolveCompany from '../../resolvers/company';
 import IdType from '../../scalars/id';
 
 export default new GraphQLObjectType({
@@ -38,7 +39,10 @@ export default new GraphQLObjectType({
     overview: { type: GraphQLString },
     popularity: { type: new GraphQLNonNull(GraphQLFloat) },
     posterPath: { type: GraphQLString },
-    productionCompanies: { type: new GraphQLList(CompanyType), resolve: resolveCompanyList },
+    productionCompanies: {
+      type: new GraphQLList(CompanyType),
+      resolve: (...args) => resolveList(...args, resolveCompany),
+    },
     productionCountries: { type: new GraphQLList(CountryType) },
     releaseDate: { type: new GraphQLNonNull(GraphQLString) },
     revenue: { type: new GraphQLNonNull(GraphQLInt) },

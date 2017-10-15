@@ -8,6 +8,7 @@ import CompanyType from './objects/company';
 import ConfigurationType from './objects/configuration';
 import CreditType from './objects/credit';
 import MovieType from './objects/movie';
+import PersonType from './objects/person';
 import TvType from './objects/tv';
 import Query from './query';
 import IdType from './scalars/id';
@@ -28,6 +29,7 @@ export default new GraphQLSchema({
     MovieConnection,
     MovieEdge,
     MovieType,
+    PersonType,
     TvType,
   ],
 });

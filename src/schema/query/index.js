@@ -5,6 +5,7 @@ import CompanyType from '../objects/company';
 import ConfigurationType from '../objects/configuration';
 import CreditType from '../objects/credit';
 import MovieType from '../objects/movie';
+import PersonType from '../objects/person';
 import TvType from '../objects/tv';
 import resolveCertifications from '../resolvers/certifications';
 import resolveCollection from '../resolvers/collection';
@@ -12,6 +13,7 @@ import resolveCompany from '../resolvers/company';
 import resolveConfiguration from '../resolvers/configuration';
 import resolveCredit from '../resolvers/credit';
 import resolveMovie from '../resolvers/movie';
+import resolvePerson from '../resolvers/person';
 import resolveTv from '../resolvers/tv';
 import IdType from '../scalars/id';
 
@@ -46,6 +48,11 @@ export default new GraphQLObjectType({
       type: MovieType,
       args: { id: { type: new GraphQLNonNull(IdType) } },
       resolve: resolveMovie,
+    },
+    person: {
+      type: PersonType,
+      args: { id: { type: new GraphQLNonNull(IdType) } },
+      resolve: resolvePerson,
     },
     tv: {
       type: TvType,

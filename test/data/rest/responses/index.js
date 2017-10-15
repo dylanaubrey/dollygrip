@@ -59,6 +59,9 @@ export default {
     302429: require('./movie/302429/index.json'),
     330459: require('./movie/330459/index.json'),
   },
+  person: {
+    17419: require('./person/17419/index.json'),
+  },
   tv: {
     1396: require('./tv/1396/index.json'),
   },
