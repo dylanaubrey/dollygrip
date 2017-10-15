@@ -33,8 +33,26 @@ export const getCurrentFieldNode = function getCurrentFieldNode(info = {}) {
  * @param {Object} node
  * @return {string}
  */
+export const getKind = function getKind({ kind }) {
+  return kind;
+};
+
+/**
+ *
+ * @param {Object} node
+ * @return {string}
+ */
 export const getName = function getName({ name }) {
   return name.value;
+};
+
+/**
+ *
+ * @param {Object} inlineFragmentNode
+ * @return {Object}
+ */
+export const getTypeCondition = function getTypeCondition({ typeCondition }) {
+  return typeCondition;
 };
 
 /**
@@ -51,18 +69,39 @@ export const hasFieldData = function hasFieldData(obj, key) {
  *
  * @param {Object} obj
  * @param {Object} info
+ * @param {Object} opts
+ * @param {string} opts.fragmentType
+ * @param {Function} opts.nameResolver
  * @return {boolean}
  */
-export const checkFieldData = function fieldHasData(obj, info) {
+export const checkFieldData = function checkFieldData(
+  obj, info, { fragmentType, nameResolver = name => name } = {},
+) {
+  /**
+   *
+   * @param {Array<Object>} fields
+   * @return {boolean}
+   */
+  const checkChildFieldData = function checkChildFieldData(fields) {
+    for (let i = 0; i < fields.length; i += 1) {
+      const kind = getKind(fields[i]);
+
+      if (kind === 'InlineFragment') {
+        if (!fragmentType || fragmentType === getName(getTypeCondition(fields[i]))) {
+          const output = checkChildFieldData(getChildFields(fields[i]));
+          if (!output) return false;
+        }
+      } else if (kind === 'Field') {
+        const name = getName(fields[i]);
+        if (name !== '_metadata' && !hasFieldData(obj, nameResolver(name))) return false;
+      }
+    }
+
+    return true;
+  };
+
   if (!obj) return false;
-  const childFields = getChildFields(getCurrentFieldNode(info));
-
-  for (let i = 0; i < childFields.length; i += 1) {
-    const name = getName(childFields[i]);
-    if (name !== '_metadata' && !hasFieldData(obj, snakeCase(name))) return false;
-  }
-
-  return true;
+  return checkChildFieldData(getChildFields(getCurrentFieldNode(info)));
 };
 
 /**

@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import { get, snakeCase } from 'lodash';
 import Tv from '../../classes/tv';
 import { checkFieldData, resolveRestResponse } from '../../helpers';
 import logger from '../../../logger';
@@ -10,10 +10,13 @@ import getta from '../../../rest-client';
  * @param {Object} args
  * @param {Object} context
  * @param {Object} info
+ * @param {Object} [opts]
+ * @param {string} [opts.fragmentType]
  * @return {Tv}
  */
-export default async function resolveTv(obj, args, context, info) {
-  if (checkFieldData(obj, info)) return new Tv(obj);
+export default async function resolveTv(obj, args, context, info, { fragmentType } = {}) {
+  const nameResolver = name => snakeCase(name);
+  if (checkFieldData(obj, info, { fragmentType, nameResolver })) return new Tv(obj);
   const resource = obj ? obj.id : args.id;
   let res;
 

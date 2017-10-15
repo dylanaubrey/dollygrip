@@ -3,7 +3,7 @@ import dirtyChai from 'dirty-chai';
 import fetchMock from 'fetch-mock';
 import { spy } from 'sinon';
 import sinonChai from 'sinon-chai';
-import { creditBase } from '../../data/graphql/requests/credit';
+import { creditBase, creditWithExtraMedia } from '../../data/graphql/requests/credit';
 import graphql from '../../data/graphql/responses';
 import rest from '../../data/rest/responses';
 import { buildURL, createApps, mockRestRequest, postRequest } from '../../helpers';
@@ -52,15 +52,43 @@ describe('the credit type', () => {
 
   describe('when a credit is requested with specific fields', () => {
     it('should return the credit with those fields', async () => {
-      const { body } = await postRequest(server, {
-        query: creditBase, variables: { id: resource },
-      });
+      let res;
 
+      try {
+        res = await postRequest(server, {
+          query: creditBase, variables: { id: resource },
+        });
+      } catch (err) {
+        // no catch
+      }
+
+      const { body } = res;
       expect(body.data).to.eql(graphql.credit[resource].base);
       expect(dollygrip._handl._execute.calledOnce).to.be.true();
       expect(fetchMock.calls().matched).to.have.lengthOf(1);
       dollygrip._handl._execute.reset();
       fetchMock.reset();
+    });
+
+    describe('when a credit is requested with extra media fields', () => {
+      it('should return the credit and the media with the extra fields', async () => {
+        let res;
+
+        try {
+          res = await postRequest(server, {
+            query: creditWithExtraMedia, variables: { id: resource },
+          });
+        } catch (err) {
+          // no catch
+        }
+
+        const { body } = res;
+        expect(body.data).to.eql(graphql.credit[resource].withExtraMedia);
+        expect(dollygrip._handl._execute.calledOnce).to.be.true();
+        expect(fetchMock.calls().matched).to.have.lengthOf(1);
+        dollygrip._handl._execute.reset();
+        fetchMock.reset();
+      });
     });
   });
 });

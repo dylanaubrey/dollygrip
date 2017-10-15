@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import { get, snakeCase } from 'lodash';
 import Company from '../../classes/company';
 import { checkFieldData, resolveRestResponse } from '../../helpers';
 import getta from '../../../rest-client';
@@ -13,7 +13,8 @@ import logger from '../../../logger';
  * @return {Company}
  */
 export default async function resolveCompany(obj, args, context, info) {
-  if (checkFieldData(obj, info)) return new Company(obj);
+  const nameResolver = name => snakeCase(name);
+  if (checkFieldData(obj, info, { nameResolver })) return new Company(obj);
   const resource = obj ? obj.id : args.id;
   let res;
 

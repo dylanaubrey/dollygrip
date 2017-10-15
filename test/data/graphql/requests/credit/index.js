@@ -11,6 +11,9 @@ export const creditBase = `
       id
       job
       media {
+        ... on Movie {
+          title
+        }
         ... on Tv {
           name
         }
@@ -33,10 +36,15 @@ export const creditWithExtraMedia = `
       id
       job
       media {
-        name
-        popularity
-        voteAverage
-        voteCount
+        ... on Movie {
+          title
+        }
+        ... on Tv {
+          name
+          popularity
+          voteAverage
+          voteCount
+        }
       }
       mediaType
     }

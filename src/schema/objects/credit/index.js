@@ -1,4 +1,5 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
+import { get } from 'lodash';
 import MetadataType from '../metadata';
 import Credit from '../../classes/credit';
 import APINodeInterface from '../../interfaces/api-node';
@@ -11,7 +12,10 @@ export default new GraphQLObjectType({
   name: 'Credit',
   interfaces: [APINodeInterface, EntityNodeInterface],
   fields: () => ({
-    character: { type: new GraphQLNonNull(GraphQLString), resolve: obj => obj.media.character },
+    character: {
+      type: new GraphQLNonNull(GraphQLString),
+      resolve: obj => get(obj, ['media', 'character']),
+    },
     creditType: { type: new GraphQLNonNull(GraphQLString) },
     department: { type: new GraphQLNonNull(GraphQLString) },
     id: { type: new GraphQLNonNull(IdType) },

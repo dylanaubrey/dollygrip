@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import { get, snakeCase } from 'lodash';
 import Collection from '../../classes/collection';
 import { checkFieldData, resolveRestResponse } from '../../helpers';
 import getta from '../../../rest-client';
@@ -13,7 +13,8 @@ import logger from '../../../logger';
  * @return {Colleciton}
  */
 export default async function resolveCollection(obj, args, context, info) {
-  if (checkFieldData(obj, info)) return new Collection(obj);
+  const nameResolver = name => snakeCase(name);
+  if (checkFieldData(obj, info, { nameResolver })) return new Collection(obj);
   const resource = obj ? obj.id : args.id;
   let res;
 

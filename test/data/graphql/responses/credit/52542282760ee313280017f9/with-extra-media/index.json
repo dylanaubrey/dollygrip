@@ -1,0 +1,16 @@
+{
+  "credit": {
+    "character": "Walter White",
+    "creditType": "cast",
+    "department": "Actors",
+    "id": "52542282760ee313280017f9",
+    "job": "Actor",
+    "mediaType": "tv",
+    "media": {
+      "name": "Breaking Bad",
+      "popularity": 41.571059,
+      "voteAverage": 8.2,
+      "voteCount": 1959
+    }
+  }
+}
