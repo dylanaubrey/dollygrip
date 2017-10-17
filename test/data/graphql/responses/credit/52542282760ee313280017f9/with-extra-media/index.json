@@ -7,13 +7,15 @@
     "job": "Actor",
     "mediaType": "tv",
     "media": {
+      "id": 1396,
       "name": "Breaking Bad",
       "popularity": 41.571059,
       "voteAverage": 8.2,
       "voteCount": 1959
     },
     "person": {
-      "name": "Bryan Cranston"
+      "name": "Bryan Cranston",
+      "id": 17419
     }
   }
 }

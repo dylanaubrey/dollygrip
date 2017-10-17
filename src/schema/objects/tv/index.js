@@ -11,9 +11,10 @@ import {
 import CompanyType from '../company';
 import MetadataType from '../metadata';
 import Tv from '../../classes/tv';
+import { resolveList } from '../../helpers';
 import APINodeInterface from '../../interfaces/api-node';
 import EntityNodeInterface from '../../interfaces/entity-node';
-import resolveCompanyList from '../../resolvers/company-list';
+import resolveCompany from '../../resolvers/company';
 import IdType from '../../scalars/id';
 
 export default new GraphQLObjectType({
@@ -31,7 +32,10 @@ export default new GraphQLObjectType({
     languages: { type: new GraphQLList(GraphQLString) },
     lastAirDate: { type: new GraphQLNonNull(GraphQLString) },
     name: { type: new GraphQLNonNull(GraphQLString) },
-    networks: { type: new GraphQLList(CompanyType), resolve: resolveCompanyList },
+    networks: {
+      type: new GraphQLList(CompanyType),
+      resolve: (...args) => resolveList(...args, resolveCompany),
+    },
     numberOfEpisodes: { type: new GraphQLList(GraphQLInt) },
     numberOfSeasons: { type: new GraphQLList(GraphQLInt) },
     originCountry: { type: new GraphQLList(GraphQLString) },
@@ -40,7 +44,10 @@ export default new GraphQLObjectType({
     overview: { type: new GraphQLNonNull(GraphQLString) },
     popularity: { type: new GraphQLNonNull(GraphQLFloat) },
     posterPath: { type: GraphQLString },
-    productionCompanies: { type: new GraphQLList(CompanyType), resolve: resolveCompanyList },
+    productionCompanies: {
+      type: new GraphQLList(CompanyType),
+      resolve: (...args) => resolveList(...args, resolveCompany),
+    },
     // seasons: { type: new GraphQLList(SeasonType), resolve: resolveSeasonList },
     status: { type: new GraphQLNonNull(GraphQLString) },
     type: { type: new GraphQLNonNull(GraphQLString) },

@@ -82,10 +82,6 @@ describe('the credit type', () => {
           // no catch
         }
 
-        // NOTE: When ID is not requested, but is added into request,
-        // when that resource is requesteda again without the id,
-        // it gets returned from cache without the id.
-
         const { body } = res;
         expect(body.data).to.eql(graphql.credit[resource].withExtraMedia);
         expect(dollygrip._handl._execute.calledOnce).to.be.true();
@@ -93,6 +89,10 @@ describe('the credit type', () => {
         dollygrip._handl._execute.reset();
         fetchMock.reset();
       });
+    });
+
+    describe('when a credit is requested with extra person fields', () => {
+      // TODO
     });
   });
 });
