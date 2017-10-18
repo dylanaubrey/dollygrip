@@ -1,5 +1,6 @@
 import { GraphQLSchema } from 'graphql';
 import { MovieConnection, MovieEdge } from './connections/movie';
+import { TvConnection, TvEdge } from './connections/tv';
 import APINodeInterface from './interfaces/api-node';
 import EntityNodeInterface from './interfaces/entity-node';
 import CertificationsType from './objects/certifications';
@@ -13,6 +14,7 @@ import TvType from './objects/tv';
 import Query from './query';
 import IdType from './scalars/id';
 import MediaType from './unions/media';
+import MediaConnection from './unions/media-connection';
 
 export default new GraphQLSchema({
   query: Query,
@@ -25,11 +27,14 @@ export default new GraphQLSchema({
     CreditType,
     EntityNodeInterface,
     IdType,
+    MediaConnection,
     MediaType,
     MovieConnection,
     MovieEdge,
     MovieType,
     PersonType,
+    TvConnection,
+    TvEdge,
     TvType,
   ],
 });

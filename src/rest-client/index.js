@@ -36,6 +36,10 @@ getta.shortcut('get', 'getConfiguration', { path: 'configuration' });
 // Credit
 getta.shortcut('get', 'getCredit', { path: 'credit' });
 
+// Discover
+getta.shortcut('get', 'getDiscoverMovie', { path: 'discover/movie' });
+getta.shortcut('get', 'getDiscoverTv', { path: 'discover/tv' });
+
 // Movie
 getta.shortcut('get', 'getMovie', { path: 'movie' });
 

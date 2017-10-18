@@ -1,4 +1,7 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
+import { connectionArgs } from 'graphql-relay';
+import discoverMovieArgs from '../arguments/discover/movie';
+import discoverTvArgs from '../arguments/discover/tv';
 import CertificationsType from '../objects/certifications';
 import CollectionType from '../objects/collection';
 import CompanyType from '../objects/company';
@@ -16,6 +19,7 @@ import resolveMovie from '../resolvers/movie';
 import resolvePerson from '../resolvers/person';
 import resolveTv from '../resolvers/tv';
 import IdType from '../scalars/id';
+import MediaConnection from '../unions/media-connection';
 
 export default new GraphQLObjectType({
   name: 'Query',
@@ -43,6 +47,16 @@ export default new GraphQLObjectType({
       type: CreditType,
       args: { id: { type: new GraphQLNonNull(IdType) } },
       resolve: resolveCredit,
+    },
+    discover: {
+      type: MediaConnection,
+      args: {
+        media: { type: new GraphQLNonNull(GraphQLString) },
+        ...connectionArgs,
+        ...discoverMovieArgs,
+        ...discoverTvArgs,
+      },
+      resolve: resolveDiscover,
     },
     movie: {
       type: MovieType,
