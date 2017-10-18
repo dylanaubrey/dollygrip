@@ -30,6 +30,7 @@ export default {
     '52542282760ee313280017f9': {
       base: require('./credit/52542282760ee313280017f9/base/index.json'),
       withExtraMedia: require('./credit/52542282760ee313280017f9/with-extra-media/index.json'),
+      withExtraPerson: require('./credit/52542282760ee313280017f9/with-extra-person/index.json'),
     },
   },
 };

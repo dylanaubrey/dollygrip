@@ -3,7 +3,13 @@ import dirtyChai from 'dirty-chai';
 import fetchMock from 'fetch-mock';
 import { spy } from 'sinon';
 import sinonChai from 'sinon-chai';
-import { creditBase, creditWithExtraMedia } from '../../data/graphql/requests/credit';
+
+import {
+  creditBase,
+  creditWithExtraMedia,
+  creditWithExtraPerson,
+} from '../../data/graphql/requests/credit';
+
 import graphql from '../../data/graphql/responses';
 import rest from '../../data/rest/responses';
 import { buildURL, createApps, mockRestRequest, postRequest } from '../../helpers';
@@ -25,6 +31,15 @@ Object.keys(rest.tv).forEach((resource) => {
   };
 });
 
+const personMockArgs = {};
+
+Object.keys(rest.person).forEach((resource) => {
+  personMockArgs[resource] = {
+    url: buildURL({ path: 'person', resource }),
+    res: rest.person[resource],
+  };
+});
+
 const resource = '52542282760ee313280017f9';
 const url = buildURL({ path: 'credit', resource });
 
@@ -36,6 +51,10 @@ describe('the credit type', () => {
 
     Object.keys(tvMockArgs).forEach((key) => {
       mockRestRequest(tvMockArgs[key].url, tvMockArgs[key].res, { headers });
+    });
+
+    Object.keys(personMockArgs).forEach((key) => {
+      mockRestRequest(personMockArgs[key].url, personMockArgs[key].res, { headers });
     });
 
     apps = createApps();
@@ -52,17 +71,10 @@ describe('the credit type', () => {
 
   describe('when a credit is requested with specific fields', () => {
     it('should return the credit with those fields', async () => {
-      let res;
+      const { body } = await postRequest(server, {
+        query: creditBase, variables: { id: resource },
+      });
 
-      try {
-        res = await postRequest(server, {
-          query: creditBase, variables: { id: resource },
-        });
-      } catch (err) {
-        // no catch
-      }
-
-      const { body } = res;
       expect(body.data).to.eql(graphql.credit[resource].base);
       expect(dollygrip._handl._execute.calledOnce).to.be.true();
       expect(fetchMock.calls().matched).to.have.lengthOf(1);
@@ -72,17 +84,10 @@ describe('the credit type', () => {
 
     describe('when a credit is requested with extra media fields', () => {
       it('should return the credit and the media with the extra fields', async () => {
-        let res;
+        const { body } = await postRequest(server, {
+          query: creditWithExtraMedia, variables: { id: resource },
+        });
 
-        try {
-          res = await postRequest(server, {
-            query: creditWithExtraMedia, variables: { id: resource },
-          });
-        } catch (err) {
-          // no catch
-        }
-
-        const { body } = res;
         expect(body.data).to.eql(graphql.credit[resource].withExtraMedia);
         expect(dollygrip._handl._execute.calledOnce).to.be.true();
         expect(fetchMock.calls().matched).to.have.lengthOf(1);
@@ -92,7 +97,17 @@ describe('the credit type', () => {
     });
 
     describe('when a credit is requested with extra person fields', () => {
-      // TODO
+      it('should return the credit and the person with the extra fields', async () => {
+        const { body } = await postRequest(server, {
+          query: creditWithExtraPerson, variables: { id: resource },
+        });
+
+        expect(body.data).to.eql(graphql.credit[resource].withExtraPerson);
+        expect(dollygrip._handl._execute.calledOnce).to.be.true();
+        expect(fetchMock.calls().matched).to.have.lengthOf(1);
+        dollygrip._handl._execute.reset();
+        fetchMock.reset();
+      });
     });
   });
 });

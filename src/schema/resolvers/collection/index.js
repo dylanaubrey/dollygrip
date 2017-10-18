@@ -20,8 +20,8 @@ export default async function resolveCollection(obj, args, context, info) {
 
   try {
     res = await getta.getCollection({ resource });
-  } catch (err) {
-    logger.error(err);
+  } catch (errors) {
+    logger.error('dollygrip::resolveCollection', { errors });
   }
 
   return resolveRestResponse(res, get(res, ['data', '0'], null), Collection);

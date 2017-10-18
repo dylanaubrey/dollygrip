@@ -22,8 +22,8 @@ export default async function resolvePerson(obj, args, context, info, { fragment
 
   try {
     res = await getta.getPerson({ resource });
-  } catch (err) {
-    logger.error(err);
+  } catch (errors) {
+    logger.error('dollygrip::resolvePerson', { errors });
   }
 
   return resolveRestResponse(res, get(res, ['data', '0'], null), Person);

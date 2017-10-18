@@ -15,8 +15,8 @@ export default async function resolveCredit(obj, args) {
 
   try {
     res = await getta.getCredit({ resource: args.id });
-  } catch (err) {
-    logger.error(err);
+  } catch (errors) {
+    logger.error('dollygrip::resolveCredit', { errors });
   }
 
   return resolveRestResponse(res, get(res, ['data', '0'], null), Credit);

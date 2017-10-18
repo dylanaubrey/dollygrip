@@ -13,8 +13,8 @@ export default async function resolveConfiguration() {
 
   try {
     res = await getta.getConfiguration();
-  } catch (err) {
-    logger.error(err);
+  } catch (errors) {
+    logger.error('dollygrip::resolveConfiguration', { errors });
   }
 
   return resolveRestResponse(res, get(res, ['data', '0'], null), Configuration);

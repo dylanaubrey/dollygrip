@@ -50,7 +50,7 @@ export default class Dollygrip {
    */
   _bindUnhandledRejectionHandler() {
     process.on('unhandledRejection', (err) => {
-      logger.error('An unhandled promise rejection has occurred.', { errors: err });
+      logger.error('dollygrip::unhandledRejection', { errors: err });
       this.clearCaches();
     });
   }
@@ -86,7 +86,7 @@ export default class Dollygrip {
   route() {
     return async (req, res) => {
       if (isEmpty(req.body)) {
-        const message = 'The request does not have a body.';
+        const message = 'dollygrip::route::The request does not have a body.';
         logger.error(message); // TODO: Log some request data as well...
         res.status(400).send(message);
         return;
@@ -99,10 +99,10 @@ export default class Dollygrip {
         const cacheControl = cacheMetadata.get('query').printCacheControl();
         res.set({ 'Cache-Control': cacheControl, 'Content-Type': 'application/json' });
         res.status(200).send({ cacheMetadata: this._mapToObject(cacheMetadata), data });
-      } catch (err) {
-        const message = 'An internal server error has occurred.';
-        logger.error(message, { errors: err }); // TODO: Log some request data as well...
-        res.status(500).end(message, { errors: err });
+      } catch (errors) {
+        const message = 'dollygrip::route::An internal server error has occurred.';
+        logger.error(message, { errors }); // TODO: Log some request data as well...
+        res.status(500).end(message, { errors });
       }
     };
   }

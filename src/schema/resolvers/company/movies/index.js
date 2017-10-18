@@ -74,8 +74,8 @@ export default async function resolveCompanyMovies(obj, args) {
 
     try {
       res = await getta.getCompanyMovies({ resource });
-    } catch (err) {
-      logger.error(err);
+    } catch (errors) {
+      logger.error('dollygrip::resolveCompanyMovies', { errors });
     }
 
     await resourceLoader.setPageResults(
@@ -92,8 +92,8 @@ export default async function resolveCompanyMovies(obj, args) {
     res = await Promise.all(
       required.map(page => getta.getCompanyMovies({ queryParams: { page }, resource })),
     );
-  } catch (err) {
-    logger.error(err);
+  } catch (errors) {
+    logger.error('dollygrip::resolveCompanyMovies', { errors });
   }
 
   await Promise.all(

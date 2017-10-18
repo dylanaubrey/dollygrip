@@ -1,6 +1,6 @@
 import {
   GraphQLBoolean,
-  GraphQLInt,
+  GraphQLFloat,
   GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
@@ -29,7 +29,7 @@ export default new GraphQLObjectType({
     imdbId: { type: new GraphQLNonNull(GraphQLString) },
     name: { type: new GraphQLNonNull(GraphQLString) },
     placeOfBirth: { type: GraphQLString },
-    popularity: { type: new GraphQLNonNull(GraphQLInt) },
+    popularity: { type: new GraphQLNonNull(GraphQLFloat) },
     profilePath: { type: GraphQLString },
     _metadata: { type: MetadataType },
   }),

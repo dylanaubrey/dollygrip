@@ -22,8 +22,8 @@ export default async function resolveTv(obj, args, context, info, { fragmentType
 
   try {
     res = await getta.getTv({ resource });
-  } catch (err) {
-    logger.error(err);
+  } catch (errors) {
+    logger.error('dollygrip::resolveTv', { errors });
   }
 
   return resolveRestResponse(res, get(res, ['data', '0'], null), Tv);

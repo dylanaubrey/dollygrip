@@ -22,8 +22,8 @@ export default async function resolveMovie(obj, args, context, info, { fragmentT
 
   try {
     res = await getta.getMovie({ resource });
-  } catch (err) {
-    logger.error(err);
+  } catch (errors) {
+    logger.error('dollygrip::resolveMovie', { errors });
   }
 
   return resolveRestResponse(res, get(res, ['data', '0'], null), Movie);

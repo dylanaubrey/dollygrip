@@ -20,8 +20,8 @@ export default async function resolveCompany(obj, args, context, info) {
 
   try {
     res = await getta.getCompany({ resource });
-  } catch (err) {
-    logger.error(err);
+  } catch (errors) {
+    logger.error('dollygrip::resolveCompany', { errors });
   }
 
   return resolveRestResponse(res, get(res, ['data', '0'], null), Company);

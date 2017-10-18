@@ -14,8 +14,8 @@ export default async function resolveCollectionImages(obj) {
 
   try {
     res = await getta.getCollectionImages({ resource: obj.id });
-  } catch (err) {
-    logger.error(err);
+  } catch (errors) {
+    logger.error('dollygrip::resolveCollectionImages', { errors });
   }
 
   return resolveRestResponse(res, get(res, ['data', '0'], null), MediaImages);

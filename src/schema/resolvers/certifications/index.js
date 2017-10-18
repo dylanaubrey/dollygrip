@@ -19,8 +19,8 @@ export default async function resolveCertifications(obj, args) {
     } else if (args.media === 'tv') {
       res = await getta.getTVCertifications();
     }
-  } catch (err) {
-    logger.error(err);
+  } catch (errors) {
+    logger.error('dollygrip::resolveCertifications', { errors });
   }
 
   return resolveRestResponse(res, get(res, ['data', '0', 'certifications'], null), Certifications);

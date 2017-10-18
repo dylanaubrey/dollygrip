@@ -56,3 +56,35 @@ export const creditWithExtraMedia = `
     }
   }
 `;
+
+/**
+ *
+ * @type {string}
+ */
+export const creditWithExtraPerson = `
+  query ($id: Id!) {
+    credit(id: $id) {
+      character
+      creditType
+      department
+      id
+      job
+      media {
+        ... on Movie {
+          title
+        }
+        ... on Tv {
+          name
+        }
+      }
+      mediaType
+      person {
+        biography
+        birthday
+        gender
+        name
+        popularity
+      }
+    }
+  }
+`;
