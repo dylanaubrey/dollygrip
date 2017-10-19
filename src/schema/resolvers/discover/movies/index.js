@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
 
 import { get } from 'lodash';
-import MovieConnection from '../../../classes/movie-connection';
-import { camelCasePropNames } from '../../../helpers';
+import md5 from 'md5';
+import { camelCasePropNames, snakeCasePropNames } from '../../../helpers';
 import ConnectionLoader from '../../../loaders/connection';
 import logger from '../../../../logger';
 import getta from '../../../../rest-client';
@@ -11,17 +11,18 @@ let connectionLoader;
 
 /**
  *
- * @param {Object} obj
  * @param {Object} args
+ * @param {Object} args.connection
+ * @param {Object} args.movie
  * @return {MovieConnection}
  */
-export default async function resolveCompanyMovies(obj, args) {
+export default async function resolveDiscoverMovies({ connection, movie }) {
   if (!connectionLoader) connectionLoader = new ConnectionLoader();
-  const resource = obj.id;
-  const resourceLoader = connectionLoader.getResourceLoader(resource, args);
+  const key = md5(JSON.stringify(movie));
+  const resourceLoader = connectionLoader.getResourceLoader(key, connection);
 
   resourceLoader.setCursorKeys({
-    primary: { value: 'popularity', type: 'number' },
+    primary: { value: movie.sortBy },
     secondary: { value: 'id', type: 'number' },
   });
 
@@ -29,9 +30,9 @@ export default async function resolveCompanyMovies(obj, args) {
     let res;
 
     try {
-      res = await getta.getCompanyMovies({ resource });
+      res = await getta.getCompanyMovies({ queryParams: snakeCasePropNames(movie) });
     } catch (errors) {
-      logger.error('dollygrip::resolveCompanyMovies', { errors });
+      logger.error('dollygrip::resolveDiscoverMovies', { errors });
     }
 
     await resourceLoader.setPageResults(
@@ -41,12 +42,14 @@ export default async function resolveCompanyMovies(obj, args) {
   }
 
   const required = await resourceLoader.requiredPages();
-  if (!required.length) return new MovieConnection(await resourceLoader.getData());
+  if (!required.length) return resourceLoader.getData();
   let res;
 
   try {
     res = await Promise.all(
-      required.map(page => getta.getCompanyMovies({ queryParams: { page }, resource })),
+      required.map(page => getta.getCompanyMovies({
+        queryParams: { ...snakeCasePropNames(movie), page },
+      })),
     );
   } catch (errors) {
     logger.error('dollygrip::resolveCompanyMovies', { errors });
@@ -59,5 +62,5 @@ export default async function resolveCompanyMovies(obj, args) {
     )),
   );
 
-  return new MovieConnection(await resourceLoader.getData());
+  return resourceLoader.getData();
 }

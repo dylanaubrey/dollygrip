@@ -3,7 +3,7 @@ import { GraphQLEnumType } from 'graphql';
 export const DEFAULT_VALUE = 'popularity.desc';
 
 export default new GraphQLEnumType({
-  name: 'SortBy',
+  name: 'MovieSortBy',
   values: {
     POPULARITY_ASC: { value: 'popularity.asc' },
     POPULARITY_DESC: { value: DEFAULT_VALUE },

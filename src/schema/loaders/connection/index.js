@@ -1,4 +1,3 @@
-import { isFunction, isPlainObject } from 'lodash';
 import ConnectionResourceLoader from './resource';
 
 /**
@@ -10,40 +9,16 @@ export default class ConnectionLoader {
    *
    * @constructor
    * @param {Object} [opts]
-   * @param {Function} opts.calcClosestMatch
-   * @param {Object} [opts.cursorKeys]
+   * @param {Function} [opts.calcClosestMatch]
    * @param {number} [opts.maxResultsChunk]
    * @param {number} [opts.resultsPerPage]
    * @return {ConnectionLoader}
    */
-  constructor({ calcClosestMatch, cursorKeys, maxResultsChunk = 50, resultsPerPage = 20 }) {
-    if (!isFunction(calcClosestMatch)) {
-      throw new Error('calcClosestMatch is a mandatory argument.');
-    }
-
-    if (!isPlainObject(cursorKeys)) {
-      throw new Error('cursorKeys is a mandatory argument.');
-    }
-
-    this._calcClosestMatch = calcClosestMatch;
-    this._cursorKeys = cursorKeys;
+  constructor({ calcClosestMatch, maxResultsChunk = 50, resultsPerPage = 20 } = {}) {
+    if (calcClosestMatch) this._calcClosestMatch = calcClosestMatch;
     this._maxResultsChunk = maxResultsChunk;
     this._resultsPerPage = resultsPerPage;
   }
-
-  /**
-   *
-   * @private
-   * @type {Function}
-   */
-  _calcClosestMatch;
-
-  /**
-   *
-   * @private
-   * @type {Object}
-   */
-  _cursorKeys;
 
   /**
    *
@@ -68,6 +43,29 @@ export default class ConnectionLoader {
 
   /**
    *
+   * @param {Object} result The result to check whether it is a closest match
+   * @param {string} cursorKey The property name of the primary position identifier
+   * @param {number} cursorValue The primary position identifier, i.e. rating value
+   * @param {string} direction Is pagination going forward (after) or backward (before)
+   * @param {Object} closest closest matching result
+   * @return {boolean}
+   */
+  _calcClosestMatch(result, cursorKey, cursorValue, direction, closest) {
+    if (!closest) return true;
+
+    if (direction === 'after') {
+      return result[cursorKey] > cursorValue && result[cursorKey] < closest[cursorKey];
+    }
+
+    if (direction === 'before') {
+      return result[cursorKey] < cursorValue && result[cursorKey] > closest[cursorKey];
+    }
+
+    return false;
+  }
+
+  /**
+   *
    * @param {number} key
    * @param {Object} args
    * @return {ConnectionResourceLoader}
@@ -78,7 +76,6 @@ export default class ConnectionLoader {
     if (!resourceLoader) {
       resourceLoader = new ConnectionResourceLoader({
         calcClosestMatch: this._calcClosestMatch,
-        cursorKeys: this._cursorKeys,
         maxResultsChunk: this._maxResultsChunk,
         resultsPerPage: this._resultsPerPage,
       });

@@ -1,4 +1,4 @@
-import { get, snakeCase } from 'lodash';
+import { camelCase, get, snakeCase } from 'lodash';
 
 /**
  *
@@ -74,9 +74,7 @@ export const hasFieldData = function hasFieldData(obj, key) {
  * @param {Function} opts.nameResolver
  * @return {boolean}
  */
-export const checkFieldData = function checkFieldData(
-  obj, info, { fragmentType, nameResolver = name => name } = {},
-) {
+export function checkFieldData(obj, info, { fragmentType, nameResolver = name => name } = {}) {
   /**
    *
    * @param {Array<Object>} fields
@@ -102,7 +100,37 @@ export const checkFieldData = function checkFieldData(
 
   if (!obj) return false;
   return checkChildFieldData(getChildFields(getCurrentFieldNode(info)));
-};
+}
+
+/**
+ *
+ * @param {Object} props
+ * @return {Object}
+ */
+export function camelCasePropNames(props) {
+  const camelCased = {};
+
+  Object.keys(props).forEach((propName) => {
+    camelCased[camelCase(propName)] = props[propName];
+  });
+
+  return camelCased;
+}
+
+/**
+ *
+ * @param {Object} props
+ * @return {Object}
+ */
+export function snakeCasePropNames(props) {
+  const snakeCased = {};
+
+  Object.keys(props).forEach((propName) => {
+    snakeCased[snakeCase(propName)] = props[propName];
+  });
+
+  return snakeCased;
+}
 
 /**
  *
@@ -113,11 +141,11 @@ export const checkFieldData = function checkFieldData(
  * @param {Function} resolver
  * @return {Array<Company>}
  */
-export const resolveObject = async function resolveObject(obj, args, context, info, resolver) {
+export async function resolveObject(obj, args, context, info, resolver) {
   const currentFieldNode = getCurrentFieldNode(info);
   const fieldData = obj[snakeCase(getName(currentFieldNode))];
   return resolver(fieldData, args, context, info);
-};
+}
 
 /**
  *
@@ -128,14 +156,14 @@ export const resolveObject = async function resolveObject(obj, args, context, in
  * @param {Function} resolver
  * @return {Array<Company>}
  */
-export const resolveList = async function resolveList(obj, args, context, info, resolver) {
+export async function resolveList(obj, args, context, info, resolver) {
   const currentFieldNode = getCurrentFieldNode(info);
   const fieldData = obj[snakeCase(getName(currentFieldNode))];
 
   return Promise.all(
     fieldData.map(value => resolver(value, args, context, info)),
   );
-};
+}
 
 /**
  *
@@ -144,12 +172,12 @@ export const resolveList = async function resolveList(obj, args, context, info, 
  * @param {Class} SchemaClass
  * @return {Object}
  */
-export const resolveRestResponse = function resolveRestResponse(res, data, SchemaClass) {
+export function resolveRestResponse(res, data, SchemaClass) {
   if (!data) return null;
   const cacheControl = get(res, ['metadata', '0', 'cacheControl'], null);
   if (cacheControl) data._metadata = { cacheControl };
   return new SchemaClass(data);
-};
+}
 
 /**
  *

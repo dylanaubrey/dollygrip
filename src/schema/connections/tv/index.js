@@ -1,12 +1,13 @@
 import { GraphQLInt } from 'graphql';
 import { connectionDefinitions } from 'graphql-relay';
+import TvConnection from '../../classes/tv-connection';
 import { toID } from '../../helpers';
 import CursorKeysType from '../../objects/cursorKeys';
 import MetadataType from '../../objects/metadata';
 import TvType from '../../objects/tv';
 import resolveTv from '../../resolvers/tv';
 
-const { connectionType: TvConnection, edgeType: TvEdge } = connectionDefinitions({
+const { connectionType: TvConnectionType, edgeType: TvEdgeType } = connectionDefinitions({
   name: 'Tv',
   nodeType: TvType,
   resolveNode: ({ node }, args, context, info) => resolveTv(node, args, context, info),
@@ -20,4 +21,5 @@ const { connectionType: TvConnection, edgeType: TvEdge } = connectionDefinitions
   connectionFields: { totalResults: { type: GraphQLInt }, _metadata: { type: MetadataType } },
 });
 
-export { TvConnection, TvEdge };
+TvConnectionType.isTypeOf = value => value instanceof TvConnection;
+export { TvConnectionType, TvEdgeType };

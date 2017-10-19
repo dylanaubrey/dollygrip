@@ -1,7 +1,7 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
-import { connectionArgs } from 'graphql-relay';
-import discoverMovieArgs from '../arguments/discover/movie';
-import discoverTvArgs from '../arguments/discover/tv';
+import ConnectionInputType from '../input-objects/connection';
+import DiscoverMovieInputType from '../input-objects/discover/movie';
+import DiscoverTvInputType from '../input-objects/discover/tv';
 import CertificationsType from '../objects/certifications';
 import CollectionType from '../objects/collection';
 import CompanyType from '../objects/company';
@@ -15,11 +15,12 @@ import resolveCollection from '../resolvers/collection';
 import resolveCompany from '../resolvers/company';
 import resolveConfiguration from '../resolvers/configuration';
 import resolveCredit from '../resolvers/credit';
+import resolveDiscover from '../resolvers/discover';
 import resolveMovie from '../resolvers/movie';
 import resolvePerson from '../resolvers/person';
 import resolveTv from '../resolvers/tv';
 import IdType from '../scalars/id';
-import MediaConnection from '../unions/media-connection';
+import MediaConnectionType from '../unions/media-connection';
 
 export default new GraphQLObjectType({
   name: 'Query',
@@ -49,12 +50,12 @@ export default new GraphQLObjectType({
       resolve: resolveCredit,
     },
     discover: {
-      type: MediaConnection,
+      type: MediaConnectionType,
       args: {
         media: { type: new GraphQLNonNull(GraphQLString) },
-        ...connectionArgs,
-        ...discoverMovieArgs,
-        ...discoverTvArgs,
+        connection: { type: ConnectionInputType },
+        movie: { type: DiscoverMovieInputType },
+        tv: { type: DiscoverTvInputType },
       },
       resolve: resolveDiscover,
     },

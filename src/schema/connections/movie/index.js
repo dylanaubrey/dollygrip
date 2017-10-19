@@ -1,12 +1,13 @@
 import { GraphQLInt } from 'graphql';
 import { connectionDefinitions } from 'graphql-relay';
+import MovieConnection from '../../classes/movie-connection';
 import { toID } from '../../helpers';
 import CursorKeysType from '../../objects/cursorKeys';
 import MetadataType from '../../objects/metadata';
 import MovieType from '../../objects/movie';
 import resolveMovie from '../../resolvers/movie';
 
-const { connectionType: MovieConnection, edgeType: MovieEdge } = connectionDefinitions({
+const { connectionType: MovieConnectionType, edgeType: MovieEdgeType } = connectionDefinitions({
   name: 'Movie',
   nodeType: MovieType,
   resolveNode: ({ node }, args, context, info) => resolveMovie(node, args, context, info),
@@ -20,4 +21,5 @@ const { connectionType: MovieConnection, edgeType: MovieEdge } = connectionDefin
   connectionFields: { totalResults: { type: GraphQLInt }, _metadata: { type: MetadataType } },
 });
 
-export { MovieConnection, MovieEdge };
+MovieConnectionType.isTypeOf = value => value instanceof MovieConnection;
+export { MovieConnectionType, MovieEdgeType };

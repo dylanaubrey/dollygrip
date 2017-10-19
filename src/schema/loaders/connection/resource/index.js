@@ -14,14 +14,12 @@ export default class ConnectionResourceLoader {
    * @constructor
    * @param {Object} opts
    * @param {Function} opts.calcClosestMatch
-   * @param {Object} opts.cursorKeys
    * @param {number} opts.maxResultsChunk
    * @param {number} opts.resultsPerPage
    * @return {ConnectionResourceLoader}
    */
-  constructor({ calcClosestMatch, cursorKeys, maxResultsChunk, resultsPerPage }) {
+  constructor({ calcClosestMatch, maxResultsChunk, resultsPerPage }) {
     this._calcClosestMatch = calcClosestMatch;
-    this._cursorKeys = cursorKeys;
     this._maxResultsChunk = maxResultsChunk;
     this._resultsPerPage = resultsPerPage;
   }
@@ -414,6 +412,15 @@ export default class ConnectionResourceLoader {
   setArguments(opts) {
     this._activeArgs = opts;
     this._pagination = null;
+  }
+
+  /**
+   *
+   * @param {Object} keys
+   * @return {void}
+   */
+  setCursorKeys(keys) {
+    this._cursorKeys = keys;
   }
 
   /**
