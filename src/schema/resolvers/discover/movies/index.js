@@ -52,7 +52,7 @@ export default async function resolveDiscoverMovies({ connection, movie }) {
       })),
     );
   } catch (errors) {
-    logger.error('dollygrip::resolveCompanyMovies', { errors });
+    logger.error('dollygrip::resolveDiscoverMovies', { errors });
   }
 
   await Promise.all(

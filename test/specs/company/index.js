@@ -8,7 +8,7 @@ import {
   company1Base,
   company1WithMovies,
   company1WithMoviesExtra,
-  company1WithNextMovies,
+  company1WithNextPrevMovies,
 } from '../../data/graphql/requests/company';
 
 import graphql from '../../data/graphql/responses';
@@ -99,7 +99,7 @@ describe('the company type', () => {
       describe('when the next 14 movies are requested with extra details', () => {
         it('should return the next 14 movies with extra details', async () => {
           const { body } = await postRequest(server, {
-            query: company1WithNextMovies, variables: { after: cursor, first: 14, id: 1 },
+            query: company1WithNextPrevMovies, variables: { after: cursor, first: 14, id: 1 },
           });
 
           expect(body.data).to.eql(graphql.company[1].with7To20Movies);
@@ -114,7 +114,7 @@ describe('the company type', () => {
       describe('when the next 6 movies are requested with extra details', () => {
         it('should return the next 6 movies with extra details', async () => {
           const { body } = await postRequest(server, {
-            query: company1WithNextMovies, variables: { after: cursor, first: 6, id: 1 },
+            query: company1WithNextPrevMovies, variables: { after: cursor, first: 6, id: 1 },
           });
 
           expect(body.data).to.eql(graphql.company[1].with21To26Movies);
