@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-
 import { get } from 'lodash';
 import md5 from 'md5';
 import { camelCasePropNames, snakeCasePropNames } from '../../../helpers';

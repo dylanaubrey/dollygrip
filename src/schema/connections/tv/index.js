@@ -1,6 +1,5 @@
 import { GraphQLInt } from 'graphql';
 import { connectionDefinitions } from 'graphql-relay';
-import TvConnection from '../../classes/tv-connection';
 import { toID } from '../../helpers';
 import CursorKeysType from '../../objects/cursorKeys';
 import MetadataType from '../../objects/metadata';
@@ -21,5 +20,4 @@ const { connectionType: TvConnectionType, edgeType: TvEdgeType } = connectionDef
   connectionFields: { totalResults: { type: GraphQLInt }, _metadata: { type: MetadataType } },
 });
 
-TvConnectionType.isTypeOf = value => value instanceof TvConnection;
 export { TvConnectionType, TvEdgeType };

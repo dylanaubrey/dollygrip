@@ -9,17 +9,18 @@ import { getCurrentFieldNode, getName } from '../../helpers';
  * @param {Object} args
  * @param {Object} context
  * @param {Object} info
+ * @param {string} mediaType
  * @return {Movie}
  */
-export default async function resolveMedia(obj, args, context, info) {
+export default async function resolveMedia(obj, args, context, info, mediaType) {
   const currentFieldNode = getCurrentFieldNode(info);
   const fieldData = obj[snakeCase(getName(currentFieldNode))];
 
-  if (obj.media_type === 'movie') {
+  if (mediaType === 'movie') {
     return resolveMovie(fieldData, args, context, info, { fragmentType: 'Movie' });
   }
 
-  if (obj.media_type === 'tv') {
+  if (mediaType === 'tv') {
     return resolveTV(fieldData, args, context, info, { fragmentType: 'Tv' });
   }
 

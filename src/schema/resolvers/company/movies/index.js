@@ -1,7 +1,4 @@
-/* eslint-disable camelcase */
-
 import { get } from 'lodash';
-import MovieConnection from '../../../classes/movie-connection';
 import { camelCasePropNames } from '../../../helpers';
 import ConnectionLoader from '../../../loaders/connection';
 import logger from '../../../../logger';
@@ -41,7 +38,7 @@ export default async function resolveCompanyMovies(obj, args) {
   }
 
   const required = await resourceLoader.requiredPages();
-  if (!required.length) return new MovieConnection(await resourceLoader.getData());
+  if (!required.length) return resourceLoader.getData();
   let res;
 
   try {
@@ -59,5 +56,5 @@ export default async function resolveCompanyMovies(obj, args) {
     )),
   );
 
-  return new MovieConnection(await resourceLoader.getData());
+  return resourceLoader.getData();
 }

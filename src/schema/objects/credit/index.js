@@ -23,7 +23,10 @@ export default new GraphQLObjectType({
     department: { type: new GraphQLNonNull(GraphQLString) },
     id: { type: new GraphQLNonNull(IdType) },
     job: { type: new GraphQLNonNull(GraphQLString) },
-    media: { type: MediaType, resolve: resolveMedia },
+    media: {
+      type: MediaType,
+      resolve: (obj, ...args) => resolveMedia(obj, ...args, obj.media_type),
+    },
     mediaType: { type: new GraphQLNonNull(GraphQLString) },
     person: { type: PersonType, resolve: (...args) => resolveObject(...args, resolvePerson) },
     _metadata: { type: MetadataType },

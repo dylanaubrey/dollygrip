@@ -1,4 +1,5 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
+import { DiscoverConnectionType } from '../connections/discover/';
 import ConnectionInputType from '../input-objects/connection';
 import DiscoverMovieInputType from '../input-objects/discover/movie';
 import DiscoverTvInputType from '../input-objects/discover/tv';
@@ -20,7 +21,6 @@ import resolveMovie from '../resolvers/movie';
 import resolvePerson from '../resolvers/person';
 import resolveTv from '../resolvers/tv';
 import IdType from '../scalars/id';
-import MediaConnectionType from '../unions/media-connection';
 
 export default new GraphQLObjectType({
   name: 'Query',
@@ -50,7 +50,7 @@ export default new GraphQLObjectType({
       resolve: resolveCredit,
     },
     discover: {
-      type: MediaConnectionType,
+      type: DiscoverConnectionType,
       args: {
         media: { type: new GraphQLNonNull(GraphQLString) },
         connection: { type: ConnectionInputType },
