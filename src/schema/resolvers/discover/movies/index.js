@@ -18,9 +18,10 @@ export default async function resolveDiscoverMovies({ connection, movie }) {
   if (!connectionLoader) connectionLoader = new ConnectionLoader();
   const key = md5(JSON.stringify(movie));
   const resourceLoader = connectionLoader.getResourceLoader(key, connection);
+  const [primaryCursorKey, cursorDirection] = movie.sortBy.split('.');
 
   resourceLoader.setCursorKeys({
-    primary: { value: movie.sortBy },
+    primary: { direction: cursorDirection, value: primaryCursorKey },
     secondary: { value: 'id', type: 'number' },
   });
 

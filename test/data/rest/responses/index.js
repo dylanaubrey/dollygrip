@@ -31,6 +31,16 @@ export default {
   credit: {
     '52542282760ee313280017f9': require('./credit/52542282760ee313280017f9/index.json'),
   },
+  discover: {
+    movie: {
+      people: {
+        '3&4': {
+          'popularity.asc': require('./discover/movie/people/3&4/popularity.asc/index.json'),
+          'popularity.desc': require('./discover/movie/people/3&4/popularity.desc/index.json'),
+        },
+      },
+    },
+  },
   movie: {
     11: require('./movie/11/index.json'),
     85: require('./movie/85/index.json'),
