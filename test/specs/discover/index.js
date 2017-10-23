@@ -55,7 +55,7 @@ describe.only('the discover movie type', () => {
     dollygrip.clearCaches();
   });
 
-  describe('when a discover movie query is send with given search queries', () => {
+  describe('when a discover movie query is sent with given search queries', () => {
     it('should return the movies that match those search queries', async () => {
       const { body } = await postRequest(server, {
         query: discoverBase,

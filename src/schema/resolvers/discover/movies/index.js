@@ -29,7 +29,7 @@ export default async function resolveDiscoverMovies({ connection, movie }) {
     let res;
 
     try {
-      res = await getta.getCompanyMovies({ queryParams: snakeCasePropNames(movie) });
+      res = await getta.getDiscoverMovie({ queryParams: snakeCasePropNames(movie) });
     } catch (errors) {
       logger.error('dollygrip::resolveDiscoverMovies', { errors });
     }
@@ -46,7 +46,7 @@ export default async function resolveDiscoverMovies({ connection, movie }) {
 
   try {
     res = await Promise.all(
-      required.map(page => getta.getCompanyMovies({
+      required.map(page => getta.getDiscoverMovie({
         queryParams: { ...snakeCasePropNames(movie), page },
       })),
     );

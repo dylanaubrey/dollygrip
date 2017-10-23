@@ -41,7 +41,7 @@
     "getta": "0.0.13",
     "graphql": "^0.11.4",
     "graphql-relay": "^0.5.2",
-    "handl": "0.0.21",
+    "handl": "0.0.24",
     "iso-logger": "0.0.8",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4",
