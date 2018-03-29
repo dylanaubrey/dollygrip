@@ -1,0 +1,55 @@
+{
+  "discover": {
+    "edges": [
+      {
+        "cursor": "NDkuNTY5ODMyOjE0MDYwNw==",
+        "node": {
+          "title": "Star Wars: The Force Awakens",
+          "id": 140607
+        }
+      },
+      {
+        "cursor": "NDAuMTUwMzM0OjEx",
+        "node": {
+          "title": "Star Wars",
+          "id": 11
+        }
+      },
+      {
+        "cursor": "MjEuNzA3NDkyOjE4OTE=",
+        "node": {
+          "title": "The Empire Strikes Back",
+          "id": 1891
+        }
+      },
+      {
+        "cursor": "MTUuODk5NzUzOjE4OTI=",
+        "node": {
+          "title": "Return of the Jedi",
+          "id": 1892
+        }
+      },
+      {
+        "cursor": "MTIuODk4MjcyOjg2NjU=",
+        "node": {
+          "title": "K-19: The Widowmaker",
+          "id": 8665
+        }
+      },
+      {
+        "cursor": "Ni4xNTk4NjY6NzQ4NDk=",
+        "node": {
+          "title": "The Star Wars Holiday Special",
+          "id": 74849
+        }
+      }
+    ],
+    "pageInfo": {
+      "hasNextPage": true,
+      "hasPreviousPage": false,
+      "startCursor": "NDkuNTY5ODMyOjE0MDYwNw==",
+      "endCursor": "Ni4xNTk4NjY6NzQ4NDk="
+    },
+    "totalResults": 15
+  }
+}

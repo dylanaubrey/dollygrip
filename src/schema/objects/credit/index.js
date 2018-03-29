@@ -25,7 +25,7 @@ export default new GraphQLObjectType({
     job: { type: new GraphQLNonNull(GraphQLString) },
     media: {
       type: MediaType,
-      resolve: (obj, ...args) => resolveMedia(obj, ...args, obj.media_type),
+      resolve: (obj, ...args) => resolveMedia(obj.media, ...args, obj.media_type),
     },
     mediaType: { type: new GraphQLNonNull(GraphQLString) },
     person: { type: PersonType, resolve: (...args) => resolveObject(...args, resolvePerson) },

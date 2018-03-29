@@ -92,7 +92,7 @@ describe('the company type', () => {
           expect(fetchMock.calls().matched).to.have.lengthOf(6);
           dollygrip._handl._execute.reset();
           fetchMock.reset();
-          cursor = body.data.company.movies.edges[5].cursor;
+          cursor = body.data.company.movies.pageInfo.endCursor;
         });
       });
 
@@ -107,7 +107,7 @@ describe('the company type', () => {
           expect(fetchMock.calls().matched).to.have.lengthOf(14);
           dollygrip._handl._execute.reset();
           fetchMock.reset();
-          cursor = body.data.company.movies.edges[13].cursor;
+          cursor = body.data.company.movies.pageInfo.endCursor;
         });
       });
 

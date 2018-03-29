@@ -1,6 +1,7 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
 import { DiscoverConnectionType } from '../connections/discover/';
 import ConnectionInputType from '../input-objects/connection';
+import CursorInputType from '../input-objects/cursor';
 import DiscoverMovieInputType from '../input-objects/discover/movie';
 import DiscoverTvInputType from '../input-objects/discover/tv';
 import CertificationsType from '../objects/certifications';
@@ -54,6 +55,7 @@ export default new GraphQLObjectType({
       args: {
         media: { type: new GraphQLNonNull(GraphQLString) },
         connection: { type: ConnectionInputType },
+        cursor: { type: CursorInputType },
         movie: { type: DiscoverMovieInputType },
         tv: { type: DiscoverTvInputType },
       },

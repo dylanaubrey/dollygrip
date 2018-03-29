@@ -9,19 +9,33 @@ let connectionLoader;
 
 /**
  *
+ * @param {Object} data
+ * @param {Array<Object>} data.edges
+ * @return {Object}
+ */
+const addEdgeMediaType = function addEdgeMediaType(data) {
+  data.edges.forEach((value) => {
+    value.mediaType = 'movie';
+  });
+
+  return data;
+};
+
+/**
+ *
  * @param {Object} args
  * @param {Object} args.connection
  * @param {Object} args.movie
  * @return {MovieConnection}
  */
-export default async function resolveDiscoverMovies({ connection, movie }) {
+export default async function resolveDiscoverMovies({ connection, cursor, movie }) {
   if (!connectionLoader) connectionLoader = new ConnectionLoader();
   const key = md5(JSON.stringify(movie));
   const resourceLoader = connectionLoader.getResourceLoader(key, connection);
   const [primaryCursorKey, cursorDirection] = movie.sortBy.split('.');
 
   resourceLoader.setCursorKeys({
-    primary: { direction: cursorDirection, value: primaryCursorKey },
+    primary: { sortOrder: cursorDirection, type: cursor.primaryType, value: primaryCursorKey },
     secondary: { value: 'id', type: 'number' },
   });
 
@@ -41,7 +55,8 @@ export default async function resolveDiscoverMovies({ connection, movie }) {
   }
 
   const required = await resourceLoader.requiredPages();
-  if (!required.length) return resourceLoader.getData();
+  if (!required.length) return resourceLoader.getData({ decorator: addEdgeMediaType });
+
   let res;
 
   try {
@@ -61,5 +76,5 @@ export default async function resolveDiscoverMovies({ connection, movie }) {
     )),
   );
 
-  return resourceLoader.getData();
+  return resourceLoader.getData({ decorator: addEdgeMediaType });
 }

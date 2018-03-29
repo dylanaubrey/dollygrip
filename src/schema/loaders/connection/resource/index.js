@@ -2,6 +2,7 @@
 
 import Cacheability from 'cacheability';
 import Cachemap from 'cachemap';
+import { isFunction } from 'lodash';
 import { fromID, toID } from '../../../helpers';
 
 /**
@@ -374,10 +375,13 @@ export default class ConnectionResourceLoader {
 
   /**
    *
+   * @param {Object} [opts]
+   * @param {Function} [opts.decorator]
    * @return {Object}
    */
-  async getData() {
-    return this._collateData();
+  async getData({ decorator } = {}) {
+    const data = await this._collateData();
+    return isFunction(decorator) ? decorator(data) : data;
   }
 
   /**

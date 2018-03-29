@@ -33,4 +33,15 @@ export default {
       withExtraPerson: require('./credit/52542282760ee313280017f9/with-extra-person/index.json'),
     },
   },
+  discover: {
+    movie: {
+      people: {
+        '3&4': {
+          'popularity.desc': {
+            '1-6': require('./discover/movie/people/3&4/popularity.desc/1-6/index.json'),
+          },
+        },
+      },
+    },
+  },
 };

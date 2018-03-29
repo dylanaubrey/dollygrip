@@ -4,12 +4,13 @@
  */
 export const discoverBase = `
   query (
-    $media: String!,
     $connection: ConnectionInputType,
+    $cursor: CursorInputType,
+    $media: String!,
     $movie: DiscoverMovieInputType,
     $tv: DiscoverTvInputType
   ) {
-    discover(media: $media, connection: $connection, movie: $movie, tv: $tv) {
+    discover(connection: $connection, cursor: $cursor, media: $media, movie: $movie, tv: $tv) {
       edges {
         cursor
         node {

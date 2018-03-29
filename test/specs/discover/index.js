@@ -32,12 +32,21 @@ Object.keys(rest.movie).forEach((resource) => {
 
 const url = buildURL({ path: 'discover/movie' });
 
-describe.only('the discover movie type', () => {
+describe('the discover movie type', () => {
   let apps, dollygrip, server;
 
   before(() => {
-    mockRestRequest(url, rest.discover.movie.people['3&4']['popularity.asc'], { discoverHeaders });
-    mockRestRequest(url, rest.discover.movie.people['3&4']['popularity.desc'], { discoverHeaders });
+    mockRestRequest(
+      `${url}&sort_by=popularity.desc&include_adult=false&include_video=false&with_people=3%2C4`,
+      rest.discover.movie.people['3&4']['popularity.desc'],
+      { headers: discoverHeaders },
+    );
+
+    mockRestRequest(
+      `${url}&sort_by=popularity.asc&include_adult=false&include_video=false&with_people=3%2C4`,
+      rest.discover.movie.people['3&4']['popularity.asc'],
+      { headers: discoverHeaders },
+    );
 
     Object.keys(movieMockArgs).forEach((key) => {
       mockRestRequest(movieMockArgs[key].url, movieMockArgs[key].res, { movieHeaders });
@@ -55,22 +64,49 @@ describe.only('the discover movie type', () => {
     dollygrip.clearCaches();
   });
 
-  describe('when a discover movie query is sent with given search queries', () => {
-    it('should return the movies that match those search queries', async () => {
+  describe('when a query is sent with given search params', () => {
+    let cursor;
+
+    it('should return the movies that match those search params', async () => {
       const { body } = await postRequest(server, {
         query: discoverBase,
         variables: {
           connection: { first: 6 },
+          cursor: { primaryType: 'number' },
           media: 'movie',
           movie: { withPeople: '3,4' },
         },
       });
 
-      expect(body.data).to.eql(graphql.company[1].base);
+      expect(body.data).to.eql(graphql.discover.movie.people['3&4']['popularity.desc']['1-6']);
       expect(dollygrip._handl._execute.calledOnce).to.be.true();
       expect(fetchMock.calls().matched).to.have.lengthOf(1);
       dollygrip._handl._execute.reset();
       fetchMock.reset();
+      cursor = body.data.discover.pageInfo.endCursor;
+    });
+
+    describe('when a query is sent for the next six movies with the given search params', () => {
+      it('should return the next six movies that match those search params', async () => {
+        const { body } = await postRequest(server, {
+          query: discoverBase,
+          variables: {
+            connection: { after: cursor, first: 6 },
+            cursor: { primaryType: 'number' },
+            media: 'movie',
+            movie: { withPeople: '3,4' },
+          },
+        });
+
+        // expect(body.data).to.eql(
+        //   graphql.discover.movie.people['3&4']['popularity.desc']['7-12'],
+        // );
+
+        expect(dollygrip._handl._execute.calledOnce).to.be.true();
+        expect(fetchMock.calls().matched).to.have.lengthOf(1);
+        dollygrip._handl._execute.reset();
+        fetchMock.reset();
+      });
     });
   });
 });
