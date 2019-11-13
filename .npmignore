@@ -1,6 +1,0 @@
-.nyc_output/
-.sonar/
-.vscode/
-coverage/
-src/
-npm-debug.log

@@ -1,6 +1,7 @@
-.nyc_output/
-.vscode/
 coverage/
 lib/
 node_modules/
-npm-debug.log
+.env
+.eslintcache
+*.log
+.DS_Store
