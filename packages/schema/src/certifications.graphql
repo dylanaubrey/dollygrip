@@ -1,0 +1,24 @@
+type Certification {
+  certification: String!
+  meaning: String!
+  order: Int!
+}
+
+type Certifications {
+  AU: Certification
+  BR: Certification
+  CA: Certification
+  CA_QC: Certification
+  DE: Certification
+  FR: Certification
+  GB: Certification
+  IN: Certification
+  KR: Certification
+  NL: Certification
+  NZ: Certification
+  PT: Certification
+  RU: Certification
+  SK: Certification
+  TH: Certification
+  US: Certification
+}

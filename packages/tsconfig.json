@@ -4,6 +4,9 @@
   "references": [
     {
       "path": "./rest-client"
+    },
+    {
+      "path": "./schema"
     }
   ]
 }

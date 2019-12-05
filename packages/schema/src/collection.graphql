@@ -1,0 +1,16 @@
+# import Image from "image.graphql"
+# import Entity from "interfaces.graphql"
+# import Movie from "movie.graphql"
+# import Translation from "translation.graphql"
+
+type Collection implements Entity {
+  backdropPath: String
+  backdrops: [Image]
+  id: ID!
+  name: String!
+  overview: String!
+  parts: [Movie]!
+  posterPath: String
+  posters: [Image]
+  translations: [Translation]
+}

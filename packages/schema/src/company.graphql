@@ -1,0 +1,14 @@
+# import AlternativeName from "alternative-name.graphql"
+# import Image from "image.graphql"
+
+type Company {
+  alternativeNames: [AlternativeName]
+  description: String!
+  headquarters: String!
+  homepage: String!
+  id: ID!,
+  logoPath: String!
+  logos: [Image]
+  name: String!
+  parentCompany: String
+}

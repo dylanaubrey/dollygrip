@@ -1,0 +1,12 @@
+# import Certifications from "certifications.graphql"
+# import Collection from "collection.graphql"
+# import Company from "company.graphql"
+# import MediaType from "enums.graphql"
+# import Movie from "movie.graphql"
+
+type Query {
+  certifications(media: MediaType!): Certifications
+  collection(id: ID!): Collection
+  company(id: ID!): Company
+  movie(id: ID!): Movie
+}

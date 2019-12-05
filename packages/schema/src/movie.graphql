@@ -1,0 +1,30 @@
+# import Company from "company.graphql"
+# import Entity from "interfaces.graphql"
+
+type Movie implements Entity {
+  adult: Boolean!
+  backdropPath: String,
+  belongsToCollection: Collection
+  budget: Int!
+  genres: [Genre]!
+  homepage: String,
+  id: ID!,
+  imdbId: String,
+  originalLanguage: String!,
+  originalTitle: String!,
+  overview: String,
+  popularity: Float!,
+  posterPath: String,
+  productionCompanies: [Company]!
+  productionCountries: [Country]!
+  releaseDate: String!,
+  revenue: Int!
+  runtime: Int,
+  spokenLanguages: [Language]!
+  status: String!,
+  tagline: String,
+  title: String!,
+  video: Boolean!
+  voteAverage: Float!,
+  voteCount: Int!
+}

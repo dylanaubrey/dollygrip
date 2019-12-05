@@ -13,43 +13,22 @@ const restClient = createRestClient<ShortcutMethodNames>(
     queryParams: { api_key: API_KEY },
   },
   {
-    /* tslint:disable object-literal-sort-keys */
-    // Certifications
-    movieCertifications: ["certification/movie/list", { method: GET_METHOD }],
-    tvCertifications: ["certification/tv/list", { method: GET_METHOD }],
-    // Collection
+    certifications: ["certification/{type}/list", { method: GET_METHOD }],
     collection: ["collection/{id}/{type?}", { method: GET_METHOD }],
-    // Company
     company: ["company/{id}/{type?}", { method: GET_METHOD }],
-    // Configuration
     configuration: ["configuration/{type?}", { method: GET_METHOD }],
-    // Credit
     credit: ["credit/{id}", { method: GET_METHOD }],
-    // Discover
-    discoverMovie: ["discover/movie", { method: GET_METHOD }],
-    discoverTv: ["discover/tv", { method: GET_METHOD }],
-    // Find
+    discover: ["discover/{type}", { method: GET_METHOD }],
     find: ["find/{id}", { method: GET_METHOD }],
-    // Genres
-    movieGenres: ["genre/movie/list", { method: GET_METHOD }],
-    tvGenres: ["genre/tv/list", { method: GET_METHOD }],
-    // Latest
+    genres: ["genre/{type}/list", { method: GET_METHOD }],
     latest: ["{type}/latest", { method: GET_METHOD }],
-    // Movie
     movie: ["movie/{id}/{type?}", { method: GET_METHOD }],
-    // Network
     network: ["network/{id}/{type?}", { method: GET_METHOD }],
-    // People
     person: ["person/{id}/{type?}", { method: GET_METHOD }],
-    // Popular
     popular: ["{type}/popular", { method: GET_METHOD }],
-    // Review
     review: ["review/{id}", { method: GET_METHOD }],
-    // Search
     search: ["search/{type}", { method: GET_METHOD }],
-    // TV
     tv: ["tv/{id}/{type?}", { method: GET_METHOD }],
-    /* tslint:enable object-literal-sort-keys */
   },
 );
 
