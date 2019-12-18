@@ -1,0 +1,12 @@
+# import VideoType from "enums.graphql"
+
+type Video {
+  id: ID!
+  iso6391: String!
+  iso31661: String!
+  key: String!
+  name: String!
+  site: String!
+  size: Int!
+  type: VideoType!
+}

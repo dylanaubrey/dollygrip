@@ -1,30 +1,59 @@
+# import AlternativeName from "alternative-name.graphql"
+# import Cast from "cast.graphql"
+# import Collection from "collection.graphql"
 # import Company from "company.graphql"
-# import Entity from "interfaces.graphql"
+# import Country from "country.graphql"
+# import Crew from "crew.graphql"
+# import ExternalIds from "external-ids.graphql"
+# import ConnectionInput from "inputs.graphql"
+# import Node from "interfaces.graphql"
+# import Genre from "genre.graphql"
+# import Image from "image.graphql"
+# import Keyword from "keyword.graphql"
+# import Language from "language.graphql"
+# import MovieConnection from "movie-connection.graphql"
+# import ReleaseDates from "release-dates.graphql"
+# import ReviewConnection from "review-connection.graphql"
+# import Translation from "translation.graphql"
+# import Video from "video.graphql"
 
-type Movie implements Entity {
+type Movie implements Node {
   adult: Boolean!
-  backdropPath: String,
+  alternativeTitles: [AlternativeName]
+  backdropPath: String
+  backdrops: [Image]
   belongsToCollection: Collection
   budget: Int!
+  cast: [Cast]
+  crew: [Crew]
+  externalIds: ExternalIds
   genres: [Genre]!
-  homepage: String,
-  id: ID!,
-  imdbId: String,
-  originalLanguage: String!,
-  originalTitle: String!,
-  overview: String,
-  popularity: Float!,
-  posterPath: String,
+  homepage: String
+  id: ID!
+  imdbId: String
+  keywords: [Keyword]
+  originalLanguage: String!
+  originalTitle: String!
+  overview: String
+  popularity: Float!
+  posterPath: String
+  posters: [Image]
   productionCompanies: [Company]!
   productionCountries: [Country]!
-  releaseDate: String!,
+  recommendations(args: ConnectionInput): MovieConnection
+  releaseDate: String!
+  releaseDates: [ReleaseDates]
   revenue: Int!
-  runtime: Int,
+  reviews(args: ConnectionInput): ReviewConnection
+  runtime: Int
+  similarMovies(args: ConnectionInput): MovieConnection
   spokenLanguages: [Language]!
-  status: String!,
-  tagline: String,
-  title: String!,
+  status: String!
+  tagline: String
+  title: String!
+  translations: [Translation]
   video: Boolean!
-  voteAverage: Float!,
+  videos: [Video]
+  voteAverage: Float!
   voteCount: Int!
 }

@@ -1,7 +1,9 @@
 type TranslationData {
-  homepage: String!
-  overview: String!
-  title: String!
+  biography: String
+  homepage: String
+  name: String
+  overview: String
+  title: String
 }
 
 type Translation {

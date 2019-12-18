@@ -1,5 +1,6 @@
 type AlternativeName {
   iso31661: String
-  name: String!
+  name: String
+  title: String
   type: String!
 }

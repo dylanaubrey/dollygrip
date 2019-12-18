@@ -1,0 +1,12 @@
+type ReleaseDate {
+  certification: String!
+  iso6391: String!
+  releaseDate: String!
+  type: Int!
+  note: String!
+}
+
+type ReleaseDates {
+  iso31661: String!
+  releaseDates: [ReleaseDate]!
+}

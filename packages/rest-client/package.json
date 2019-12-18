@@ -35,6 +35,7 @@
     "@cachemap/constants": "^3.0.2",
     "@cachemap/core": "^3.0.1",
     "@cachemap/map": "^3.0.1",
+    "@cachemap/reaper": "^3.0.1",
     "@cachemap/redis": "^3.0.1",
     "getta": "^0.1.2",
     "isomorphic-fetch": "^2.2.1"

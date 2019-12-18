@@ -1,0 +1,63 @@
+# import AlternativeName from "alternative-name.graphql"
+# import Cast from "cast.graphql"
+# import Company from "company.graphql"
+# import ConnectionInput from "inputs.graphql"
+# import ContentRating from "content-rating.graphql"
+# import Crew from "crew.graphql"
+# import Episode from "episode.graphql"
+# import EpisodeGroup from "episode-group.graphql"
+# import ExternalIds from "external-ids.graphql"
+# import Genre from "genre.graphql"
+# import Image from "image.graphql"
+# import Keyword from "keyword.graphql"
+# import Person from "person.graphql"
+# import ReviewConnection from "review-connection.graphql"
+# import Season from "season.graphql"
+# import TVConnection from "tv-connection.graphql"
+# import Translation from "translation.graphql"
+# import Video from "video.graphql"
+
+type TV {
+  alternativeTitles: [AlternativeName]
+  backdropPath: String
+  backdrops: [Image]
+  cast: [Cast]
+  contentRatings: [ContentRating]
+  createdBy: Person
+  crew: [Crew]
+  episodeGroups: [EpisodeGroup]
+  episodeRunTime: [Int]!
+  externalIds: ExternalIds
+  firstAirDate: String!
+  genres: [Genre]
+  homepage: String!
+  id: ID!
+  inProduction: Boolean!
+  keywords: [Keyword]
+  languages: [String]!
+  lastAirDate: String!
+  lastEpisodeToAir: Episode!
+  name: String!
+  nextEpisodeToAir: Episode
+  networks: [Company]!
+  numberOfEpisodes: Int!
+  numberOfSeasons: Int!
+  originCountry: [String]!
+  originalLanguage: String!
+  originalName: String!
+  overview: String!
+  popularity: Float!
+  posterPath: String
+  posters: [Image]
+  productionCompanies: [Company]!
+  recommendations(args: ConnectionInput): TVConnection
+  reviews(args: ConnectionInput): ReviewConnection
+  seasons: [Season]!
+  similarTVShows(args: ConnectionInput): TVConnection
+  status: String!
+  translations: [Translation]
+  type: String!
+  videos: [Video]
+  voteAverage: Float!
+  voteCount: Int!
+}

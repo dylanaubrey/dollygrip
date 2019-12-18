@@ -1,0 +1,5 @@
+type Country {
+  englishName: String
+  iso31661: String!
+  name: String
+}

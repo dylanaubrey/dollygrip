@@ -1,0 +1,4 @@
+# import Movie from "movie.graphql"
+# import TV from "tv.graphql"
+
+union Media = Movie | TV

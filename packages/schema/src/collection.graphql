@@ -1,9 +1,9 @@
 # import Image from "image.graphql"
-# import Entity from "interfaces.graphql"
+# import Node from "interfaces.graphql"
 # import Movie from "movie.graphql"
 # import Translation from "translation.graphql"
 
-type Collection implements Entity {
+type Collection implements Node {
   backdropPath: String
   backdrops: [Image]
   id: ID!

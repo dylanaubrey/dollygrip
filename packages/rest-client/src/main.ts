@@ -1,5 +1,6 @@
 import Cachemap from "@cachemap/core";
 import map from "@cachemap/map";
+import reaper from "@cachemap/reaper";
 import createRestClient from "getta";
 import { API_KEY, BASE_PATH, CACHE_NAME, GET_METHOD } from "./constants";
 import pathTemplateCallback from "./helpers/path-template-callback";
@@ -8,7 +9,7 @@ import { ShortcutMethodNames } from "./types";
 const restClient = createRestClient<ShortcutMethodNames>(
   {
     basePath: BASE_PATH,
-    cache: new Cachemap({ name: CACHE_NAME, store: map() }),
+    cache: new Cachemap({ name: CACHE_NAME, reaper: reaper(), store: map() }),
     pathTemplateCallback,
     queryParams: { api_key: API_KEY },
   },

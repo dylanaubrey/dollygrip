@@ -1,0 +1,9 @@
+type Crew {
+  creditId: ID!
+  department: String!
+  gender: Int
+  id: ID!
+  job: String!
+  name: String!
+  profilePath: String
+}

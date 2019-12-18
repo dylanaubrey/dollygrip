@@ -1,3 +1,9 @@
-interface Entity {
+# import PageInfo from "page-info.graphql"
+
+interface Connection {
+  pageInfo: PageInfo!
+}
+
+interface Node {
   id: ID!
 }

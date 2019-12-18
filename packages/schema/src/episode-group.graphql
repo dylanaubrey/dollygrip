@@ -1,0 +1,11 @@
+# import Company from "company.graphql"
+
+type EpisodeGroup {
+  description: String!
+  episodeCount: Int!
+  groupCount: Int!
+  id: ID!
+  name: String!
+  network: Company!
+  type: String!
+}

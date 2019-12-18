@@ -1,0 +1,8 @@
+# import Node from "interfaces.graphql"
+
+type Review implements Node {
+  author: String!
+  content: String!
+  id: ID!
+  url: String!
+}

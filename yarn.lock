@@ -886,6 +886,11 @@
   resolved "https://registry.yarnpkg.com/@cachemap/map/-/map-3.0.1.tgz#3243d4d61635e22e015a0627b33d2c6285dc6da7"
   integrity sha512-izwgbS54rmbzMFKGXVAV/DH9286iWHoPQOJqTldzCNWjB4beI1D+nyLXtGKcUkwmDkpNAnUhX/cXymDaVyerNg==
 
+"@cachemap/reaper@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@cachemap/reaper/-/reaper-3.0.1.tgz#02f7291e7a0f8314f3da9e3c9ec9526cc241949e"
+  integrity sha512-UHX9FQtTmVm7THNFkWj3/WK29ScJg3kFpck9OVhI6E4izmAHiO+V5HyjNlL8hYnP508fPrXI/jTw4E6TDDgQ4g==
+
 "@cachemap/redis@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@cachemap/redis/-/redis-3.0.1.tgz#ee8196aec63367167d847a925b338670c55583af"

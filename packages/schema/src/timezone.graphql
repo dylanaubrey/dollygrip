@@ -1,0 +1,4 @@
+type Timezone {
+  iso31661: String!
+  zones: [String]!
+}

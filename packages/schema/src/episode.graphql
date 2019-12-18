@@ -1,0 +1,13 @@
+type Episode {
+  airDate: String!
+  episodeNumber: Int!
+  id: ID!
+  name: String!
+  overview: String!
+  productionCode: String!
+  seasonNumber: Int!
+  showId: ID!
+  stillPath: String!
+  voteAverage: Float!
+  voteCount: Int!
+}

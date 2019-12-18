@@ -1,0 +1,26 @@
+# import ExternalIds from "external-ids.graphql"
+# import Image from "image.graphql"
+# import CombinedCredits, MovieCredits, TVCredits from "person-credits.graphql"
+# import Translation from "translation.graphql"
+
+type Person {
+  adult: Boolean!
+  alsoKnownAs: [String]!
+  biography: String!
+  birthday: String
+  combinedCredits: CombinedCredits
+  deathday: String
+  externalIds: ExternalIds
+  gender: Int!
+  homepage: String
+  id: ID!
+  imdbId: String!
+  movieCredits: MovieCredits
+  name: String!
+  placeOfBirth: String
+  popularity: Float!
+  profilePath: String
+  profiles: [Image]
+  translations: [Translation]
+  tvCredits: TVCredits
+}

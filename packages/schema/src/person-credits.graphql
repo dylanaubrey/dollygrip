@@ -1,0 +1,145 @@
+# import MediaType from "enums.graphql"
+
+type CastTVCredit {
+  backdropPath: String
+  character: String!
+  creditId: ID!
+  episodeCount: Int!
+  firstAirDate: String!
+  genreIds: [ID]!
+  id: ID!
+  name: String!
+  originCountry: [String]!
+  originalLanguage: String!
+  originalName: String!
+  overview: String!
+  popularity: Int!
+  posterPath: String
+  voteAverage: Float!
+  voteCount: Int!
+}
+
+type CrewTVCredit {
+  backdropPath: String
+  creditId: ID!
+  department: String!
+  episodeCount: Int!
+  firstAirDate: String!
+  genreIds: [ID]!
+  id: ID!
+  job: String!
+  name: String!
+  originCountry: [String]!
+  originalLanguage: String!
+  originalName: String!
+  overview: String!
+  popularity: Int!
+  posterPath: String
+  voteAverage: Float!
+  voteCount: Int!
+}
+
+type TVCredits {
+  cast: [CastTVCredit]
+  crew: [CrewTVCredit]
+}
+
+type CastMovieCredit {
+  adult: Boolean!
+  backdropPath: String
+  character: String!
+  creditId: ID!
+  genreIds: [ID]!
+  id: ID!
+  originalLanguage: String!
+  originalTitle: String!
+  overview: String!
+  popularity: Int!
+  posterPath: String
+  releaseDate: String!
+  title: String!
+  video: Boolean!
+  voteAverage: Float!
+  voteCount: Int!
+}
+
+type CrewMovieCredit {
+  adult: Boolean!
+  backdropPath: String
+  creditId: ID!
+  department: String!
+  genreIds: [ID]!
+  id: ID!
+  job: String!
+  originalLanguage: String!
+  originalTitle: String!
+  overview: String!
+  popularity: Int!
+  posterPath: String
+  releaseDate: String!
+  title: String!
+  video: Boolean!
+  voteAverage: Float!
+  voteCount: Int!
+}
+
+type MovieCredits {
+  cast: [CastMovieCredit]
+  crew: [CrewMovieCredit]
+}
+
+type CastCombinedCredit {
+  adult: Boolean!
+  backdropPath: String
+  character: String!
+  creditId: ID!
+  episodeCount: Int!
+  firstAirDate: String!
+  genreIds: [ID]!
+  id: ID!
+  mediaType: MediaType!
+  name: String!
+  originCountry: [String]!
+  originalLanguage: String!
+  originalName: String!
+  originalTitle: String!
+  overview: String!
+  popularity: Int!
+  posterPath: String
+  releaseDate: String!
+  title: String!
+  video: Boolean!
+  voteAverage: Float!
+  voteCount: Int!
+}
+
+type CrewCombinedCredit {
+  adult: Boolean!
+  backdropPath: String
+  creditId: ID!
+  department: String!
+  episodeCount: Int!
+  firstAirDate: String!
+  genreIds: [ID]!
+  id: ID!
+  job: String!
+  mediaType: MediaType!
+  name: String!
+  originCountry: [String]!
+  originalLanguage: String!
+  originalName: String!
+  originalTitle: String!
+  overview: String!
+  popularity: Int!
+  posterPath: String
+  releaseDate: String!
+  title: String!
+  video: Boolean!
+  voteAverage: Float!
+  voteCount: Int!
+}
+
+type CombinedCredits {
+  cast: [CastCombinedCredit]
+  crew: [CrewCombinedCredit]
+}

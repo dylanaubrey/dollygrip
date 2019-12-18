@@ -2,9 +2,9 @@ type Image {
   aspectRadio: Float!
   filePath: String!
   fileType: String
-  height: Float!
+  height: Int!
   iso6391: Float!
   voteAverage: Int!
-  voteCount: Float!
-  width: Float!
+  voteCount: Int!
+  width: Int!
 }

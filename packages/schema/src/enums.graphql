@@ -2,3 +2,13 @@ enum MediaType {
   MOVIE
   TV
 }
+
+enum VideoType {
+  TRAILER
+  TEASER
+  CLIP
+  FEATURETTE
+  BEHIND_THE_SCENES
+  BLOOPERS
+  OPTIONAL
+}

@@ -1,0 +1,14 @@
+# import Connection from "interfaces.graphql"
+# import TV from "tv.graphql"
+# import PageInfo from "page-info.graphql"
+
+type TVEdge {
+  cursor: String!
+  node: TV
+}
+
+type TVConnection implements Connection {
+  edges: [TVEdge]
+  pageInfo: PageInfo!
+  totalResults: Int!
+}

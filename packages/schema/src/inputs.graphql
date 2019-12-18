@@ -1,0 +1,6 @@
+input ConnectionInput {
+  after: String
+  before: String
+  first: Int
+  last: Int
+}
