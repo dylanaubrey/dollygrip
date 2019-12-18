@@ -891,14 +891,6 @@
   resolved "https://registry.yarnpkg.com/@cachemap/reaper/-/reaper-3.0.1.tgz#02f7291e7a0f8314f3da9e3c9ec9526cc241949e"
   integrity sha512-UHX9FQtTmVm7THNFkWj3/WK29ScJg3kFpck9OVhI6E4izmAHiO+V5HyjNlL8hYnP508fPrXI/jTw4E6TDDgQ4g==
 
-"@cachemap/redis@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@cachemap/redis/-/redis-3.0.1.tgz#ee8196aec63367167d847a925b338670c55583af"
-  integrity sha512-QdfFccfEAV8hWxad+MjuouwOq4lKT5SJMXchThjojvFPZDJwrwvE2/DGxVIkwi+XJnzLFyvYw3P/+T+49d4JUw==
-  dependencies:
-    fakeredis "^2.0.0"
-    redis "^2.8.0"
-
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.3.tgz#099139eaec7ebf07a27c1786a3ff64f39464d2ef"
@@ -3853,11 +3845,6 @@ dotenv@^8.0.0:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
   integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
 
-double-ended-queue@^2.1.0-0:
-  version "2.1.0-0"
-  resolved "https://registry.yarnpkg.com/double-ended-queue/-/double-ended-queue-2.1.0-0.tgz#103d3527fd31528f40188130c841efdd78264e5c"
-  integrity sha1-ED01J/0xUo9AGIEwyEHv3XgmTlw=
-
 duplexer@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
@@ -4285,13 +4272,6 @@ extsprintf@^1.2.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
   integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
-
-fakeredis@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/fakeredis/-/fakeredis-2.0.0.tgz#752fb832819ace31be88668cf1358d6f1438afc0"
-  integrity sha1-dS+4MoGazjG+iGaM8TWNbxQ4r8A=
-  dependencies:
-    redis "2.6.0-0"
 
 fast-deep-equal@^2.0.1:
   version "2.0.1"
@@ -7931,39 +7911,6 @@ redent@^2.0.0:
   dependencies:
     indent-string "^3.0.0"
     strip-indent "^2.0.0"
-
-redis-commands@^1.1.0, redis-commands@^1.2.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/redis-commands/-/redis-commands-1.5.0.tgz#80d2e20698fe688f227127ff9e5164a7dd17e785"
-  integrity sha512-6KxamqpZ468MeQC3bkWmCB1fp56XL64D4Kf0zJSwDZbVLLm7KFkoIcHrgRvQ+sk8dnhySs7+yBg94yIkAK7aJg==
-
-redis-parser@^1.2.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/redis-parser/-/redis-parser-1.3.0.tgz#806ebe7bbfb7d34e4d7c1e9ef282efcfad04126a"
-  integrity sha1-gG6+e7+3005NfB6e8oLvz60EEmo=
-
-redis-parser@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/redis-parser/-/redis-parser-2.6.0.tgz#52ed09dacac108f1a631c07e9b69941e7a19504b"
-  integrity sha1-Uu0J2srBCPGmMcB+m2mUHnoZUEs=
-
-redis@2.6.0-0:
-  version "2.6.0-0"
-  resolved "https://registry.yarnpkg.com/redis/-/redis-2.6.0-0.tgz#73f674dd3e54a3a76703d1ed2606b4e600be076d"
-  integrity sha1-c/Z03T5Uo6dnA9HtJga05gC+B20=
-  dependencies:
-    double-ended-queue "^2.1.0-0"
-    redis-commands "^1.1.0"
-    redis-parser "^1.2.0"
-
-redis@^2.8.0:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/redis/-/redis-2.8.0.tgz#202288e3f58c49f6079d97af7a10e1303ae14b02"
-  integrity sha512-M1OkonEQwtRmZv4tEWF2VgpG0JWJ8Fv1PhlgT5+B+uNq2cA3Rt1Yt/ryoR+vQNOQcIEgdCdfH0jr3bDpihAw1A==
-  dependencies:
-    double-ended-queue "^2.1.0-0"
-    redis-commands "^1.2.0"
-    redis-parser "^2.6.0"
 
 regenerate-unicode-properties@^8.1.0:
   version "8.1.0"

@@ -1,3 +1,6 @@
+import Cachemap from "@cachemap/core";
+import { JsonObject } from "type-fest";
+
 export type ShortcutMethodNames =
   | "movieCertifications"
   | "tvCertifications"
@@ -18,3 +21,8 @@ export type ShortcutMethodNames =
   | "search"
   | "tv"
   | "tvGenres";
+
+export interface CreateRestClientParams {
+  cache: Cachemap;
+  queryParams: JsonObject & { api_key: string; language?: string };
+}
