@@ -14,6 +14,7 @@
 # import MovieConnection from "movie-connection.graphql"
 # import ReleaseDates from "release-dates.graphql"
 # import ReviewConnection from "review-connection.graphql"
+# import Date from "scalars.graphql"
 # import Translation from "translation.graphql"
 # import Video from "video.graphql"
 
@@ -41,7 +42,7 @@ type Movie implements Node {
   productionCompanies: [Company]!
   productionCountries: [Country]!
   recommendations(args: ConnectionInput): MovieConnection
-  releaseDate: String!
+  releaseDate: Date!
   releaseDates: [ReleaseDates]
   revenue: Int!
   reviews(args: ConnectionInput): ReviewConnection

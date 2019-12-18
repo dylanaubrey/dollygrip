@@ -1,7 +1,9 @@
+# import Date from "scalars.graphql"
+
 type ReleaseDate {
   certification: String!
   iso6391: String!
-  releaseDate: String!
+  releaseDate: Date!
   type: Int!
   note: String!
 }

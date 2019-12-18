@@ -12,6 +12,7 @@
 # import Keyword from "keyword.graphql"
 # import Person from "person.graphql"
 # import ReviewConnection from "review-connection.graphql"
+# import Date from "scalars.graphql"
 # import Season from "season.graphql"
 # import TVConnection from "tv-connection.graphql"
 # import Translation from "translation.graphql"
@@ -28,14 +29,14 @@ type TV {
   episodeGroups: [EpisodeGroup]
   episodeRunTime: [Int]!
   externalIds: ExternalIds
-  firstAirDate: String!
+  firstAirDate: Date!
   genres: [Genre]
   homepage: String!
   id: ID!
   inProduction: Boolean!
   keywords: [Keyword]
   languages: [String]!
-  lastAirDate: String!
+  lastAirDate: Date!
   lastEpisodeToAir: Episode!
   name: String!
   nextEpisodeToAir: Episode

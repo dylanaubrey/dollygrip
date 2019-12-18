@@ -1,5 +1,7 @@
+# import Date from "scalars.graphql"
+
 type Season {
-  airDate: String!
+  airDate: Date!
   episodeCount: Int!
   id: ID!
   name: String!

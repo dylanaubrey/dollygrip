@@ -5,9 +5,12 @@
 # import Credit from "credit.graphql"
 # import MediaType from "enums.graphql"
 # import Genre from "genre.graphql"
+# import DiscoverMovieConnectionInput, DiscoverTVConnectionInput from "inputs.graphql"
 # import Movie from "movie.graphql"
+# import MovieConnection from "movie-connection.graphql"
 # import Person from "person.graphql"
 # import TV from "tv.graphql"
+# import TVConnection from "tv-connection.graphql"
 
 type Query {
   certifications(media: MediaType!): Certifications
@@ -15,6 +18,8 @@ type Query {
   company(id: ID!): Company
   configuration: Configuration
   credit(id: ID!): Credit
+  discoverMovies(input: DiscoverMovieConnectionInput): MovieConnection
+  discoverTV(input: DiscoverTVConnectionInput): TVConnection
   genres(media: MediaType!): [Genre]
   movie(id: ID!): Movie
   person(id: ID!): Person
