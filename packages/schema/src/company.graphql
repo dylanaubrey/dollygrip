@@ -11,5 +11,6 @@ type Company implements Node {
   logoPath: String!
   logos: [Image]
   name: String!
+  originCountry: String
   parentCompany: String
 }

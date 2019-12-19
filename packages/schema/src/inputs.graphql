@@ -1,4 +1,5 @@
 # import Date from "scalars.graphql"
+# import TrendingMediaType, TrendingTimeWindow from "unions.graphql"
 
 input ConnectionInput {
   after: String
@@ -68,4 +69,13 @@ input DiscoverTVConnectionInput {
   withRuntimeLessThan: Int
   withoutGenres: String
   withoutKeywords: String
+}
+
+input TrendingConnectionInput {
+  after: String
+  before: String
+  first: Int
+  last: Int
+  mediaType: TrendingMediaType!
+  timeWindow: TrendingTimeWindow!
 }

@@ -1,13 +1,14 @@
+# import ScreenType from "enums.graphql"
 # import Node from "interfaces.graphql"
 # import Person from "person.graphql"
-# import Media from "unions.graphql"
+# import Screen from "unions.graphql"
 
 type Credit implements Node {
   creditType: String!
   department: String!
   id: ID!
   job: String!
-  media: Media
-  mediaType: String!
+  media: Screen!
+  mediaType: ScreenType!
   person: Person!
 }

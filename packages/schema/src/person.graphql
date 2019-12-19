@@ -3,6 +3,7 @@
 # import Node from "interfaces.graphql"
 # import CombinedCredits, MovieCredits, TVCredits from "person-credits.graphql"
 # import Translation from "translation.graphql"
+# import Screen from "unions.graphql"
 
 type Person implements Node {
   adult: Boolean!
@@ -16,6 +17,7 @@ type Person implements Node {
   homepage: String
   id: ID!
   imdbId: String!
+  knownFor: Screen
   movieCredits: MovieCredits
   name: String!
   placeOfBirth: String

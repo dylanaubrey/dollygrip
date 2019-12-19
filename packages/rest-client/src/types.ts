@@ -24,5 +24,5 @@ export type ShortcutMethodNames =
 
 export interface CreateRestClientParams {
   cache: Cachemap;
-  queryParams: JsonObject & { api_key: string; language?: string };
+  queryParams: JsonObject & { apiKey: string; language?: string };
 }

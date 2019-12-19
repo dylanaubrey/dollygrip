@@ -1,6 +1,12 @@
+enum ScreenType {
+  MOVIE
+  TV
+}
+
 enum MediaType {
   MOVIE
   TV
+  PERSON
 }
 
 enum VideoType {
@@ -28,4 +34,27 @@ enum SortBy {
   VOTE_AVERAGE_DESC
   VOTE_COUNT_ASC
   VOTE_COUNT_DESC
+}
+
+enum ExternalSource {
+  IMDB_ID
+  FREEBASE_MID
+  FREEBASE_ID
+  TVDB_ID
+  TVRAGE_ID
+  FACEBOOK_ID
+  TWITTER_ID
+  INSTAGRAM_ID
+}
+
+enum TrendingMediaType {
+  ALL
+  MOVIE
+  TV
+  PERSON
+}
+
+enum TrendingTimeWindow {
+  DAY
+  WEEK
 }

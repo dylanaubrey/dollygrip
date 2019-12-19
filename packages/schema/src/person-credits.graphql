@@ -1,4 +1,4 @@
-# import MediaType from "enums.graphql"
+# import ScreenType from "enums.graphql"
 # import Node from "interfaces.graphql"
 # import Date from "scalars.graphql"
 
@@ -99,7 +99,7 @@ type CastCombinedCredit implements Node {
   firstAirDate: Date!
   genreIds: [ID]!
   id: ID!
-  mediaType: MediaType!
+  mediaType: ScreenType!
   name: String!
   originCountry: [String]!
   originalLanguage: String!
@@ -125,7 +125,7 @@ type CrewCombinedCredit implements Node {
   genreIds: [ID]!
   id: ID!
   job: String!
-  mediaType: MediaType!
+  mediaType: ScreenType!
   name: String!
   originCountry: [String]!
   originalLanguage: String!
