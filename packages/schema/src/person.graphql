@@ -1,9 +1,10 @@
 # import ExternalIds from "external-ids.graphql"
 # import Image from "image.graphql"
+# import Node from "interfaces.graphql"
 # import CombinedCredits, MovieCredits, TVCredits from "person-credits.graphql"
 # import Translation from "translation.graphql"
 
-type Person {
+type Person implements Node {
   adult: Boolean!
   alsoKnownAs: [String]!
   biography: String!

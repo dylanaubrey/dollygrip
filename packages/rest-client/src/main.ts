@@ -3,7 +3,7 @@ import { BASE_PATH, GET_METHOD } from "./constants";
 import pathTemplateCallback from "./helpers/path-template-callback";
 import { CreateRestClientParams, ShortcutMethodNames } from "./types";
 
-export default function createMovieDBRestClient({ cache, queryParams }: CreateRestClientParams) {
+export default function createDollygripRestClient({ cache, queryParams }: CreateRestClientParams) {
   return createRestClient<ShortcutMethodNames>(
     {
       basePath: BASE_PATH,

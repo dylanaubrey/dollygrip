@@ -1,6 +1,7 @@
+# import Node from "interfaces.graphql"
 # import Company from "company.graphql"
 
-type EpisodeGroup {
+type EpisodeGroup implements Node {
   description: String!
   episodeCount: Int!
   groupCount: Int!

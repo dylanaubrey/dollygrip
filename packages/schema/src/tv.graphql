@@ -9,6 +9,7 @@
 # import ExternalIds from "external-ids.graphql"
 # import Genre from "genre.graphql"
 # import Image from "image.graphql"
+# import Node from "interfaces.graphql"
 # import Keyword from "keyword.graphql"
 # import Person from "person.graphql"
 # import ReviewConnection from "review-connection.graphql"
@@ -18,7 +19,7 @@
 # import Translation from "translation.graphql"
 # import Video from "video.graphql"
 
-type TV {
+type TV implements Node {
   alternativeTitles: [AlternativeName]
   backdropPath: String
   backdrops: [Image]

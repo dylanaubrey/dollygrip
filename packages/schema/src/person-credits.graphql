@@ -1,7 +1,8 @@
 # import MediaType from "enums.graphql"
+# import Node from "interfaces.graphql"
 # import Date from "scalars.graphql"
 
-type CastTVCredit {
+type CastTVCredit implements Node {
   backdropPath: String
   character: String!
   creditId: ID!
@@ -20,7 +21,7 @@ type CastTVCredit {
   voteCount: Int!
 }
 
-type CrewTVCredit {
+type CrewTVCredit implements Node {
   backdropPath: String
   creditId: ID!
   department: String!
@@ -45,7 +46,7 @@ type TVCredits {
   crew: [CrewTVCredit]
 }
 
-type CastMovieCredit {
+type CastMovieCredit implements Node {
   adult: Boolean!
   backdropPath: String
   character: String!
@@ -64,7 +65,7 @@ type CastMovieCredit {
   voteCount: Int!
 }
 
-type CrewMovieCredit {
+type CrewMovieCredit implements Node {
   adult: Boolean!
   backdropPath: String
   creditId: ID!
@@ -89,7 +90,7 @@ type MovieCredits {
   crew: [CrewMovieCredit]
 }
 
-type CastCombinedCredit {
+type CastCombinedCredit implements Node {
   adult: Boolean!
   backdropPath: String
   character: String!
@@ -114,7 +115,7 @@ type CastCombinedCredit {
   voteCount: Int!
 }
 
-type CrewCombinedCredit {
+type CrewCombinedCredit implements Node {
   adult: Boolean!
   backdropPath: String
   creditId: ID!

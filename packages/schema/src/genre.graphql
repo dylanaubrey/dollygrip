@@ -1,4 +1,6 @@
-type Genre {
+# import Node from "interfaces.graphql"
+
+type Genre implements Node {
   id: ID!
   name: String!
 }

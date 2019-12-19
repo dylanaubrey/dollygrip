@@ -1,6 +1,7 @@
+# import Node from "interfaces.graphql"
 # import Date from "scalars.graphql"
 
-type Season {
+type Season implements Node {
   airDate: Date!
   episodeCount: Int!
   id: ID!

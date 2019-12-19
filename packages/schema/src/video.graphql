@@ -1,6 +1,7 @@
+# import Node from "interfaces.graphql"
 # import VideoType from "enums.graphql"
 
-type Video {
+type Video implements Node {
   id: ID!
   iso6391: String!
   iso31661: String!

@@ -1,7 +1,8 @@
 # import AlternativeName from "alternative-name.graphql"
 # import Image from "image.graphql"
+# import Node from "interfaces.graphql"
 
-type Company {
+type Company implements Node {
   alternativeNames: [AlternativeName]
   description: String!
   headquarters: String!

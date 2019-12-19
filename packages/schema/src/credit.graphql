@@ -1,7 +1,8 @@
+# import Node from "interfaces.graphql"
 # import Person from "person.graphql"
 # import Media from "unions.graphql"
 
-type Credit {
+type Credit implements Node {
   creditType: String!
   department: String!
   id: ID!

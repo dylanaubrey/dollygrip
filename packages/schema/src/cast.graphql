@@ -1,4 +1,6 @@
-type Cast {
+# import Node from "interfaces.graphql"
+
+type Cast implements Node {
   castId: ID!
   character: String!
   creditId: ID!
