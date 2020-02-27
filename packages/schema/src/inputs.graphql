@@ -1,3 +1,4 @@
+# import MediaType, SearchType from "enums.graphql"
 # import Date from "scalars.graphql"
 # import TrendingMediaType, TrendingTimeWindow from "unions.graphql"
 
@@ -69,6 +70,27 @@ input DiscoverTVConnectionInput {
   withRuntimeLessThan: Int
   withoutGenres: String
   withoutKeywords: String
+}
+
+input PopularConnectionInput {
+  after: String
+  before: String
+  first: Int
+  last: Int
+  mediaType: MediaType
+}
+
+input SearchConnectionInput {
+  after: String
+  before: String
+  first: Int
+  firstAirDateYear: Int
+  includeAdult: Boolean
+  last: Int
+  primaryReleaseYear: Int
+  query: String!
+  searchType: SearchType = MULTI
+  year: Int
 }
 
 input TrendingConnectionInput {

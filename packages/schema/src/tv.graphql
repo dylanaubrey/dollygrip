@@ -4,7 +4,7 @@
 # import ConnectionInput from "inputs.graphql"
 # import ContentRating from "content-rating.graphql"
 # import Crew from "crew.graphql"
-# import ScreenType from "enums.graphql"
+# import MediaType from "enums.graphql"
 # import Episode from "episode.graphql"
 # import EpisodeGroup from "episode-group.graphql"
 # import ExternalIds from "external-ids.graphql"
@@ -40,7 +40,7 @@ type TV implements Node {
   languages: [String]!
   lastAirDate: Date!
   lastEpisodeToAir: Episode!
-  mediaType: ScreenType!
+  mediaType: MediaType
   name: String!
   nextEpisodeToAir: Episode
   networks: [Company]!

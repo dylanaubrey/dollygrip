@@ -1,7 +1,12 @@
+# import Collection from "collection.graphql"
+# import Company from "company.graphql"
+# import Keyword from "keyword.graphql"
 # import Movie from "movie.graphql"
 # import Person from "person.graphql"
 # import TV from "tv.graphql"
 
+union Media = Movie | TV | Person
+
 union Screen = Movie | TV
 
-union Media = Movie | TV | Person
+union SearchEntity = Movie | TV | Person | Company | Collection | Keyword

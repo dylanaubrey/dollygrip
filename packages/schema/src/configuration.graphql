@@ -1,4 +1,5 @@
 # import Country from "country.graphql"
+# import Language from "language.graphql"
 # import Timezone from "timezone.graphql"
 
 type ImagesConfiguration {
@@ -21,6 +22,7 @@ type Configuration {
   countries: [Country]
   images: ImagesConfiguration!
   jobs: [JobsConfiguration]
+  languages: [Language]
   primaryTranslations: [String]
   timezones: [Timezone]
 }

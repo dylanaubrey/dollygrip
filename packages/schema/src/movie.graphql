@@ -4,7 +4,7 @@
 # import Company from "company.graphql"
 # import Country from "country.graphql"
 # import Crew from "crew.graphql"
-# import ScreenType from "enums.graphql"
+# import MediaType from "enums.graphql"
 # import ExternalIds from "external-ids.graphql"
 # import ConnectionInput from "inputs.graphql"
 # import Node from "interfaces.graphql"
@@ -34,7 +34,7 @@ type Movie implements Node {
   id: ID!
   imdbId: String
   keywords: [Keyword]
-  mediaType: ScreenType!
+  mediaType: MediaType
   originalLanguage: String!
   originalTitle: String!
   overview: String

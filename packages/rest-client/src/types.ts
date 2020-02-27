@@ -2,25 +2,22 @@ import Cachemap from "@cachemap/core";
 import { JsonObject } from "type-fest";
 
 export type ShortcutMethodNames =
-  | "movieCertifications"
-  | "tvCertifications"
+  | "certifications"
   | "collection"
   | "company"
   | "configuration"
   | "credit"
-  | "discoverMovie"
-  | "discoverTv"
+  | "discover"
   | "find"
+  | "genres"
   | "latest"
   | "movie"
-  | "movieGenre"
   | "network"
   | "person"
   | "popular"
   | "review"
   | "search"
-  | "tv"
-  | "tvGenres";
+  | "tv";
 
 export interface CreateRestClientParams {
   cache: Cachemap;

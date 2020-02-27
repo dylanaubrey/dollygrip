@@ -1,6 +1,12 @@
-enum ScreenType {
-  MOVIE
-  TV
+enum ExternalSource {
+  IMDB_ID
+  FREEBASE_MID
+  FREEBASE_ID
+  TVDB_ID
+  TVRAGE_ID
+  FACEBOOK_ID
+  TWITTER_ID
+  INSTAGRAM_ID
 }
 
 enum MediaType {
@@ -9,14 +15,19 @@ enum MediaType {
   PERSON
 }
 
-enum VideoType {
-  TRAILER
-  TEASER
-  CLIP
-  FEATURETTE
-  BEHIND_THE_SCENES
-  BLOOPERS
-  OPTIONAL
+enum ScreenType {
+  MOVIE
+  TV
+}
+
+enum SearchType {
+  COLLECTION
+  COMPANY
+  KEYWORD
+  MOVIE
+  MULTI
+  TV
+  PERSON
 }
 
 enum SortBy {
@@ -36,17 +47,6 @@ enum SortBy {
   VOTE_COUNT_DESC
 }
 
-enum ExternalSource {
-  IMDB_ID
-  FREEBASE_MID
-  FREEBASE_ID
-  TVDB_ID
-  TVRAGE_ID
-  FACEBOOK_ID
-  TWITTER_ID
-  INSTAGRAM_ID
-}
-
 enum TrendingMediaType {
   ALL
   MOVIE
@@ -57,4 +57,14 @@ enum TrendingMediaType {
 enum TrendingTimeWindow {
   DAY
   WEEK
+}
+
+enum VideoType {
+  TRAILER
+  TEASER
+  CLIP
+  FEATURETTE
+  BEHIND_THE_SCENES
+  BLOOPERS
+  OPTIONAL
 }

@@ -4,16 +4,17 @@
 # import Configuration from "configuration.graphql"
 # import Credit from "credit.graphql"
 # import ScreenType from "enums.graphql"
+# import FindResults from "find-results.graphql"
 # import Genre from "genre.graphql"
-# import DiscoverMovieConnectionInput, DiscoverTVConnectionInput, TrendingConnectionInput from "inputs.graphql"
+# import DiscoverMovieConnectionInput, DiscoverTVConnectionInput, PopularConnectionInput, SearchConnectionInput, TrendingConnectionInput from "inputs.graphql"
 # import Keyword from "keyword.graphql"
 # import MediaConnection from "media-connection.graphql"
 # import Movie from "movie.graphql"
 # import MovieConnection from "movie-connection.graphql"
 # import Person from "person.graphql"
+# import SearchConnection from "search-connection.graphql"
 # import TV from "tv.graphql"
 # import TVConnection from "tv-connection.graphql"
-# import Media from "unions.graphql"
 
 type Query {
   certifications(screenType: ScreenType!): Certifications
@@ -23,12 +24,15 @@ type Query {
   credit(id: ID!): Credit
   discoverMovies(input: DiscoverMovieConnectionInput!): MovieConnection
   discoverTV(input: DiscoverTVConnectionInput!): TVConnection
-  find(source: ExternalSource!, id: String!): [Media]
+  find(source: ExternalSource!, id: String!): FindResults
   genres(screenType: ScreenType!): [Genre]
   keyword(id: ID!): Keyword
   movie(id: ID!): Movie
   network(id: ID!): Company
   person(id: ID!): Person
+  popular(input: PopularConnectionInput): MediaConnection
+  review(id: ID!): Review
+  search(input: SearchConnectionInput): SearchConnection
   trending(input: TrendingConnectionInput!): MediaConnection
   tv(id: ID!): TV
 }

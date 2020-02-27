@@ -1,4 +1,5 @@
 # import ExternalIds from "external-ids.graphql"
+# import MediaType from "enums.graphql"
 # import Image from "image.graphql"
 # import Node from "interfaces.graphql"
 # import CombinedCredits, MovieCredits, TVCredits from "person-credits.graphql"
@@ -18,6 +19,7 @@ type Person implements Node {
   id: ID!
   imdbId: String!
   knownFor: Screen
+  mediaType: MediaType
   movieCredits: MovieCredits
   name: String!
   placeOfBirth: String

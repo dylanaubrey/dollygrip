@@ -1,0 +1,14 @@
+# import Connection from "interfaces.graphql"
+# import PageInfo from "page-info.graphql"
+# import SearchEntity from "unions.graphql"
+
+type SearchEdge {
+  cursor: String!
+  node: SearchEntity
+}
+
+type SearchConnection implements Connection {
+  edges: [SearchEdge]
+  pageInfo: PageInfo!
+  totalResults: Int!
+}
