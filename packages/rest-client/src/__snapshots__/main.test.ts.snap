@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createDollygripRestClient WHEN the dollygrip rest client is created THEN it should have the correct properties and methods 1`] = `
+Getta {
+  "_basePath": "https://api.themoviedb.org/3/",
+  "_bodyParser": [Function],
+  "_cache": Core {
+    "_disableCacheInvalidation": false,
+    "_maxHeapSize": 4194304,
+    "_metadata": Array [],
+    "_name": "cachemap",
+    "_persistedStore": true,
+    "_processing": Array [],
+    "_reaper": undefined,
+    "_requestQueue": Array [],
+    "_sharedCache": false,
+    "_store": null,
+    "_usedHeapSize": 0,
+  },
+  "_conditionalRequestsEnabled": true,
+  "_fetchTimeout": 5000,
+  "_headers": Object {
+    "content-type": "application/json",
+  },
+  "_maxRedirects": 5,
+  "_maxRetries": 3,
+  "_pathTemplateCallback": [Function],
+  "_pathTemplateRegExp": /\\(\\{type\\}\\)\\|\\(\\{id\\}\\)\\|\\(\\{id,\\\\\\+\\}\\)\\|\\(\\{brief\\\\\\|standard\\}\\)/g,
+  "_queryParams": Object {
+    "apiKey": "12345",
+  },
+  "_requestRetryWait": 100,
+  "_requestTracker": Object {
+    "active": Array [],
+    "pending": Map {},
+  },
+  "_streamReader": "json",
+  "certifications": [Function],
+  "collection": [Function],
+  "company": [Function],
+  "configuration": [Function],
+  "credit": [Function],
+  "discover": [Function],
+  "find": [Function],
+  "genres": [Function],
+  "keyword": [Function],
+  "movie": [Function],
+  "network": [Function],
+  "person": [Function],
+  "popular": [Function],
+  "review": [Function],
+  "search": [Function],
+  "trending": [Function],
+  "tv": [Function],
+}
+`;

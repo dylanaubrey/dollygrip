@@ -1,9 +1,14 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "Dylan Aubrey <dylanaubrey@gmail.com>",
-  "license": "MIT",
+  "name": "@dollygrip/resolvers",
+  "version": "0.0.5",
+  "description": "The Dollygrip resolvers module.",
+  "keywords": [
+    "api",
+    "graphql",
+    "schema",
+    "the movie db",
+    "tmdb"
+  ],
   "homepage": "https://github.com/dylanaubrey/dollygrip",
   "bugs": {
     "url": "https://github.com/dylanaubrey/dollygrip/issues"
@@ -12,19 +17,11 @@
     "type": "git",
     "url": "https://github.com/dylanaubrey/dollygrip"
   },
-  "publishConfig": {
-    "access": "public"
-  },
+  "license": "MIT",
+  "author": "Dylan Aubrey <dylanaubrey@gmail.com>",
   "main": "lib/main/index.js",
   "module": "lib/module/index.js",
   "types": "lib/types/index.d.ts",
-  "keywords": [
-    "api",
-    "graphql",
-    "schema",
-    "the movie db",
-    "tmdb"
-  ],
   "scripts": {
     "compile": "concurrently npm:compile:*",
     "compile-watch": "concurrently npm:compile-watch:*",
@@ -34,9 +31,18 @@
     "compile:module": "cross-env BABEL_ENV=module babel ./src --out-dir ./lib/module --extensions \".ts\" --source-maps --config-file ../../babel.config.js",
     "compile:types": "tsc --build"
   },
+  "devDependencies": {
+    "@cachemap/core": "^3.0.1",
+    "@cachemap/map": "^3.0.1",
+    "getta": "^0.1.2"
+  },
   "peerDependencies": {
     "@babel/runtime": "^7.0.0",
+    "@dollygrip/rest-client": "< 1",
     "core-js": "< 4",
     "lodash": "^4.17.5"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
