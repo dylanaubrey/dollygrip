@@ -5,6 +5,10 @@ export interface CertificationsArgs {
   screenType: ScreenType;
 }
 
+export interface CollectionArgs {
+  id: string;
+}
+
 export interface Context {
   restClient: Getta & ShortcutProperties<ShortcutMethodNames>;
   [key: string]: any; // tslint:disable-line no-any

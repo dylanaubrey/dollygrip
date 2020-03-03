@@ -11,6 +11,10 @@ import { ScreenType } from "./types";
 describe("resolveCertifications", () => {
   let restClient: Getta & ShortcutProperties<ShortcutMethodNames>;
 
+  afterAll(() => {
+    fetchMock.restore();
+  });
+
   describe("GIVEN the screenType is 'MOVIE'", () => {
     beforeEach(() => {
       fetchMock.get(buildEndpoint(CERTIFICATIONS_PATH, { type: ScreenType.MOVIE }), movieCertifications);

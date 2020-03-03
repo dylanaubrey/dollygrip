@@ -35,9 +35,12 @@
     "graphql-import": "^0.7.1"
   },
   "peerDependencies": {
-    "@babel/runtime": "^7.0.0",
+    "@babel/runtime": "< 8",
     "core-js": "< 4",
-    "lodash": "^4.17.5"
+    "lodash": "< 5"
+  },
+  "devDependencies": {
+    "graphql": "^14.6.0"
   },
   "publishConfig": {
     "access": "public"

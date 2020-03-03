@@ -32,18 +32,20 @@
     "compile:types": "tsc --build"
   },
   "dependencies": {
-    "@cachemap/constants": "^3.0.2",
-    "@cachemap/core": "^3.0.1",
-    "getta": "^0.1.2",
-    "isomorphic-fetch": "^2.2.1"
+    "@cachemap/constants": "^3.0.3",
+    "@cachemap/core": "^3.0.2",
+    "@repodog/types": "^0.3.27",
+    "getta": "^0.1.5",
+    "isomorphic-fetch": "^2.2.1",
+    "type-fest": "^0.11.0"
   },
   "devDependencies": {
-    "@cachemap/map": "^3.0.1"
+    "@cachemap/map": "^3.0.2"
   },
   "peerDependencies": {
-    "@babel/runtime": "^7.0.0",
+    "@babel/runtime": "< 8",
     "core-js": "< 4",
-    "lodash": "^4.17.5"
+    "lodash": "< 5"
   },
   "publishConfig": {
     "access": "public"

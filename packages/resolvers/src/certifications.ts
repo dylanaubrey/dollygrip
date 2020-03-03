@@ -1,9 +1,9 @@
-import { ObjectMap } from "@repodog/types";
+import { PlainObject } from "@repodog/types";
 import { GraphQLError } from "graphql";
 import { CertificationsArgs, Context } from "./types";
 
 export default async function resolveCertifications(
-  _obj: ObjectMap,
+  _obj: PlainObject,
   { screenType }: CertificationsArgs,
   { restClient }: Context,
 ) {

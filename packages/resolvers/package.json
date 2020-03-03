@@ -31,16 +31,26 @@
     "compile:module": "cross-env BABEL_ENV=module babel ./src --out-dir ./lib/module --extensions \".ts\" --source-maps --config-file ../../babel.config.js",
     "compile:types": "tsc --build"
   },
-  "devDependencies": {
-    "@cachemap/core": "^3.0.1",
-    "@cachemap/map": "^3.0.1",
-    "getta": "^0.1.2"
+  "dependencies": {
+    "@graphql-box/core": "^2.0.1",
+    "@graphql-box/helpers": "^2.0.2",
+    "@repodog/types": "^0.3.27",
+    "getta": "^0.1.5",
+    "type-fest": "^0.11.0"
   },
   "peerDependencies": {
-    "@babel/runtime": "^7.0.0",
+    "@babel/runtime": "< 8",
     "@dollygrip/rest-client": "< 1",
     "core-js": "< 4",
-    "lodash": "^4.17.5"
+    "graphql": "< 15",
+    "lodash": "< 5"
+  },
+  "devDependencies": {
+    "@cachemap/constants": "^3.0.3",
+    "@cachemap/core": "^3.0.2",
+    "@cachemap/map": "^3.0.2",
+    "fetch-mock": "^9.0.0",
+    "isomorphic-fetch": "^2.2.1"
   },
   "publishConfig": {
     "access": "public"
