@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`resolveCertifications GIVEN the screenType is 'MOVIE' THEN the resolver should return the movie certifications 1`] = `
+exports[`resolveCertifications > GIVEN the screenType is 'MOVIE' > THEN the resolver should return the movie certifications 1`] = `
 Object {
   "certifications": Object {
     "AU": Array [
@@ -770,7 +770,7 @@ Object {
 }
 `;
 
-exports[`resolveCertifications GIVEN the screenType is 'TV' THEN the resolver should return the movie certifications 1`] = `
+exports[`resolveCertifications > GIVEN the screenType is 'TV' > THEN the resolver should return the movie certifications 1`] = `
 Object {
   "certifications": Object {
     "AU": Array [

@@ -8,17 +8,20 @@ import createRestClient from "./__tests__/helpers/create-rest-client";
 import resolveCertifications from "./certifications";
 import { ScreenType } from "./types";
 
-describe("resolveCertifications", () => {
+describe("resolveCertifications >", () => {
   let restClient: Getta & ShortcutProperties<ShortcutMethodNames>;
+
+  beforeAll(() => {
+    restClient = createRestClient();
+  });
 
   afterAll(() => {
     fetchMock.restore();
   });
 
-  describe("GIVEN the screenType is 'MOVIE'", () => {
-    beforeEach(() => {
+  describe("GIVEN the screenType is 'MOVIE' >", () => {
+    beforeAll(() => {
       fetchMock.get(buildEndpoint(CERTIFICATIONS_PATH, { type: ScreenType.MOVIE }), movieCertifications);
-      restClient = createRestClient();
     });
 
     it("THEN the resolver should return the movie certifications", async () => {
@@ -26,10 +29,9 @@ describe("resolveCertifications", () => {
     });
   });
 
-  describe("GIVEN the screenType is 'TV'", () => {
-    beforeEach(() => {
+  describe("GIVEN the screenType is 'TV' >", () => {
+    beforeAll(() => {
       fetchMock.get(buildEndpoint(CERTIFICATIONS_PATH, { type: ScreenType.TV }), tvCertifications);
-      restClient = createRestClient();
     });
 
     it("THEN the resolver should return the movie certifications", async () => {

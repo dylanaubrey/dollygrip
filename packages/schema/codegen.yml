@@ -1,0 +1,11 @@
+generates:
+  ./src/types.ts:
+    schema: ./src/schema.graphql
+    plugins:
+      - typescript
+      - typescript-operations
+    config:
+      scalars:
+        Date: Date
+        ID: number
+        JSON: "{ [key: string]: any }"

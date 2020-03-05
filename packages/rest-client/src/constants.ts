@@ -5,7 +5,7 @@ export const POST_METHOD = "post" as const;
 export const PUT_METHOD = "put" as const;
 export const DELETE_METHOD = "delete" as const;
 
-export const OPTIONAL_TYPE_PATH_TEMPLATE_REGEX = /(\/{type\?})/g;
+export const OPTIONAL_TYPE_PATH_TEMPLATE_REGEX = /({type\?})/g;
 
 export const CERTIFICATIONS_PATH = "certification/{type}/list";
 export const COLLECTION_PATH = "collection/{id}/{type?}";

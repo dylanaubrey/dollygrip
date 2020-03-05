@@ -1,9 +1,16 @@
 import resolveCertifications from "./certifications";
+import resolveCollection from "./collection";
+import resolveCollectionImages from "./collection-images";
 
 export default {
+  Collection: {
+    backdrops: resolveCollectionImages,
+    posters: resolveCollectionImages,
+    translations: resolveCollectionTranslations,
+  },
   Query: {
     certifications: resolveCertifications,
-    collection: null,
+    collection: resolveCollection,
     company: null,
     configuration: null,
     credit: null,

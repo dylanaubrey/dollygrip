@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`createDollygripRestClient WHEN the dollygrip rest client is created THEN it should have the correct properties and methods 1`] = `
+exports[`createDollygripRestClient > WHEN the dollygrip rest client is created > THEN it should have the correct properties and methods 1`] = `
 Getta {
   "_basePath": "https://api.themoviedb.org/3/",
   "_bodyParser": [Function],
