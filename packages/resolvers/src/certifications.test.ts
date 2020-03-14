@@ -1,10 +1,10 @@
 import { CERTIFICATIONS_PATH, ShortcutMethodNames } from "@dollygrip/rest-client";
 import fetchMock from "fetch-mock";
 import { Getta, ShortcutProperties } from "getta";
-import movieCertifications from "./__tests__/data/certifications/movie.json";
-import tvCertifications from "./__tests__/data/certifications/tv.json";
 import buildEndpoint from "./__tests__/helpers/build-endpoint";
 import createRestClient from "./__tests__/helpers/create-rest-client";
+import movieCertifications from "./__tests__/responses/certifications/movie.json";
+import tvCertifications from "./__tests__/responses/certifications/tv.json";
 import resolveCertifications from "./certifications";
 import { ScreenType } from "./types";
 

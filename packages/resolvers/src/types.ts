@@ -6,7 +6,7 @@ export interface CertificationsArgs {
 }
 
 export interface CollectionArgs {
-  id: string;
+  id: number;
 }
 
 export interface Context {

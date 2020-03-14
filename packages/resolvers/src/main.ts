@@ -1,6 +1,7 @@
 import resolveCertifications from "./certifications";
 import resolveCollection from "./collection";
 import resolveCollectionImages from "./collection-images";
+import resolveCollectionTranslations from "./collection-translations";
 
 export default {
   Collection: {
