@@ -1,4 +1,15 @@
 {
-  "extends": "@repodog/lerna-config",
-  "version": "0.0.1"
+  "commands": {
+    "add": {
+      "exact": true
+    }
+  },
+  "hoist": true,
+  "npmClient": "npm",
+  "packages": [
+    "configs/*",
+    "graphql/*"
+  ],
+  "strict": true,
+  "version": "independent"
 }

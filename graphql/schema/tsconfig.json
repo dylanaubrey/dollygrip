@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.pkgs.json",
+  "compilerOptions": {
+    "outDir": "dist/types",
+    "rootDir": "src"
+  },
+  "include": [
+    "src/**/*",
+    "src/**/*.json"
+  ],
+  "references": []
+}

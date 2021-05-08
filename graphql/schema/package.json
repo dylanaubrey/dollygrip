@@ -1,0 +1,51 @@
+{
+  "name": "@dollygrip/schema",
+  "version": "0.0.5",
+  "description": "The Dollygrip schema module.",
+  "homepage": "https://github.com/dylanaubrey/dollygrip",
+  "bugs": {
+    "url": "https://github.com/dylanaubrey/dollygrip/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dylanaubrey/dollygrip/graphql/schema"
+  },
+  "license": "MIT",
+  "author": "Dylan Aubrey",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "compile": "concurrently npm:compile:*",
+    "compile-watch": "concurrently npm:compile-watch:*",
+    "compile-watch:main": "npm run compile:main -- --watch",
+    "compile-watch:types": "npm run compile:types -- --watch",
+    "compile:main": "JS_ENV=node MODULE_SYSTEM=cjs rollup -c ./rollup.config.js",
+    "compile:module": "JS_ENV=node MODULE_SYSTEM=esm rollup -c ./rollup.config.js",
+    "compile:types": "npm run graphql-codegen && npm run format-types && tsc --build",
+    "format-types": "eslint --fix ./src/types.ts",
+    "graphql-codegen": "graphql-codegen",
+    "test": "jest --logHeapUsage"
+  },
+  "dependencies": {
+    "@graphql-codegen/cli": "1.21.4",
+    "@graphql-codegen/typescript": "1.22.0",
+    "@graphql-codegen/typescript-compatibility": "2.1.0",
+    "@graphql-codegen/typescript-operations": "1.17.16",
+    "@graphql-tools/graphql-file-loader": "6.2.7",
+    "@graphql-tools/load": "6.2.8",
+    "graphql": "15.5.0"
+  },
+  "devDependencies": {
+    "@dollygrip/babel-config": "0.0.1",
+    "@dollygrip/jest-config": "0.0.1",
+    "@dollygrip/rollup-config": "0.0.1",
+    "concurrently": "5.1.0",
+    "del-cli": "3.0.0",
+    "jest": "26.0.1",
+    "rollup": "2.47.0"
+  }
+}

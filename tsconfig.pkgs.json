@@ -1,0 +1,15 @@
+{
+  "extends": "@dollygrip/ts-config/packages.json",
+  "files": [],
+  "references": [
+    {
+      "path": "./graphql/resolvers"
+    },
+    {
+      "path": "./graphql/rest-client"
+    },
+    {
+      "path": "./graphql/schema"
+    }
+  ]
+}

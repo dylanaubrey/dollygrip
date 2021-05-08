@@ -1,11 +1,13 @@
 {
-  "extends": "./tsconfig.settings.json",
+  "extends": "@dollygrip/ts-config/index.json",
   "exclude": [
     "**/bin/**",
-    "**/lib/**",
+    "**/build/**",
+    "**/coverage/**",
+    "**/dist/**",
     "**/node_modules/**"
   ],
   "include": [
-    "packages"
+    "graphql"
   ]
 }

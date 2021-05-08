@@ -1,0 +1,29 @@
+{
+  "name": "@dollygrip/rollup-config",
+  "version": "0.0.1",
+  "description": "The Dollygrip Rollup config module.",
+  "homepage": "https://github.com/dylanaubrey/dollygrip",
+  "bugs": {
+    "url": "https://github.com/dylanaubrey/dollygrip/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dylanaubrey/dollygrip/configs/rollup-config"
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Dylan Aubrey",
+  "dependencies": {
+    "@rollup/plugin-babel": "5.3.0",
+    "@rollup/plugin-commonjs": "16.0.0",
+    "@rollup/plugin-image": "2.0.5",
+    "@rollup/plugin-json": "4.1.0",
+    "@rollup/plugin-node-resolve": "13.0.0",
+    "builtin-modules": "3.1.0",
+    "fs-extra": "9.0.0",
+    "rollup": "2.47.0",
+    "rollup-plugin-analyzer": "3.2.2",
+    "rollup-plugin-postcss": "2.5.0",
+    "rollup-plugin-terser": "5.3.0"
+  }
+}

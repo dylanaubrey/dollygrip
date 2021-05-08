@@ -1,0 +1,19 @@
+{
+  "name": "@dollygrip/prettier-config",
+  "version": "0.0.1",
+  "description": "The Dollygrip Prettier config module.",
+  "homepage": "https://github.com/dylanaubrey/dollygrip",
+  "bugs": {
+    "url": "https://github.com/dylanaubrey/dollygrip/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dylanaubrey/dollygrip/configs/prettier-config"
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Dylan Aubrey",
+  "dependencies": {
+    "prettier": "2.0.2"
+  }
+}

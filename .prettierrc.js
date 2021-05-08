@@ -1,5 +1,5 @@
-const repodogConfig = require('@repodog/prettier-config');
+const config = require('@dollygrip/prettier-config');
 
 module.exports = {
-  ...repodogConfig,
+  ...config,
 };

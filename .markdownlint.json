@@ -1,3 +1,5 @@
 {
-  "extends": "node_modules/@repodog/markdownlint-config/index.json"
+  "line-length": {
+    "line_length": 120
+  }
 }

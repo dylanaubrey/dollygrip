@@ -1,0 +1,25 @@
+{
+  "name": "@dollygrip/postcss-config",
+  "version": "0.0.1",
+  "description": "The Dollygrip PostCSS config module.",
+  "homepage": "https://github.com/dylanaubrey/dollygrip",
+  "bugs": {
+    "url": "https://github.com/dylanaubrey/dollygrip/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dylanaubrey/dollygrip/configs/postcss-config"
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Dylan Aubrey",
+  "dependencies": {
+    "cssnano": "4.1.10",
+    "postcss-cli": "7.1.0",
+    "postcss-custom-properties": "9.1.1",
+    "postcss-flexbugs-fixes": "4.2.0",
+    "postcss-nested": "4.2.1",
+    "postcss-normalize": "8.0.1",
+    "postcss-preset-env": "6.7.0"
+  }
+}

@@ -1,0 +1,14 @@
+# import Connection from "interfaces.graphql"
+# import PageInfo from "page-info.graphql"
+# import Media from "unions.graphql"
+
+type MediaEdge {
+  cursor: String!
+  # node: Media
+}
+
+type MediaConnection implements Connection {
+  edges: [MediaEdge]
+  pageInfo: PageInfo!
+  totalResults: Int!
+}

@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ['@repodog/commitlint-config'],
+  extends: ['@commitlint/config-conventional'],
 };

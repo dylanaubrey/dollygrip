@@ -1,0 +1,15 @@
+schema: ./src/schema.graphql
+generates:
+  ./src/types.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-compatibility
+    config:
+      enumsAsTypes: true
+      futureProofEnums: true
+      futureProofUnions: true
+      scalars:
+        Date: Date
+        ID: number
+        JSON: "{ [key: string]: any }"
