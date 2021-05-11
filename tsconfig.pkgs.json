@@ -3,6 +3,9 @@
   "files": [],
   "references": [
     {
+      "path": "./apps/dollygrip/client"
+    },
+    {
       "path": "./graphql/resolvers"
     },
     {

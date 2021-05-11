@@ -23,6 +23,7 @@ module.exports = {
         ...configs.recommended.rules,
         ...configs['recommended-requiring-type-checking'].rules,
         '@typescript-eslint/dot-notation': 2,
+        '@typescript-eslint/explicit-module-boundary-types': 0,
         '@typescript-eslint/naming-convention': [
           2,
           {
@@ -90,6 +91,7 @@ module.exports = {
         'no-return-await': 0,
         'no-shadow': 0,
         'no-throw-literal': 0,
+        'no-undef': 0,
         'no-unused-expressions': 0,
         'no-unused-vars': 0,
         'no-use-before-define': 0,
@@ -156,6 +158,7 @@ module.exports = {
         ignoreUrls: true,
       },
     ],
+    'no-debugger': 1,
     'no-param-reassign': 0,
     'no-underscore-dangle': 0,
     'no-unused-vars': [2, noUnusedVars],
@@ -216,6 +219,7 @@ module.exports = {
         return: 'parens-new-line',
       },
     ],
+    'react/react-in-jsx-scope': 0,
     'react/sort-comp': 0,
     'react-hooks/exhaustive-deps': 2,
     'react-hooks/rules-of-hooks': 2,

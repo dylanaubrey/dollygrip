@@ -5,8 +5,12 @@
     }
   },
   "hoist": true,
+  "nohoist": [
+    "react-scripts"
+  ],
   "npmClient": "npm",
   "packages": [
+    "apps/**",
     "configs/*",
     "graphql/*"
   ],

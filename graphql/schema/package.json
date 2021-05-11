@@ -19,6 +19,7 @@
     "access": "public"
   },
   "scripts": {
+    "build": "del-cli ./dist && npm run compile",
     "compile": "concurrently npm:compile:*",
     "compile-watch": "concurrently npm:compile-watch:*",
     "compile-watch:main": "npm run compile:main -- --watch",
@@ -45,7 +46,7 @@
     "@dollygrip/rollup-config": "0.0.1",
     "concurrently": "5.1.0",
     "del-cli": "3.0.0",
-    "jest": "26.0.1",
+    "jest": "26.6.0",
     "rollup": "2.47.0"
   }
 }
