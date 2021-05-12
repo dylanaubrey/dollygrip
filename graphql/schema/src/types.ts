@@ -9,9 +9,11 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** Scalar types */
   Date: Date;
 };
 
+/** Object types */
 export type AlternativeName = {
   __typename?: 'AlternativeName';
   iso31661?: Maybe<Scalars['String']>;
@@ -30,72 +32,6 @@ export type Cast = Node & {
   name: Scalars['String'];
   order: Scalars['Int'];
   profilePath?: Maybe<Scalars['String']>;
-};
-
-export type CastCombinedCredit = Node & {
-  __typename?: 'CastCombinedCredit';
-  adult: Scalars['Boolean'];
-  backdropPath?: Maybe<Scalars['String']>;
-  character: Scalars['String'];
-  creditId: Scalars['ID'];
-  episodeCount: Scalars['Int'];
-  firstAirDate: Scalars['Date'];
-  genreIds: Array<Maybe<Scalars['ID']>>;
-  id: Scalars['ID'];
-  mediaType: ScreenType;
-  name: Scalars['String'];
-  originCountry: Array<Maybe<Scalars['String']>>;
-  originalLanguage: Scalars['String'];
-  originalName: Scalars['String'];
-  originalTitle: Scalars['String'];
-  overview: Scalars['String'];
-  popularity: Scalars['Int'];
-  posterPath?: Maybe<Scalars['String']>;
-  releaseDate: Scalars['Date'];
-  title: Scalars['String'];
-  video: Scalars['Boolean'];
-  voteAverage: Scalars['Float'];
-  voteCount: Scalars['Int'];
-};
-
-export type CastMovieCredit = Node & {
-  __typename?: 'CastMovieCredit';
-  adult: Scalars['Boolean'];
-  backdropPath?: Maybe<Scalars['String']>;
-  character: Scalars['String'];
-  creditId: Scalars['ID'];
-  genreIds: Array<Maybe<Scalars['ID']>>;
-  id: Scalars['ID'];
-  originalLanguage: Scalars['String'];
-  originalTitle: Scalars['String'];
-  overview: Scalars['String'];
-  popularity: Scalars['Int'];
-  posterPath?: Maybe<Scalars['String']>;
-  releaseDate: Scalars['Date'];
-  title: Scalars['String'];
-  video: Scalars['Boolean'];
-  voteAverage: Scalars['Float'];
-  voteCount: Scalars['Int'];
-};
-
-export type CastTvCredit = Node & {
-  __typename?: 'CastTVCredit';
-  backdropPath?: Maybe<Scalars['String']>;
-  character: Scalars['String'];
-  creditId: Scalars['ID'];
-  episodeCount: Scalars['Int'];
-  firstAirDate: Scalars['Date'];
-  genreIds: Array<Maybe<Scalars['ID']>>;
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  originCountry: Array<Maybe<Scalars['String']>>;
-  originalLanguage: Scalars['String'];
-  originalName: Scalars['String'];
-  overview: Scalars['String'];
-  popularity: Scalars['Int'];
-  posterPath?: Maybe<Scalars['String']>;
-  voteAverage: Scalars['Float'];
-  voteCount: Scalars['Int'];
 };
 
 export type Certification = {
@@ -138,12 +74,6 @@ export type Collection = Node & {
   translations?: Maybe<Array<Maybe<Translation>>>;
 };
 
-export type CombinedCredits = {
-  __typename?: 'CombinedCredits';
-  cast?: Maybe<Array<Maybe<CastCombinedCredit>>>;
-  crew?: Maybe<Array<Maybe<CrewCombinedCredit>>>;
-};
-
 export type Company = Node & {
   __typename?: 'Company';
   alternativeNames?: Maybe<Array<Maybe<AlternativeName>>>;
@@ -162,11 +92,28 @@ export type Configuration = {
   __typename?: 'Configuration';
   changeKeys?: Maybe<Array<Maybe<Scalars['String']>>>;
   countries?: Maybe<Array<Maybe<Country>>>;
-  images: ImagesConfiguration;
-  jobs?: Maybe<Array<Maybe<JobsConfiguration>>>;
+  images: ConfigurationImages;
+  jobs?: Maybe<Array<Maybe<ConfigurationJobs>>>;
   languages?: Maybe<Array<Maybe<Language>>>;
   primaryTranslations?: Maybe<Array<Maybe<Scalars['String']>>>;
   timezones?: Maybe<Array<Maybe<Timezone>>>;
+};
+
+export type ConfigurationImages = {
+  __typename?: 'ConfigurationImages';
+  baseUrl: Scalars['String'];
+  secureBaseUrl: Scalars['String'];
+  backdropSizes: Array<Maybe<Scalars['String']>>;
+  logoSizes: Array<Maybe<Scalars['String']>>;
+  posterSizes: Array<Maybe<Scalars['String']>>;
+  profileSizes: Array<Maybe<Scalars['String']>>;
+  stillSizes: Array<Maybe<Scalars['String']>>;
+};
+
+export type ConfigurationJobs = {
+  __typename?: 'ConfigurationJobs';
+  department: Scalars['String'];
+  jobs: Array<Maybe<Scalars['String']>>;
 };
 
 export type Connection = {
@@ -199,8 +146,162 @@ export type Credit = Node & {
   department: Scalars['String'];
   id: Scalars['ID'];
   job: Scalars['String'];
+  media: Screen;
   mediaType: ScreenType;
   person: Person;
+};
+
+export type CreditCombinedCast = Node & {
+  __typename?: 'CreditCombinedCast';
+  adult: Scalars['Boolean'];
+  backdropPath?: Maybe<Scalars['String']>;
+  character: Scalars['String'];
+  creditId: Scalars['ID'];
+  episodeCount: Scalars['Int'];
+  firstAirDate: Scalars['Date'];
+  genreIds: Array<Maybe<Scalars['ID']>>;
+  id: Scalars['ID'];
+  mediaType: ScreenType;
+  name: Scalars['String'];
+  originCountry: Array<Maybe<Scalars['String']>>;
+  originalLanguage: Scalars['String'];
+  originalName: Scalars['String'];
+  originalTitle: Scalars['String'];
+  overview: Scalars['String'];
+  popularity: Scalars['Int'];
+  posterPath?: Maybe<Scalars['String']>;
+  releaseDate: Scalars['Date'];
+  title: Scalars['String'];
+  video: Scalars['Boolean'];
+  voteAverage: Scalars['Float'];
+  voteCount: Scalars['Int'];
+};
+
+export type CreditCombinedCrew = Node & {
+  __typename?: 'CreditCombinedCrew';
+  adult: Scalars['Boolean'];
+  backdropPath?: Maybe<Scalars['String']>;
+  creditId: Scalars['ID'];
+  department: Scalars['String'];
+  episodeCount: Scalars['Int'];
+  firstAirDate: Scalars['Date'];
+  genreIds: Array<Maybe<Scalars['ID']>>;
+  id: Scalars['ID'];
+  job: Scalars['String'];
+  mediaType: ScreenType;
+  name: Scalars['String'];
+  originCountry: Array<Maybe<Scalars['String']>>;
+  originalLanguage: Scalars['String'];
+  originalName: Scalars['String'];
+  originalTitle: Scalars['String'];
+  overview: Scalars['String'];
+  popularity: Scalars['Int'];
+  posterPath?: Maybe<Scalars['String']>;
+  releaseDate: Scalars['Date'];
+  title: Scalars['String'];
+  video: Scalars['Boolean'];
+  voteAverage: Scalars['Float'];
+  voteCount: Scalars['Int'];
+};
+
+export type CreditMovieCast = Node & {
+  __typename?: 'CreditMovieCast';
+  adult: Scalars['Boolean'];
+  backdropPath?: Maybe<Scalars['String']>;
+  character: Scalars['String'];
+  creditId: Scalars['ID'];
+  genreIds: Array<Maybe<Scalars['ID']>>;
+  id: Scalars['ID'];
+  originalLanguage: Scalars['String'];
+  originalTitle: Scalars['String'];
+  overview: Scalars['String'];
+  popularity: Scalars['Int'];
+  posterPath?: Maybe<Scalars['String']>;
+  releaseDate: Scalars['Date'];
+  title: Scalars['String'];
+  video: Scalars['Boolean'];
+  voteAverage: Scalars['Float'];
+  voteCount: Scalars['Int'];
+};
+
+export type CreditMovieCrew = Node & {
+  __typename?: 'CreditMovieCrew';
+  adult: Scalars['Boolean'];
+  backdropPath?: Maybe<Scalars['String']>;
+  creditId: Scalars['ID'];
+  department: Scalars['String'];
+  genreIds: Array<Maybe<Scalars['ID']>>;
+  id: Scalars['ID'];
+  job: Scalars['String'];
+  originalLanguage: Scalars['String'];
+  originalTitle: Scalars['String'];
+  overview: Scalars['String'];
+  popularity: Scalars['Int'];
+  posterPath?: Maybe<Scalars['String']>;
+  releaseDate: Scalars['Date'];
+  title: Scalars['String'];
+  video: Scalars['Boolean'];
+  voteAverage: Scalars['Float'];
+  voteCount: Scalars['Int'];
+};
+
+export type CreditTvCast = Node & {
+  __typename?: 'CreditTVCast';
+  backdropPath?: Maybe<Scalars['String']>;
+  character: Scalars['String'];
+  creditId: Scalars['ID'];
+  episodeCount: Scalars['Int'];
+  firstAirDate: Scalars['Date'];
+  genreIds: Array<Maybe<Scalars['ID']>>;
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  originCountry: Array<Maybe<Scalars['String']>>;
+  originalLanguage: Scalars['String'];
+  originalName: Scalars['String'];
+  overview: Scalars['String'];
+  popularity: Scalars['Int'];
+  posterPath?: Maybe<Scalars['String']>;
+  voteAverage: Scalars['Float'];
+  voteCount: Scalars['Int'];
+};
+
+export type CreditTvCrew = Node & {
+  __typename?: 'CreditTVCrew';
+  backdropPath?: Maybe<Scalars['String']>;
+  creditId: Scalars['ID'];
+  department: Scalars['String'];
+  episodeCount: Scalars['Int'];
+  firstAirDate: Scalars['Date'];
+  genreIds: Array<Maybe<Scalars['ID']>>;
+  id: Scalars['ID'];
+  job: Scalars['String'];
+  name: Scalars['String'];
+  originCountry: Array<Maybe<Scalars['String']>>;
+  originalLanguage: Scalars['String'];
+  originalName: Scalars['String'];
+  overview: Scalars['String'];
+  popularity: Scalars['Int'];
+  posterPath?: Maybe<Scalars['String']>;
+  voteAverage: Scalars['Float'];
+  voteCount: Scalars['Int'];
+};
+
+export type CreditsCombined = {
+  __typename?: 'CreditsCombined';
+  cast?: Maybe<Array<Maybe<CreditCombinedCast>>>;
+  crew?: Maybe<Array<Maybe<CreditCombinedCrew>>>;
+};
+
+export type CreditsMovie = {
+  __typename?: 'CreditsMovie';
+  cast?: Maybe<Array<Maybe<CreditMovieCast>>>;
+  crew?: Maybe<Array<Maybe<CreditMovieCrew>>>;
+};
+
+export type CreditsTv = {
+  __typename?: 'CreditsTV';
+  cast?: Maybe<Array<Maybe<CreditTvCast>>>;
+  crew?: Maybe<Array<Maybe<CreditTvCrew>>>;
 };
 
 export type Crew = Node & {
@@ -214,75 +315,7 @@ export type Crew = Node & {
   profilePath?: Maybe<Scalars['String']>;
 };
 
-export type CrewCombinedCredit = Node & {
-  __typename?: 'CrewCombinedCredit';
-  adult: Scalars['Boolean'];
-  backdropPath?: Maybe<Scalars['String']>;
-  creditId: Scalars['ID'];
-  department: Scalars['String'];
-  episodeCount: Scalars['Int'];
-  firstAirDate: Scalars['Date'];
-  genreIds: Array<Maybe<Scalars['ID']>>;
-  id: Scalars['ID'];
-  job: Scalars['String'];
-  mediaType: ScreenType;
-  name: Scalars['String'];
-  originCountry: Array<Maybe<Scalars['String']>>;
-  originalLanguage: Scalars['String'];
-  originalName: Scalars['String'];
-  originalTitle: Scalars['String'];
-  overview: Scalars['String'];
-  popularity: Scalars['Int'];
-  posterPath?: Maybe<Scalars['String']>;
-  releaseDate: Scalars['Date'];
-  title: Scalars['String'];
-  video: Scalars['Boolean'];
-  voteAverage: Scalars['Float'];
-  voteCount: Scalars['Int'];
-};
-
-export type CrewMovieCredit = Node & {
-  __typename?: 'CrewMovieCredit';
-  adult: Scalars['Boolean'];
-  backdropPath?: Maybe<Scalars['String']>;
-  creditId: Scalars['ID'];
-  department: Scalars['String'];
-  genreIds: Array<Maybe<Scalars['ID']>>;
-  id: Scalars['ID'];
-  job: Scalars['String'];
-  originalLanguage: Scalars['String'];
-  originalTitle: Scalars['String'];
-  overview: Scalars['String'];
-  popularity: Scalars['Int'];
-  posterPath?: Maybe<Scalars['String']>;
-  releaseDate: Scalars['Date'];
-  title: Scalars['String'];
-  video: Scalars['Boolean'];
-  voteAverage: Scalars['Float'];
-  voteCount: Scalars['Int'];
-};
-
-export type CrewTvCredit = Node & {
-  __typename?: 'CrewTVCredit';
-  backdropPath?: Maybe<Scalars['String']>;
-  creditId: Scalars['ID'];
-  department: Scalars['String'];
-  episodeCount: Scalars['Int'];
-  firstAirDate: Scalars['Date'];
-  genreIds: Array<Maybe<Scalars['ID']>>;
-  id: Scalars['ID'];
-  job: Scalars['String'];
-  name: Scalars['String'];
-  originCountry: Array<Maybe<Scalars['String']>>;
-  originalLanguage: Scalars['String'];
-  originalName: Scalars['String'];
-  overview: Scalars['String'];
-  popularity: Scalars['Int'];
-  posterPath?: Maybe<Scalars['String']>;
-  voteAverage: Scalars['Float'];
-  voteCount: Scalars['Int'];
-};
-
+/** Input types */
 export type DiscoverMovieConnectionInput = {
   after?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
@@ -384,6 +417,7 @@ export type ExternalIds = {
   twitterId?: Maybe<Scalars['String']>;
 };
 
+/** Enum types */
 export type ExternalSource =
   | 'IMDB_ID'
   | 'FREEBASE_MID'
@@ -420,23 +454,6 @@ export type Image = {
   width: Scalars['Int'];
 };
 
-export type ImagesConfiguration = {
-  __typename?: 'ImagesConfiguration';
-  baseUrl: Scalars['String'];
-  secureBaseUrl: Scalars['String'];
-  backdropSizes: Array<Maybe<Scalars['String']>>;
-  logoSizes: Array<Maybe<Scalars['String']>>;
-  posterSizes: Array<Maybe<Scalars['String']>>;
-  profileSizes: Array<Maybe<Scalars['String']>>;
-  stillSizes: Array<Maybe<Scalars['String']>>;
-};
-
-export type JobsConfiguration = {
-  __typename?: 'JobsConfiguration';
-  department: Scalars['String'];
-  jobs: Array<Maybe<Scalars['String']>>;
-};
-
 export type Keyword = {
   __typename?: 'Keyword';
   id: Scalars['ID'];
@@ -450,6 +467,9 @@ export type Language = {
   name?: Maybe<Scalars['String']>;
 };
 
+/** Union types */
+export type Media = Movie | Tv | Person | { __typename?: '%other' };
+
 export type MediaConnection = Connection & {
   __typename?: 'MediaConnection';
   edges?: Maybe<Array<Maybe<MediaEdge>>>;
@@ -460,6 +480,7 @@ export type MediaConnection = Connection & {
 export type MediaEdge = {
   __typename?: 'MediaEdge';
   cursor: Scalars['String'];
+  node?: Maybe<Media>;
 };
 
 export type MediaType = 'MOVIE' | 'TV' | 'PERSON' | '%future added value';
@@ -526,18 +547,13 @@ export type MovieConnection = Connection & {
   totalResults: Scalars['Int'];
 };
 
-export type MovieCredits = {
-  __typename?: 'MovieCredits';
-  cast?: Maybe<Array<Maybe<CastMovieCredit>>>;
-  crew?: Maybe<Array<Maybe<CrewMovieCredit>>>;
-};
-
 export type MovieEdge = {
   __typename?: 'MovieEdge';
   cursor: Scalars['String'];
   node?: Maybe<Movie>;
 };
 
+/** Interface types */
 export type Node = {
   id: Scalars['ID'];
 };
@@ -556,22 +572,23 @@ export type Person = Node & {
   alsoKnownAs: Array<Maybe<Scalars['String']>>;
   biography: Scalars['String'];
   birthday?: Maybe<Scalars['String']>;
-  combinedCredits?: Maybe<CombinedCredits>;
+  combinedCredits?: Maybe<CreditsCombined>;
   deathday?: Maybe<Scalars['String']>;
   externalIds?: Maybe<ExternalIds>;
   gender: Scalars['Int'];
   homepage?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   imdbId: Scalars['String'];
+  knownFor?: Maybe<Screen>;
   mediaType?: Maybe<MediaType>;
-  movieCredits?: Maybe<MovieCredits>;
+  movieCredits?: Maybe<CreditsMovie>;
   name: Scalars['String'];
   placeOfBirth?: Maybe<Scalars['String']>;
   popularity: Scalars['Float'];
   profilePath?: Maybe<Scalars['String']>;
   profiles?: Maybe<Array<Maybe<Image>>>;
   translations?: Maybe<Array<Maybe<Translation>>>;
-  tvCredits?: Maybe<TvCredits>;
+  tvCredits?: Maybe<CreditsTv>;
 };
 
 export type PopularConnectionInput = {
@@ -712,6 +729,8 @@ export type ReviewEdge = {
   node?: Maybe<Review>;
 };
 
+export type Screen = Movie | Tv | { __typename?: '%other' };
+
 export type ScreenType = 'MOVIE' | 'TV' | '%future added value';
 
 export type SearchConnection = Connection & {
@@ -737,7 +756,10 @@ export type SearchConnectionInput = {
 export type SearchEdge = {
   __typename?: 'SearchEdge';
   cursor: Scalars['String'];
+  node?: Maybe<SearchEntity>;
 };
+
+export type SearchEntity = Movie | Tv | Person | Company | Collection | Keyword | { __typename?: '%other' };
 
 export type SearchType =
   | 'COLLECTION'
@@ -841,12 +863,6 @@ export type TvConnection = Connection & {
   edges?: Maybe<Array<Maybe<TvEdge>>>;
   pageInfo: PageInfo;
   totalResults: Scalars['Int'];
-};
-
-export type TvCredits = {
-  __typename?: 'TVCredits';
-  cast?: Maybe<Array<Maybe<CastTvCredit>>>;
-  crew?: Maybe<Array<Maybe<CrewTvCredit>>>;
 };
 
 export type TvEdge = {

@@ -1,9 +1,0 @@
-# import Movie from "movie.graphql"
-# import Person from "person.graphql"
-# import TV from "tv.graphql"
-
-type FindResults {
-  movies: [Movie]
-  people: [Person]
-  tv: [TV]
-}

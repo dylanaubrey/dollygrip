@@ -1,5 +1,0 @@
-type Language {
-  englishName: String
-  iso6391: String!
-  name: String
-}

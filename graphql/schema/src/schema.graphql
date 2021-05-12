@@ -1,4 +1,813 @@
-# import Query from "query.graphql"
+"""
+Scalar types
+"""
+
+scalar Date
+
+"""
+Enum types
+"""
+
+enum ExternalSource {
+  IMDB_ID
+  FREEBASE_MID
+  FREEBASE_ID
+  TVDB_ID
+  TVRAGE_ID
+  FACEBOOK_ID
+  TWITTER_ID
+  INSTAGRAM_ID
+}
+
+enum MediaType {
+  MOVIE
+  TV
+  PERSON
+}
+
+enum ScreenType {
+  MOVIE
+  TV
+}
+
+enum SearchType {
+  COLLECTION
+  COMPANY
+  KEYWORD
+  MOVIE
+  MULTI
+  TV
+  PERSON
+}
+
+enum SortBy {
+  POPULARITY_ASC
+  POPULARITY_DESC
+  RELEASE_DATE_ASC
+  RELEASE_DATE_DESC
+  REVENUE_ASC
+  REVENUE_DESC
+  PRIMARY_RELEASE_DATE_ASC
+  PRIMARY_RELEASE_DATE_DESC
+  ORIGINAL_TITLE_ASC
+  ORIGINAL_TITLE_DESC
+  VOTE_AVERAGE_ASC
+  VOTE_AVERAGE_DESC
+  VOTE_COUNT_ASC
+  VOTE_COUNT_DESC
+}
+
+enum TrendingMediaType {
+  ALL
+  MOVIE
+  TV
+  PERSON
+}
+
+enum TrendingTimeWindow {
+  DAY
+  WEEK
+}
+
+enum VideoType {
+  TRAILER
+  TEASER
+  CLIP
+  FEATURETTE
+  BEHIND_THE_SCENES
+  BLOOPERS
+  OPTIONAL
+}
+
+input ConnectionInput {
+  after: String
+  before: String
+  first: Int
+  last: Int
+}
+
+"""
+Input types
+"""
+
+input DiscoverMovieConnectionInput {
+  after: String
+  before: String
+  certification: String
+  certificationCountry: String
+  certificationGreaterThan: String
+  certificationLessThan: String
+  first: Int
+  includeAdult: Boolean
+  includeVideo: Boolean
+  last: Int
+  primaryReleaseDateGeaterThan: Date
+  primaryReleaseDateLessThan: Date
+  primaryReleaseYear: Int
+  releaseDateGeaterThan: Date
+  releaseDateLessThan: Date
+  sortBy: SortBy
+  voteAverageGreaterThan: Int
+  voteAverageLessThan: Int
+  voteCountGreaterThan: Int
+  voteCountLessThan: Int
+  withCast: String
+  withCompanies: String
+  withCrew: String
+  withGenres: String
+  withKeywords: String
+  withOriginalLanguage: String
+  withPeople: String
+  withReleaseType: Int
+  withRuntimeLessThan: Int
+  withRuntimeGreaterThan: Int
+  withoutGenres: String
+  withoutKeywords: String
+  year: Int
+}
+
+input DiscoverTVConnectionInput {
+  after: String
+  airDateGreaterThan: Date
+  airDateLessThan: Date
+  before: String
+  first: Int
+  firstAirDateGreaterThan: Date
+  firstAirDateLessThan: Date
+  firstAirDateYear: Int
+  includeNullFirstAirDates: Boolean
+  last: Int
+  screenedTheatrically: Boolean
+  sortBy: SortBy
+  timezone: String
+  voteAverageGreaterThan: Int
+  voteCountGreaterThan: Int
+  withCompanies: String
+  withGenres: String
+  withKeywords: String
+  withNetworks: String
+  withOriginalLanguage: String
+  withRuntimeGreaterThan: Int
+  withRuntimeLessThan: Int
+  withoutGenres: String
+  withoutKeywords: String
+}
+
+input PopularConnectionInput {
+  after: String
+  before: String
+  first: Int
+  last: Int
+  mediaType: MediaType
+}
+
+input SearchConnectionInput {
+  after: String
+  before: String
+  first: Int
+  firstAirDateYear: Int
+  includeAdult: Boolean
+  last: Int
+  primaryReleaseYear: Int
+  query: String!
+  searchType: SearchType = MULTI
+  year: Int
+}
+
+input TrendingConnectionInput {
+  after: String
+  before: String
+  first: Int
+  last: Int
+  mediaType: TrendingMediaType!
+  timeWindow: TrendingTimeWindow!
+}
+
+"""
+Interface types
+"""
+
+interface Node {
+  id: ID!
+}
+
+interface Connection {
+  pageInfo: PageInfo!
+}
+
+"""
+Union types
+"""
+
+union Media = Movie | TV | Person
+
+union Screen = Movie | TV
+
+union SearchEntity = Movie | TV | Person | Company | Collection | Keyword
+
+"""
+Object types
+"""
+
+type AlternativeName {
+  iso31661: String
+  name: String
+  title: String
+  type: String!
+}
+
+type Cast implements Node {
+  castId: ID!
+  character: String!
+  creditId: ID!
+  gender: Int
+  id: ID!
+  name: String!
+  order: Int!
+  profilePath: String
+}
+
+type Certification {
+  certification: String!
+  meaning: String!
+  order: Int!
+}
+
+type Certifications {
+  AU: Certification
+  BR: Certification
+  CA: Certification
+  CA_QC: Certification
+  DE: Certification
+  FR: Certification
+  GB: Certification
+  IN: Certification
+  KR: Certification
+  NL: Certification
+  NZ: Certification
+  PT: Certification
+  RU: Certification
+  SK: Certification
+  TH: Certification
+  US: Certification
+}
+
+type Collection implements Node {
+  backdropPath: String
+  backdrops: [Image]
+  id: ID!
+  name: String!
+  overview: String!
+  parts: [Movie]!
+  posterPath: String
+  posters: [Image]
+  translations: [Translation]
+}
+
+type Company implements Node {
+  alternativeNames: [AlternativeName]
+  description: String!
+  headquarters: String!
+  homepage: String!
+  id: ID!,
+  logoPath: String!
+  logos: [Image]
+  name: String!
+  originCountry: String
+  parentCompany: String
+}
+
+type ConfigurationImages {
+  baseUrl: String!
+  secureBaseUrl: String!
+  backdropSizes: [String]!
+  logoSizes: [String]!
+  posterSizes: [String]!
+  profileSizes: [String]!
+  stillSizes: [String]!
+}
+
+type ConfigurationJobs {
+  department: String!
+  jobs: [String]!
+}
+
+type Configuration {
+  changeKeys: [String]
+  countries: [Country]
+  images: ConfigurationImages!
+  jobs: [ConfigurationJobs]
+  languages: [Language]
+  primaryTranslations: [String]
+  timezones: [Timezone]
+}
+
+type ContentRating {
+  iso31661: String!
+  rating: String!
+}
+
+type Country {
+  englishName: String
+  iso31661: String!
+  name: String
+}
+
+type Credit implements Node {
+  creditType: String!
+  department: String!
+  id: ID!
+  job: String!
+  media: Screen!
+  mediaType: ScreenType!
+  person: Person!
+}
+
+type CreditTVCast implements Node {
+  backdropPath: String
+  character: String!
+  creditId: ID!
+  episodeCount: Int!
+  firstAirDate: Date!
+  genreIds: [ID]!
+  id: ID!
+  name: String!
+  originCountry: [String]!
+  originalLanguage: String!
+  originalName: String!
+  overview: String!
+  popularity: Int!
+  posterPath: String
+  voteAverage: Float!
+  voteCount: Int!
+}
+
+type CreditTVCrew implements Node {
+  backdropPath: String
+  creditId: ID!
+  department: String!
+  episodeCount: Int!
+  firstAirDate: Date!
+  genreIds: [ID]!
+  id: ID!
+  job: String!
+  name: String!
+  originCountry: [String]!
+  originalLanguage: String!
+  originalName: String!
+  overview: String!
+  popularity: Int!
+  posterPath: String
+  voteAverage: Float!
+  voteCount: Int!
+}
+
+type CreditsTV {
+  cast: [CreditTVCast]
+  crew: [CreditTVCrew]
+}
+
+type CreditMovieCast implements Node {
+  adult: Boolean!
+  backdropPath: String
+  character: String!
+  creditId: ID!
+  genreIds: [ID]!
+  id: ID!
+  originalLanguage: String!
+  originalTitle: String!
+  overview: String!
+  popularity: Int!
+  posterPath: String
+  releaseDate: Date!
+  title: String!
+  video: Boolean!
+  voteAverage: Float!
+  voteCount: Int!
+}
+
+type CreditMovieCrew implements Node {
+  adult: Boolean!
+  backdropPath: String
+  creditId: ID!
+  department: String!
+  genreIds: [ID]!
+  id: ID!
+  job: String!
+  originalLanguage: String!
+  originalTitle: String!
+  overview: String!
+  popularity: Int!
+  posterPath: String
+  releaseDate: Date!
+  title: String!
+  video: Boolean!
+  voteAverage: Float!
+  voteCount: Int!
+}
+
+type CreditsMovie {
+  cast: [CreditMovieCast]
+  crew: [CreditMovieCrew]
+}
+
+type CreditCombinedCast implements Node {
+  adult: Boolean!
+  backdropPath: String
+  character: String!
+  creditId: ID!
+  episodeCount: Int!
+  firstAirDate: Date!
+  genreIds: [ID]!
+  id: ID!
+  mediaType: ScreenType!
+  name: String!
+  originCountry: [String]!
+  originalLanguage: String!
+  originalName: String!
+  originalTitle: String!
+  overview: String!
+  popularity: Int!
+  posterPath: String
+  releaseDate: Date!
+  title: String!
+  video: Boolean!
+  voteAverage: Float!
+  voteCount: Int!
+}
+
+type CreditCombinedCrew implements Node {
+  adult: Boolean!
+  backdropPath: String
+  creditId: ID!
+  department: String!
+  episodeCount: Int!
+  firstAirDate: Date!
+  genreIds: [ID]!
+  id: ID!
+  job: String!
+  mediaType: ScreenType!
+  name: String!
+  originCountry: [String]!
+  originalLanguage: String!
+  originalName: String!
+  originalTitle: String!
+  overview: String!
+  popularity: Int!
+  posterPath: String
+  releaseDate: Date!
+  title: String!
+  video: Boolean!
+  voteAverage: Float!
+  voteCount: Int!
+}
+
+type CreditsCombined {
+  cast: [CreditCombinedCast]
+  crew: [CreditCombinedCrew]
+}
+
+type Crew implements Node {
+  creditId: ID!
+  department: String!
+  gender: Int
+  id: ID!
+  job: String!
+  name: String!
+  profilePath: String
+}
+
+type EpisodeGroup implements Node {
+  description: String!
+  episodeCount: Int!
+  groupCount: Int!
+  id: ID!
+  name: String!
+  network: Company!
+  type: String!
+}
+
+type Episode implements Node {
+  airDate: Date!
+  episodeNumber: Int!
+  id: ID!
+  name: String!
+  overview: String!
+  productionCode: String!
+  seasonNumber: Int!
+  showId: ID!
+  stillPath: String!
+  voteAverage: Float!
+  voteCount: Int!
+}
+
+type ExternalIds {
+  imdbId: String
+  facebookId: String
+  freebaseId: String
+  freebaseMid: String
+  instagramId: String
+  tvdbId: String
+  tvrageId: String
+  twitterId: String
+}
+
+type FindResults {
+  movies: [Movie]
+  people: [Person]
+  tv: [TV]
+}
+
+type Genre implements Node {
+  id: ID!
+  name: String!
+}
+
+type Image {
+  aspectRadio: Float!
+  filePath: String!
+  fileType: String
+  height: Int!
+  iso6391: Float!
+  voteAverage: Int!
+  voteCount: Int!
+  width: Int!
+}
+
+type Keyword {
+  id: ID!
+  name: String!
+}
+
+type Language {
+  englishName: String
+  iso6391: String!
+  name: String
+}
+
+type MediaEdge {
+  cursor: String!
+  node: Media
+}
+
+type MediaConnection implements Connection {
+  edges: [MediaEdge]
+  pageInfo: PageInfo!
+  totalResults: Int!
+}
+
+type MovieEdge {
+  cursor: String!
+  node: Movie
+}
+
+type MovieConnection implements Connection {
+  edges: [MovieEdge]
+  pageInfo: PageInfo!
+  totalResults: Int!
+}
+
+type Movie implements Node {
+  adult: Boolean!
+  alternativeTitles: [AlternativeName]
+  backdropPath: String
+  backdrops: [Image]
+  belongsToCollection: Collection
+  budget: Int!
+  cast: [Cast]
+  crew: [Crew]
+  externalIds: ExternalIds
+  genres: [Genre]!
+  homepage: String
+  id: ID!
+  imdbId: String
+  keywords: [Keyword]
+  mediaType: MediaType
+  originalLanguage: String!
+  originalTitle: String!
+  overview: String
+  popularity: Float!
+  posterPath: String
+  posters: [Image]
+  productionCompanies: [Company]!
+  productionCountries: [Country]!
+  recommendations(args: ConnectionInput): MovieConnection
+  releaseDate: Date!
+  releaseDates: [ReleaseDates]
+  revenue: Int!
+  reviews(args: ConnectionInput): ReviewConnection
+  runtime: Int
+  similarMovies(args: ConnectionInput): MovieConnection
+  spokenLanguages: [Language]!
+  status: String!
+  tagline: String
+  title: String!
+  translations: [Translation]
+  video: Boolean!
+  videos: [Video]
+  voteAverage: Float!
+  voteCount: Int!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Person implements Node {
+  adult: Boolean!
+  alsoKnownAs: [String]!
+  biography: String!
+  birthday: String
+  combinedCredits: CreditsCombined
+  deathday: String
+  externalIds: ExternalIds
+  gender: Int!
+  homepage: String
+  id: ID!
+  imdbId: String!
+  knownFor: Screen
+  mediaType: MediaType
+  movieCredits: CreditsMovie
+  name: String!
+  placeOfBirth: String
+  popularity: Float!
+  profilePath: String
+  profiles: [Image]
+  translations: [Translation]
+  tvCredits: CreditsTV
+}
+
+type Query {
+  certifications(screenType: ScreenType!): Certifications
+  collection(id: ID!): Collection
+  company(id: ID!): Company
+  configuration: Configuration
+  credit(id: ID!): Credit
+  discoverMovies(input: DiscoverMovieConnectionInput!): MovieConnection
+  discoverTV(input: DiscoverTVConnectionInput!): TVConnection
+  find(source: ExternalSource!, id: String!): FindResults
+  genres(screenType: ScreenType!): [Genre]
+  keyword(id: ID!): Keyword
+  movie(id: ID!): Movie
+  network(id: ID!): Company
+  person(id: ID!): Person
+  popular(input: PopularConnectionInput): MediaConnection
+  review(id: ID!): Review
+  search(input: SearchConnectionInput): SearchConnection
+  trending(input: TrendingConnectionInput!): MediaConnection
+  tv(id: ID!): TV
+}
+
+type ReleaseDate {
+  certification: String!
+  iso6391: String!
+  releaseDate: Date!
+  type: Int!
+  note: String!
+}
+
+type ReleaseDates {
+  iso31661: String!
+  releaseDates: [ReleaseDate]!
+}
+
+type ReviewEdge {
+  cursor: String!
+  node: Review
+}
+
+type ReviewConnection implements Connection {
+  edges: [ReviewEdge]
+  pageInfo: PageInfo!
+  totalResults: Int!
+}
+
+type Review implements Node {
+  author: String!
+  content: String!
+  id: ID!
+  iso6391: String
+  mediaTitle: String
+  mediaType: ScreenType
+  url: String!
+}
+
+type SearchEdge {
+  cursor: String!
+  node: SearchEntity
+}
+
+type SearchConnection implements Connection {
+  edges: [SearchEdge]
+  pageInfo: PageInfo!
+  totalResults: Int!
+}
+
+type Season implements Node {
+  airDate: Date!
+  episodeCount: Int!
+  id: ID!
+  name: String!
+  overview: String!
+  posterPath: String
+  seasonNumber: Int!
+}
+
+type Timezone {
+  iso31661: String!
+  zones: [String]!
+}
+
+type TranslationData {
+  biography: String
+  homepage: String
+  name: String
+  overview: String
+  title: String
+}
+
+type Translation {
+  data: TranslationData!
+  englishName: String!
+  iso31661: String!
+  iso6391: String!
+  name: String!
+}
+
+type TVEdge {
+  cursor: String!
+  node: TV
+}
+
+type TVConnection implements Connection {
+  edges: [TVEdge]
+  pageInfo: PageInfo!
+  totalResults: Int!
+}
+
+type TV implements Node {
+  alternativeTitles: [AlternativeName]
+  backdropPath: String
+  backdrops: [Image]
+  cast: [Cast]
+  contentRatings: [ContentRating]
+  createdBy: Person
+  crew: [Crew]
+  episodeGroups: [EpisodeGroup]
+  episodeRunTime: [Int]!
+  externalIds: ExternalIds
+  firstAirDate: Date!
+  genres: [Genre]
+  homepage: String!
+  id: ID!
+  inProduction: Boolean!
+  keywords: [Keyword]
+  languages: [String]!
+  lastAirDate: Date!
+  lastEpisodeToAir: Episode!
+  mediaType: MediaType
+  name: String!
+  nextEpisodeToAir: Episode
+  networks: [Company]!
+  numberOfEpisodes: Int!
+  numberOfSeasons: Int!
+  originCountry: [String]!
+  originalLanguage: String!
+  originalName: String!
+  overview: String!
+  popularity: Float!
+  posterPath: String
+  posters: [Image]
+  productionCompanies: [Company]!
+  recommendations(args: ConnectionInput): TVConnection
+  reviews(args: ConnectionInput): ReviewConnection
+  seasons: [Season]!
+  similarTVShows(args: ConnectionInput): TVConnection
+  status: String!
+  translations: [Translation]
+  type: String!
+  videos: [Video]
+  voteAverage: Float!
+  voteCount: Int!
+}
+
+type Video implements Node {
+  id: ID!
+  iso6391: String!
+  iso31661: String!
+  key: String!
+  name: String!
+  site: String!
+  size: Int!
+  type: VideoType!
+}
+
+"""
+Schema
+"""
 
 schema {
   query: Query

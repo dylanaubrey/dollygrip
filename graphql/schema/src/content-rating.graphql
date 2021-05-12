@@ -1,4 +1,0 @@
-type ContentRating {
-  iso31661: String!
-  rating: String!
-}
