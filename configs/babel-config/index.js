@@ -26,7 +26,7 @@ module.exports = api => {
   }
 
   const plugins = [
-    '@babel/plugin-syntax-dynamic-import',
+    isTestEnv ? '@babel/plugin-transform-modules-commonjs' : '@babel/plugin-syntax-dynamic-import',
     [
       '@babel/plugin-transform-runtime',
       {
@@ -57,7 +57,7 @@ module.exports = api => {
       '@babel/preset-env',
       {
         corejs: 3,
-        modules: false,
+        modules: isTestEnv ? 'commonjs' : false,
         targets,
         useBuiltIns: 'usage',
       },

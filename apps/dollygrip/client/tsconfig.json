@@ -1,11 +1,11 @@
 {
   "extends": "../../../tsconfig.pkgs.json",
   "compilerOptions": {
-    "outDir": "dist/types",
-    "rootDir": "src",
-    "allowJs": true,
+    "allowJs": false,
+    "emitDeclarationOnly": false,
+    "jsx": "react-jsx",
     "noEmit": true,
-    "jsx": "react-jsx"
+    "rootDir": "src"
   },
   "include": [
     "src/**/*",

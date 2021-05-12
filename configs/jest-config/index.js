@@ -56,7 +56,6 @@ module.exports = {
   moduleFileExtensions: ['js', 'jsx', 'json', 'ts', 'tsx'],
   moduleNameMapper,
   rootDir: packageDir,
-  setupFilesAfterEnv: ['<rootDir/jest.setup.js'],
   testEnvironment: isJsEnvWeb ? 'jest-environment-jsdom-fourteen' : 'node',
   testMatch,
   testPathIgnorePatterns: ['/build/', '/config/', '/dist/', '/e2e/', '/reports/', '/scripts/', '/__snapshots__/'],
