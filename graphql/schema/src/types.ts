@@ -504,7 +504,7 @@ export type Movie = Node & {
   mediaType?: Maybe<MediaType>;
   originalLanguage: Scalars['String'];
   originalTitle: Scalars['String'];
-  overview?: Maybe<Scalars['String']>;
+  overview: Scalars['String'];
   popularity: Scalars['Float'];
   posterPath?: Maybe<Scalars['String']>;
   posters?: Maybe<Array<Maybe<Image>>>;

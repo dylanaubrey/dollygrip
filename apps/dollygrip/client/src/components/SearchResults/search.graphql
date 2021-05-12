@@ -1,0 +1,56 @@
+query DiscoverMovies (
+  $after: String
+  $before: String
+  $first: Int = 20
+  $includeAdult: Boolean = false
+  $last: Int
+  $query: String!
+  $searchType: SearchType = MULTI
+) {
+  search(input: {
+    after: $after,
+    before: $before,
+    first: $first,
+    includeAdult: $includeAdult,
+    last: $last,
+    query: $query,
+    searchType: $searchType,
+  }) {
+    edges {
+      cursor
+      node {
+        ...on Movie {
+          backdropPath
+          overview
+          posterPath
+          title
+        }
+        ...on TV {
+          backdropPath
+          overview
+          posterPath
+          name
+        }
+        ...on Person {
+          name
+          profilePath
+        }
+        ...on Company {
+          logoPath
+          name
+        }
+        ...on Collection {
+          posterPath
+          name
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+    totalResults
+  }
+}

@@ -3,8 +3,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary';
 import Header from './components/Header';
 import Main from './components/Main';
-import config from './config';
-import Toolbelt from './contexts/Toolbelt';
 
 const App = () => (
   <div className="App">
@@ -18,12 +16,10 @@ const App = () => (
         <div />
       )}
     >
-      <Toolbelt config={config}>
-        <Router>
-          <Header />
-          <Main />
-        </Router>
-      </Toolbelt>
+      <Router>
+        <Header />
+        <Main />
+      </Router>
     </ErrorBoundary>
   </div>
 );

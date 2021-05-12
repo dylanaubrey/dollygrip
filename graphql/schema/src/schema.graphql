@@ -585,7 +585,7 @@ type Movie implements Node {
   mediaType: MediaType
   originalLanguage: String!
   originalTitle: String!
-  overview: String
+  overview: String!
   popularity: Float!
   posterPath: String
   posters: [Image]
