@@ -1,5 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 import useConfig from '../../hooks/useConfig';
+import Homepage from '../Homepage';
 
 const Main = () => {
   const { routes } = useConfig();
@@ -7,9 +8,7 @@ const Main = () => {
   return (
     <div className="Main">
       <Switch>
-        <Route exact path={routes.root}>
-          <div>Welcome...</div>
-        </Route>
+        <Route exact path={routes.root} render={() => <Homepage />} />
         <Route path={routes.searchResults} render={() => <div>Search results...</div>} />
         <Route path="*">
           <div>Not found...</div>
