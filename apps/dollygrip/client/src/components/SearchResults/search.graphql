@@ -1,4 +1,4 @@
-query DiscoverMovies (
+query Search (
   $after: String
   $before: String
   $first: Int = 20
