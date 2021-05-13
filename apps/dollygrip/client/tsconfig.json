@@ -3,7 +3,6 @@
   "compilerOptions": {
     "allowJs": false,
     "emitDeclarationOnly": false,
-    "jsx": "react-jsx",
     "noEmit": true,
     "rootDir": "src"
   },

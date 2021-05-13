@@ -1,5 +1,9 @@
 const config = require('@dollygrip/rollup-config');
 
 module.exports = {
-  ...config,
+  ...config({
+    copy: {
+      targets: [{ dest: ['dist/cjs', 'dist/esm'], src: 'src/schema.graphql' }],
+    },
+  }),
 };

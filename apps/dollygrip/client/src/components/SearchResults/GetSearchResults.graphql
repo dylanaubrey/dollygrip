@@ -1,4 +1,4 @@
-query Search (
+query GetSearchResults (
   $after: String
   $before: String
   $first: Int = 20

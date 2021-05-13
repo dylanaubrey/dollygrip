@@ -13,7 +13,7 @@ module.exports = {
     jest: true,
     node: true,
   },
-  extends: ['airbnb', 'prettier', 'prettier/react', 'prettier/@typescript-eslint'],
+  extends: ['airbnb', 'prettier'],
   overrides: [
     {
       files: ['**/*.{ts,tsx}'],

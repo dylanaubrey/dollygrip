@@ -32,19 +32,21 @@
     "test": "jest --logHeapUsage"
   },
   "dependencies": {
-    "@graphql-codegen/cli": "1.21.4",
-    "@graphql-codegen/typescript": "1.22.0",
-    "@graphql-codegen/typescript-operations": "1.17.16",
     "@graphql-tools/graphql-file-loader": "6.2.7",
     "@graphql-tools/load": "6.2.8",
-    "graphql": "15.5.0"
+    "graphql": "15.5.0",
+    "preval.macro": "5.0.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "1.21.4",
+    "@graphql-codegen/introspection": "1.18.2",
+    "@graphql-codegen/typescript": "1.22.0",
+    "@graphql-codegen/typescript-operations": "1.17.16",
     "@dollygrip/babel-config": "0.0.1",
     "@dollygrip/jest-config": "0.0.1",
     "@dollygrip/rollup-config": "0.0.1",
-    "concurrently": "5.1.0",
-    "del-cli": "3.0.0",
+    "concurrently": "6.1.0",
+    "del-cli": "3.0.1",
     "jest": "26.6.0",
     "rollup": "2.47.0"
   }

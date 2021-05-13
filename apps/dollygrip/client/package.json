@@ -18,7 +18,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false --passWithNoTests",
     "eject": "react-scripts eject"
   },
   "dependencies": {
@@ -27,15 +27,16 @@
     "@cachemap/indexed-db": "3.0.2",
     "@cachemap/reaper": "3.0.2",
     "@dollygrip/schema": "0.0.5",
-    "@graphql-box/cache-manager": "2.0.2",
-    "@graphql-box/client": "2.0.2",
+    "@graphql-box/cache-manager": "2.0.4",
+    "@graphql-box/client": "2.0.4",
     "@graphql-box/core": "2.0.1",
-    "@graphql-box/debug-manager": "2.0.2",
-    "@graphql-box/fetch-manager": "2.0.2",
-    "@graphql-box/request-parser": "2.0.2",
-    "@graphql-codegen/introspection": "1.18.2",
+    "@graphql-box/debug-manager": "2.0.4",
+    "@graphql-box/fetch-manager": "2.0.4",
+    "@graphql-box/helpers": "2.0.5",
+    "@graphql-box/request-parser": "2.0.4",
     "@material-ui/core": "4.11.4",
     "@material-ui/icons": "4.11.2",
+    "graphql": "15.5.0",
     "history": "5.0.0",
     "isomorphic-fetch": "3.0.0",
     "lodash": "4.17.21",
@@ -44,7 +45,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-helmet": "6.1.0",
-    "react-router-dom": "5.1.2"
+    "react-router-dom": "5.2.0"
   },
   "devDependencies": {
     "@dollygrip/babel-config": "0.0.1",

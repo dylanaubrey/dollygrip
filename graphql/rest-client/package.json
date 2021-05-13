@@ -30,16 +30,17 @@
     "test": "jest --logHeapUsage"
   },
   "dependencies": {
-    "getta": "0.1.5"
+    "@cachemap/core": "3.0.2",
+    "getta": "0.1.5",
+    "type-fest": "1.1.1"
   },
   "devDependencies": {
-    "@cachemap/core": "3.0.2",
     "@cachemap/map": "3.0.2",
     "@dollygrip/babel-config": "0.0.1",
     "@dollygrip/jest-config": "0.0.1",
     "@dollygrip/rollup-config": "0.0.1",
-    "concurrently": "5.1.0",
-    "del-cli": "3.0.0",
+    "concurrently": "6.1.0",
+    "del-cli": "3.0.1",
     "jest": "26.6.0",
     "rollup": "2.47.0"
   }

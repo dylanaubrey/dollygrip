@@ -1,0 +1,57 @@
+{
+  "name": "@dollygrip/dollygrip-server",
+  "version": "0.0.1",
+  "description": "The Dollygrip app server module.",
+  "homepage": "https://github.com/dylanaubrey/dollygrip",
+  "bugs": {
+    "url": "https://github.com/dylanaubrey/dollygrip/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dylanaubrey/dollygrip/apps/dollygrip/server"
+  },
+  "license": "MIT",
+  "author": "Dylan Aubrey",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "del-cli ./dist && npm run compile",
+    "compile": "JS_ENV=node MODULE_SYSTEM=cjs rollup -c ./rollup.config.js",
+    "compile-watch": "npm run compile -- --watch",
+    "test": "jest --logHeapUsage"
+  },
+  "dependencies": {
+    "@cachemap/constants": "3.0.3",
+    "@cachemap/core": "3.0.2",
+    "@cachemap/map": "3.0.2",
+    "@cachemap/reaper": "3.0.2",
+    "@dollygrip/resolvers": "0.0.5",
+    "@dollygrip/schema": "0.0.5",
+    "@graphql-box/cache-manager": "2.0.4",
+    "@graphql-box/client": "2.0.4",
+    "@graphql-box/core": "2.0.1",
+    "@graphql-box/debug-manager": "2.0.4",
+    "@graphql-box/execute": "2.0.4",
+    "@graphql-box/request-parser": "2.0.4",
+    "@graphql-box/server": "2.0.4",
+    "@graphql-tools/schema": "7.1.5",
+    "body-parser": "1.19.0",
+    "compression": "1.7.4",
+    "cookie-parser": "1.4.5",
+    "ejs": "3.1.6",
+    "express": "4.17.1",
+    "express-useragent": "1.0.15",
+    "graphql": "15.5.0",
+    "helmet": "4.6.0",
+    "https-proxy-agent": "5.0.0",
+    "isomorphic-fetch": "3.0.0",
+    "lodash": "4.17.21",
+    "ws": "7.4.5"
+  },
+  "devDependencies": {
+    "@dollygrip/babel-config": "0.0.1",
+    "@dollygrip/jest-config": "0.0.1",
+    "@dollygrip/rollup-config": "0.0.1"
+  }
+}

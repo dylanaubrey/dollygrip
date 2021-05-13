@@ -18,7 +18,7 @@ describe('resolveCollectionImages >', () => {
 
   it('THEN the resolver should return the collection translations', async () => {
     expect(
-      await resolveCollectionTranslations((collectionDetails as unknown) as Collection, undefined, { restClient })
+      await resolveCollectionTranslations(collectionDetails as unknown as Collection, undefined, { restClient })
     ).toMatchSnapshot();
   });
 });

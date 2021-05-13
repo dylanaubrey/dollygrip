@@ -36,7 +36,7 @@ describe('resolveCollectionImages >', () => {
 
       expect(
         await resolveCollectionImages(
-          (collectionDetails as unknown) as Collection,
+          collectionDetails as unknown as Collection,
           undefined,
           { restClient },
           resolveInfo
@@ -64,7 +64,7 @@ describe('resolveCollectionImages >', () => {
 
       expect(
         await resolveCollectionImages(
-          (collectionDetails as unknown) as Collection,
+          collectionDetails as unknown as Collection,
           undefined,
           { restClient },
           resolveInfo

@@ -7,14 +7,14 @@ export type Props = {
   location: Location<{ keyphrase?: string }>;
 };
 
-const searchQuery = preval`
+const GET_SEARCH_RESULTS = preval`
   const fs = require('fs');
   const path = require('path');
-  module.exports = fs.readFileSync(path.resolve(__dirname, 'search.graphql'), 'utf8');
+  module.exports = fs.readFileSync(path.resolve(__dirname, 'GetSearchResults.graphql'), 'utf8');
 ` as string;
 
 const SearchResults = ({ location }: Props) => {
-  const [executeQuery, loading, errors, data] = useQuery(searchQuery);
+  const [executeQuery, loading, errors, data] = useQuery(GET_SEARCH_RESULTS);
 
   useEffect(() => {
     executeQuery({ variables: { query: location.state.keyphrase } });

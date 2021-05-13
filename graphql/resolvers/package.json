@@ -32,8 +32,6 @@
   "dependencies": {
     "@dollygrip/rest-client": "0.0.5",
     "@dollygrip/schema": "0.0.5",
-    "@graphql-box/core": "2.0.1",
-    "@graphql-box/helpers": "2.0.3",
     "getta": "0.1.5",
     "graphql": "15.5.0"
   },
@@ -43,9 +41,11 @@
     "@dollygrip/babel-config": "0.0.1",
     "@dollygrip/jest-config": "0.0.1",
     "@dollygrip/rollup-config": "0.0.1",
-    "concurrently": "5.1.0",
-    "del-cli": "3.0.0",
-    "fetch-mock": "9.1.0",
+    "@graphql-box/core": "2.0.1",
+    "@graphql-box/helpers": "2.0.5",
+    "concurrently": "6.1.0",
+    "del-cli": "3.0.1",
+    "fetch-mock": "9.11.0",
     "jest": "26.6.0",
     "rollup": "2.47.0"
   }

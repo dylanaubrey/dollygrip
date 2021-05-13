@@ -33,6 +33,6 @@ export default () =>
       performance: window.performance,
     }),
     requestManager: fetchManager({ batch: true, url: '/graphql' }),
-    requestParser: requestParser({ introspection: (introspection as unknown) as IntrospectionQuery }),
+    requestParser: requestParser({ introspection: introspection as unknown as IntrospectionQuery }),
     typeIDKey: DEFAULT_TYPE_ID_KEY,
   });
