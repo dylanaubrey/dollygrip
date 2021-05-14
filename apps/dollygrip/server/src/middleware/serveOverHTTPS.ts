@@ -12,6 +12,9 @@ export default (app: Express, opts: Options) => {
   const { port, ...rest } = opts;
 
   const httpsServer = https.createServer(rest, app).listen(port, () => {
+    // eslint-disable-next-line no-console
+    console.log(`Server listening on port ${port} (over HTTPS)`);
+
     process.on('SIGINT', () => {
       httpsServer.close(err => {
         process.exit(err ? 1 : 0);

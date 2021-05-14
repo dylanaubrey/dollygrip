@@ -8,5 +8,9 @@ export type Options = {
 export default (app: Express, opts: Options) => {
   const { port } = opts;
   const server = http.createServer(app);
-  server.listen(port);
+
+  server.listen(port, () => {
+    // eslint-disable-next-line no-console
+    console.log(`Server listening on port ${port} (over HTTP)`);
+  });
 };

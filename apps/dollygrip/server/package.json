@@ -39,6 +39,7 @@
     "body-parser": "1.19.0",
     "compression": "1.7.4",
     "cookie-parser": "1.4.5",
+    "dotenv": "9.0.2",
     "ejs": "3.1.6",
     "express": "4.17.1",
     "express-useragent": "1.0.15",
@@ -52,6 +53,9 @@
   "devDependencies": {
     "@dollygrip/babel-config": "0.0.1",
     "@dollygrip/jest-config": "0.0.1",
-    "@dollygrip/rollup-config": "0.0.1"
+    "@dollygrip/rollup-config": "0.0.1",
+    "del-cli": "3.0.1",
+    "jest": "26.6.0",
+    "rollup": "2.47.0"
   }
 }

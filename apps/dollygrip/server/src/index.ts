@@ -1,6 +1,6 @@
 import express from 'express';
 import { readFileSync } from 'fs';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import makeApp from './makeApp';
 import makeGraphQLServer from './middleware/makeGraphQLServer';
 import serveClientApp from './middleware/serveClientApp';
@@ -8,7 +8,10 @@ import serveOverHTTP from './middleware/serveOverHTTP';
 import serveOverHTTPS from './middleware/serveOverHTTPS';
 import serveStatus from './middleware/serveStatus';
 
+require('dotenv').config();
+
 const { CLIENT_PATH, HTTPS, NODE_ENV, NODE_SSL_CA, NODE_SSL_CERT, NODE_SSL_KEY, PORT } = process.env;
+const clientPath = resolve(process.cwd(), CLIENT_PATH);
 const https = Boolean(HTTPS);
 const isProd = NODE_ENV === 'production';
 const port = Number(PORT);
@@ -21,7 +24,7 @@ const port = Number(PORT);
 
   app.use(
     '/static',
-    express.static(join(CLIENT_PATH, 'public'), {
+    express.static(join(clientPath, 'public'), {
       fallthrough: false,
       immutable: isProd,
       maxAge: isProd ? 31536000 : 0,
@@ -31,7 +34,7 @@ const port = Number(PORT);
     })
   );
 
-  app.use(serveClientApp({ clientPath: CLIENT_PATH }));
+  app.use(serveClientApp({ clientPath }));
 
   if (https && NODE_SSL_CA && NODE_SSL_CERT && NODE_SSL_KEY) {
     serveOverHTTPS(app, {
