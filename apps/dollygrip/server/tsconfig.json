@@ -1,0 +1,18 @@
+{
+  "extends": "../../../tsconfig.pkgs.json",
+  "compilerOptions": {
+    "rootDir": "src"
+  },
+  "include": [
+    "src/**/*",
+    "src/**/*.json"
+  ],
+  "references": [
+    {
+      "path": "../../../graphql/resolvers"
+    },
+    {
+      "path": "../../../graphql/schema"
+    }
+  ]
+}

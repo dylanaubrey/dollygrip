@@ -6,6 +6,9 @@
       "path": "./apps/dollygrip/client"
     },
     {
+      "path": "./apps/dollygrip/server"
+    },
+    {
       "path": "./graphql/resolvers"
     },
     {
