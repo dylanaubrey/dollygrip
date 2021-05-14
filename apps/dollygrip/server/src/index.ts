@@ -6,6 +6,7 @@ import makeGraphQLServer from './middleware/makeGraphQLServer';
 import serveClientApp from './middleware/serveClientApp';
 import serveOverHTTP from './middleware/serveOverHTTP';
 import serveOverHTTPS from './middleware/serveOverHTTPS';
+import serveStatus from './middleware/serveStatus';
 
 const { CLIENT_PATH, HTTPS, NODE_ENV, NODE_SSL_CA, NODE_SSL_CERT, NODE_SSL_KEY, PORT } = process.env;
 const https = Boolean(HTTPS);
@@ -15,6 +16,7 @@ const port = Number(PORT);
 (async () => {
   const app = makeApp();
   const graphQLServer = await makeGraphQLServer();
+  app.use(serveStatus());
   app.use('/graphql', graphQLServer.request());
 
   app.use(

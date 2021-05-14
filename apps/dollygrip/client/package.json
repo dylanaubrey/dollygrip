@@ -12,6 +12,7 @@
   },
   "license": "MIT",
   "author": "Dylan Aubrey",
+  "proxy": "http://localhost:4000/",
   "publishConfig": {
     "access": "public"
   },
