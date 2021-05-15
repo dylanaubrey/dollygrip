@@ -12,7 +12,8 @@
   "packages": [
     "apps/**",
     "configs/*",
-    "graphql/*"
+    "graphql/*",
+    "scripts/*"
   ],
   "strict": true,
   "version": "independent"

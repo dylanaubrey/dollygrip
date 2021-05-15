@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+
+// eslint-disable-next-line no-unused-expressions
+require('yargs').scriptName('app').command(require('../dist/cjs/index.js')).help().argv;

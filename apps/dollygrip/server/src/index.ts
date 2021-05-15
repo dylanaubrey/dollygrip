@@ -8,7 +8,7 @@ import serveOverHTTP from './middleware/serveOverHTTP';
 import serveOverHTTPS from './middleware/serveOverHTTPS';
 import serveStatus from './middleware/serveStatus';
 
-require('dotenv').config();
+require('dotenv').config({ path: resolve(__dirname, '../../.env') });
 
 const { CLIENT_PATH, HTTPS, NODE_ENV, NODE_SSL_CA, NODE_SSL_CERT, NODE_SSL_KEY, PORT } = process.env;
 const clientPath = resolve(process.cwd(), CLIENT_PATH);

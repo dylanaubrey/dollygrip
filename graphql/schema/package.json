@@ -47,7 +47,9 @@
     "@dollygrip/rollup-config": "0.0.1",
     "concurrently": "6.1.0",
     "del-cli": "3.0.1",
+    "eslint": "7.26.0",
     "jest": "26.6.0",
-    "rollup": "2.47.0"
+    "rollup": "2.47.0",
+    "typescript": "4.2.4"
   }
 }

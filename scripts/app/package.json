@@ -1,45 +1,41 @@
 {
-  "name": "@dollygrip/rest-client",
-  "version": "0.0.5",
-  "description": "The Dollygrip rest-client module.",
+  "name": "@dollygrip/app-scripts",
+  "version": "0.0.1",
+  "description": "The Dollygrip app module.",
   "homepage": "https://github.com/dylanaubrey/dollygrip",
   "bugs": {
     "url": "https://github.com/dylanaubrey/dollygrip/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dylanaubrey/dollygrip/graphql/rest-client"
+    "url": "https://github.com/dylanaubrey/dollygrip/apps/dollygrip"
   },
   "license": "MIT",
   "author": "Dylan Aubrey",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
   "publishConfig": {
     "access": "public"
+  },
+  "bin": {
+    "app": "./bin/app"
   },
   "scripts": {
     "build": "del-cli ./dist && npm run compile",
     "compile": "concurrently npm:compile:*",
-    "compile-watch": "concurrently npm:compile-watch:*",
-    "compile-watch:main": "npm run compile:main -- --watch",
-    "compile-watch:types": "npm run compile:types -- --watch",
     "compile:main": "JS_ENV=node MODULE_SYSTEM=cjs rollup -c ./rollup.config.js",
     "compile:module": "JS_ENV=node MODULE_SYSTEM=esm rollup -c ./rollup.config.js",
     "compile:types": "tsc --build",
     "test": "jest --logHeapUsage"
   },
   "dependencies": {
-    "@cachemap/core": "3.0.2",
-    "getta": "0.1.5",
-    "type-fest": "1.1.1"
+    "concurrently": "6.1.0",
+    "shelljs": "0.8.4",
+    "watch": "1.0.2",
+    "yargs": "17.0.1"
   },
   "devDependencies": {
-    "@cachemap/map": "3.0.2",
     "@dollygrip/babel-config": "0.0.1",
     "@dollygrip/jest-config": "0.0.1",
     "@dollygrip/rollup-config": "0.0.1",
-    "concurrently": "6.1.0",
     "del-cli": "3.0.1",
     "jest": "26.6.0",
     "rollup": "2.47.0",

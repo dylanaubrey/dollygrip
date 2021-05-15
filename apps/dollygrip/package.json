@@ -1,0 +1,24 @@
+{
+  "name": "@dollygrip/dollygrip",
+  "version": "0.0.1",
+  "description": "The Dollygrip app module.",
+  "homepage": "https://github.com/dylanaubrey/dollygrip",
+  "bugs": {
+    "url": "https://github.com/dylanaubrey/dollygrip/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dylanaubrey/dollygrip/apps/dollygrip"
+  },
+  "license": "MIT",
+  "author": "Dylan Aubrey",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "start": "app start"
+  },
+  "dependencies": {
+    "@dollygrip/app-scripts": "7.13.16"
+  }
+}
