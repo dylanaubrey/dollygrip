@@ -47,7 +47,7 @@ export default async ({ apiKey }: { apiKey: string }) =>
               reaper: reaper({ interval: 300000 }),
               store: map(),
             }),
-            queryParams: { apiKey },
+            queryParams: { api_key: apiKey },
           }),
         },
         fieldResolver: defaultFieldResolver,

@@ -4,12 +4,12 @@ import { GraphQLError } from 'graphql';
 import type { JsonObject } from 'type-fest';
 import type { Context } from './types';
 
-export default async function resolveCollectionImages(
+export default async (
   { id }: Collection,
   _args: undefined,
   { restClient }: Context,
   { fieldName }: GraphQLResolveInfo
-) {
+) => {
   const { data, errors } = await restClient.collection({ pathTemplateData: { id, type: 'images' } });
 
   if (errors?.length) {
@@ -17,4 +17,4 @@ export default async function resolveCollectionImages(
   }
 
   return (data as JsonObject)[fieldName];
-}
+};

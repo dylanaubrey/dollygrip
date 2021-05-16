@@ -2,11 +2,7 @@ import type { Collection } from '@dollygrip/schema';
 import { GraphQLError } from 'graphql';
 import type { Context } from './types';
 
-export default async function resolveCollectionTranslations(
-  { id }: Collection,
-  _args: undefined,
-  { restClient }: Context
-) {
+export default async ({ id }: Collection, _args: undefined, { restClient }: Context) => {
   const { data, errors } = await restClient.collection({ pathTemplateData: { id, type: 'translations' } });
 
   if (errors?.length) {
@@ -14,4 +10,4 @@ export default async function resolveCollectionTranslations(
   }
 
   return data;
-}
+};

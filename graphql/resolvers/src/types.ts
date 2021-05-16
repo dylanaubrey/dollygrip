@@ -14,7 +14,7 @@ export interface CollectionArgs {
   id: number;
 }
 
-export interface Context {
-  [key: string]: any;
-  restClient: Getta & ShortcutProperties<ShortcutMethodNames>; // tslint:disable-line no-any
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type Context = Record<string, any> & {
+  restClient: Getta & ShortcutProperties<ShortcutMethodNames>;
+};

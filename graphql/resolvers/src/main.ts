@@ -2,6 +2,7 @@ import resolveCertifications from './certifications';
 import resolveCollection from './collection';
 import resolveCollectionImages from './collection-images';
 import resolveCollectionTranslations from './collection-translations';
+import resolveSearch from './search';
 
 export default {
   Collection: {
@@ -25,7 +26,7 @@ export default {
     person: null,
     popular: null,
     review: null,
-    search: null,
+    search: resolveSearch,
     trending: null,
     tv: null,
   },

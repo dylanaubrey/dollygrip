@@ -21,5 +21,6 @@ export type ShortcutMethodNames =
 
 export interface CreateRestClientParams {
   cache: Cachemap;
-  queryParams: JsonObject & { apiKey: string; language?: string };
+  // eslint-disable-next-line camelcase
+  queryParams: JsonObject & { api_key: string; language?: string };
 }

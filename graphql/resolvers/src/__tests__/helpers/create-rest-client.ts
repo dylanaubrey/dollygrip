@@ -5,6 +5,6 @@ import createDollygripRestClient from '@dollygrip/rest-client';
 export default function createRestClient() {
   return createDollygripRestClient({
     cache: new Cachemap({ name: 'cachemap', store: map() }),
-    queryParams: { apiKey: '12345' },
+    queryParams: { api_key: '12345' },
   });
 }
