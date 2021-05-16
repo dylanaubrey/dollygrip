@@ -1,7 +1,8 @@
 import Cachemap from '@cachemap/core';
 import map from '@cachemap/map';
 import reaper from '@cachemap/reaper';
-import resolvers from '@dollygrip/resolvers';
+import resolvers, { defaultFieldResolver } from '@dollygrip/resolvers';
+import createDollygripRestClient from '@dollygrip/rest-client';
 import { typeDefs } from '@dollygrip/schema';
 import cacheManager from '@graphql-box/cache-manager';
 import Client from '@graphql-box/client';
@@ -15,7 +16,7 @@ import { performance } from 'perf_hooks';
 
 const schema = makeExecutableSchema({ resolvers, typeDefs });
 
-export default async () =>
+export default async ({ apiKey }: { apiKey: string }) =>
   Server.init({
     client: await Client.init({
       cacheManager: cacheManager({
@@ -38,7 +39,20 @@ export default async () =>
         name: 'GRAPHQL_BOX_SERVER',
         performance,
       }),
-      requestManager: execute({ schema }),
+      requestManager: execute({
+        contextValue: {
+          restClient: createDollygripRestClient({
+            cache: new Cachemap({
+              name: 'GRAPHQL_BOX_REST_CLIENT_CACHE',
+              reaper: reaper({ interval: 300000 }),
+              store: map(),
+            }),
+            queryParams: { apiKey },
+          }),
+        },
+        fieldResolver: defaultFieldResolver,
+        schema,
+      }),
       requestParser: requestParser({ schema }),
       typeIDKey: DEFAULT_TYPE_ID_KEY,
     }),

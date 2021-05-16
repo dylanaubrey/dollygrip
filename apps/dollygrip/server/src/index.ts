@@ -10,7 +10,7 @@ import serveStatus from './middleware/serveStatus';
 
 require('dotenv').config({ path: resolve(__dirname, '../../.env') });
 
-const { CLIENT_PATH, HTTPS, NODE_ENV, NODE_SSL_CA, NODE_SSL_CERT, NODE_SSL_KEY, PORT } = process.env;
+const { API_KEY, CLIENT_PATH, HTTPS, NODE_ENV, NODE_SSL_CA, NODE_SSL_CERT, NODE_SSL_KEY, PORT } = process.env;
 const clientPath = resolve(process.cwd(), CLIENT_PATH);
 const https = Boolean(HTTPS);
 const isProd = NODE_ENV === 'production';
@@ -18,7 +18,7 @@ const port = Number(PORT);
 
 (async () => {
   const app = makeApp();
-  const graphQLServer = await makeGraphQLServer();
+  const graphQLServer = await makeGraphQLServer({ apiKey: API_KEY });
   app.use(serveStatus());
   app.use('/graphql', graphQLServer.request());
 

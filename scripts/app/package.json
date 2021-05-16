@@ -20,10 +20,7 @@
   },
   "scripts": {
     "build": "del-cli ./dist && npm run compile",
-    "compile": "concurrently npm:compile:*",
-    "compile:main": "JS_ENV=node MODULE_SYSTEM=cjs rollup -c ./rollup.config.js",
-    "compile:module": "JS_ENV=node MODULE_SYSTEM=esm rollup -c ./rollup.config.js",
-    "compile:types": "tsc --build",
+    "compile": "JS_ENV=node MODULE_SYSTEM=cjs rollup -c ./rollup.config.js",
     "test": "jest --logHeapUsage"
   },
   "dependencies": {

@@ -19,6 +19,6 @@
     "start": "app start"
   },
   "dependencies": {
-    "@dollygrip/app-scripts": "7.13.16"
+    "@dollygrip/app-scripts": "0.0.1"
   }
 }

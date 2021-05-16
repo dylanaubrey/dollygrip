@@ -32,8 +32,11 @@
   "dependencies": {
     "@dollygrip/rest-client": "0.0.5",
     "@dollygrip/schema": "0.0.5",
+    "@graphql-box/core": "2.0.1",
+    "@graphql-box/helpers": "2.0.5",
     "getta": "0.1.5",
-    "graphql": "15.5.0"
+    "graphql": "15.5.0",
+    "lodash": "4.17.21"
   },
   "devDependencies": {
     "@cachemap/core": "3.0.2",
@@ -41,8 +44,6 @@
     "@dollygrip/babel-config": "0.0.1",
     "@dollygrip/jest-config": "0.0.1",
     "@dollygrip/rollup-config": "0.0.1",
-    "@graphql-box/core": "2.0.1",
-    "@graphql-box/helpers": "2.0.5",
     "concurrently": "6.1.0",
     "del-cli": "3.0.1",
     "fetch-mock": "9.11.0",
